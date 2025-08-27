@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梦园皇宫SPA - 奢华体验，尊贵享受</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 配置Tailwind自定义主题 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            light: '#f5d48e',
+                            DEFAULT: '#d4af37',
+                            dark: '#b8860b'
+                        },
+                        royal: {
+                            light: '#6a89cc',
+                            DEFAULT: '#1a365d',
+                            dark: '#0d1b2a'
+                        },
+                        cream: '#f8f4e3'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .transition-transform {
+                transition-property: transform;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 300ms;
+            }
+        }
+    </style>
+    
+    <style>
+        /* 基础动画设置 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 渐变背景动画 */
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.9), rgba(184, 134, 11, 0.7)), url('https://picsum.photos/id/1060/1920/1080');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* 服务卡片悬停效果 */
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* 加载动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+    </style>
+</head>
+
+<body class="font-inter bg-cream text-gray-800 antialiased">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center">
+                <span class="text-2xl font-bold text-white text-shadow">梦园皇宫<span class="text-gold-light">SPA</span></span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="text-white hover:text-gold-light transition-colors duration-300">关于我们</a>
+                <a href="#services" class="text-white hover:text-gold-light transition-colors duration-300">服务项目</a>
+                <a href="#facilities" class="text-white hover:text-gold-light transition-colors duration-300">奢华设施</a>
+                <a href="#testimonials" class="text-white hover:text-gold-light transition-colors duration-300">客户评价</a>
+                <a href="#contact" class="text-white hover:text-gold-light transition-colors duration-300">联系我们</a>
+            </nav>
+            
+            <!-- 预约按钮 -->
+            <a href="#booking" class="hidden md:block bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                立即预约
+            </a>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-white text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-royal-dark bg-opacity-95">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#about" class="text-white hover:text-gold-light py-2 border-b border-gray-700">关于我们</a>
+                <a href="#services" class="text-white hover:text-gold-light py-2 border-b border-gray-700">服务项目</a>
+                <a href="#facilities" class="text-white hover:text-gold-light py-2 border-b border-gray-700">奢华设施</a>
+                <a href="#testimonials" class="text-white hover:text-gold-light py-2 border-b border-gray-700">客户评价</a>
+                <a href="#contact" class="text-white hover:text-gold-light py-2 border-b border-gray-700">联系我们</a>
+                <a href="#booking" class="bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full text-center transition-all duration-300">
+                    立即预约
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero-gradient min-h-screen flex items-center justify-center text-center text-white">
+        <div class="container mx-auto px-4 py-20 z-10">
+            <h1 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold mb-6 leading-tight animate-fade-in">
+                释放身心，<br class="md:hidden">尊享皇家礼遇
+            </h1>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] max-w-2xl mx-auto mb-10 text-gray-100 animate-fade-in delay-100">
+                梦园皇宫SPA为您提供顶级的放松体验，结合东方传统疗法与现代技术，让您在皇家般的环境中重焕活力
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in delay-200">
+                <a href="#services" class="bg-gold hover:bg-gold-dark text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    探索服务
+                </a>
+                <a href="#booking" class="bg-transparent border-2 border-white hover:border-gold hover:text-gold text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300">
+                    立即预约
+                </a>
+            </div>
+            
+            <!-- 向下滚动指示器 -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#about" class="text-white text-3xl">
+                    <i class="fa fa-chevron-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-royal-dark mb-4">关于梦园皇宫SPA</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+                <p class="max-w-3xl mx-auto text-gray-600">我们致力于为每一位宾客提供无与伦比的SPA体验，让您在繁忙的生活中找到片刻宁静与放松</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="https://picsum.photos/id/237/600/800" alt="梦园皇宫SPA环境" class="rounded-lg shadow-xl w-full h-auto">
+                    <div class="absolute -bottom-6 -right-6 bg-gold text-white p-6 rounded-lg shadow-lg hidden md:block">
+                        <p class="text-4xl font-bold">15+</p>
+                        <p class="text-sm">年专业SPA经验</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold text-royal mb-6">皇家般的尊贵体验</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        梦园皇宫SPA创立于2008年，位于城市中心黄金地段，是一家融合东方传统养生理念与西方现代SPA技术的高端养生会所。我们的每一位理疗师都经过严格培训和认证，拥有丰富的经验和专业技能。
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        我们坚信，真正的奢华不仅仅是环境的优雅，更是对每一位宾客需求的细致关注。从您踏入梦园皇宫的那一刻起，就能感受到我们无微不至的关怀与专业服务。
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="text-gold text-xl mr-4 mt-1"><i class="fa fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-royal mb-1">专业团队</h4>
+                                <p class="text-gray-600 text-sm">国际认证理疗师</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-gold text-xl mr-4 mt-1"><i class="fa fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-royal mb-1">天然产品</h4>
+                                <p class="text-gray-600 text-sm">有机草本精华</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-gold text-xl mr-4 mt-1"><i class="fa fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-royal mb-1">私密空间</h4>
+                                <p class="text-gray-600 text-sm">尊享个人静谧</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-gold text-xl mr-4 mt-1"><i class="fa fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-royal mb-1">定制服务</h4>
+                                <p class="text-gray-600 text-sm">个性化护理方案</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#services" class="inline-block bg-royal hover:bg-royal-dark text-white px-6 py-3 rounded-full transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
+                        了解更多服务
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务项目 -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-royal-dark mb-4">奢华SPA服务</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+                <p class="max-w-3xl mx-auto text-gray-600">我们提供多种高端SPA服务，每一项服务都由专业理疗师精心设计，为您带来身心的全面放松</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 服务卡片1 -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                    <img src="https://picsum.photos/id/28/600/400" alt="皇家全身按摩" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-semibold text-royal">皇家全身按摩</h3>
+                            <span class="text-gold font-bold">¥680/90分钟</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">结合瑞典式和深层组织按摩技巧，缓解肌肉紧张，促进血液循环，带来全身放松。</p>
+                        <a href="#booking" class="inline-block text-royal hover:text-gold font-medium transition-colors duration-300">
+                            立即预约 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 服务卡片2 -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                    <img src="https://picsum.photos/id/96/600/400" alt="芳香精油护理" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-semibold text-royal">芳香精油护理</h3>
+                            <span class="text-gold font-bold">¥780/90分钟</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">使用顶级有机精油，通过嗅觉和皮肤吸收，平衡身心，舒缓压力，改善睡眠质量。</p>
+                        <a href="#booking" class="inline-block text-royal hover:text-gold font-medium transition-colors duration-300">
+                            立即预约 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 服务卡片3 -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                    <img src="https://picsum.photos/id/29/600/400" alt="热石疗法" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-semibold text-royal">热石疗法</h3>
+                            <span class="text-gold font-bold">¥880/90分钟</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">使用经过特殊处理的火山石，加热后放置于身体关键穴位，释放深层肌肉紧张，促进能量流动。</p>
+                        <a href="#booking" class="inline-block text-royal hover:text-gold font-medium transition-colors duration-300">
+                            立即预约 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 服务卡片4 -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                    <img src="https://picsum.photos/id/64/600/400" alt="面部焕活护理" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-semibold text-royal">面部焕活护理</h3>
+                            <span class="text-gold font-bold">¥980/60分钟</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">定制化面部护理方案，清洁、去角质、精华导入和面膜护理，让肌肤重焕光彩。</p>
+                        <a href="#booking" class="inline-block text-royal hover:text-gold font-medium transition-colors duration-300">
+                            立即预约 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 服务卡片5 -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                    <img src="https://picsum.photos/id/26/600/400" alt="身体去角质护理" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-semibold text-royal">身体去角质护理</h3>
+                            <span class="text-gold font-bold">¥580/60分钟</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">使用海盐和精油混合物，去除死皮细胞，改善皮肤质感，让肌肤光滑细腻。</p>
+                        <a href="#booking" class="inline-block text-royal hover:text-gold font-medium transition-colors duration-300">
+                            立即预约 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 服务卡片6 -->
+                <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300">
+                    <img src="https://picsum.photos/id/106/600/400" alt="皇室尊享套餐" class="w-full h-60 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-semibold text-royal">皇室尊享套餐</h3>
+                            <span class="text-gold font-bold">¥1980/3小时</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">包含全身按摩、面部护理、身体去角质和足部护理的全方位套餐，尊享皇室般待遇。</p>
+                        <a href="#booking" class="inline-block text-royal hover:text-gold font-medium transition-colors duration-300">
+                            立即预约 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-block border-2 border-royal text-royal hover:bg-royal hover:text-white px-8 py-3 rounded-full transition-all duration-300">
+                    查看全部服务
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 奢华设施 -->
+    <section id="facilities" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-royal-dark mb-4">奢华设施</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+                <p class="max-w-3xl mx-auto text-gray-600">我们精心打造每一个空间，让您在享受SPA服务的同时，感受皇家般的尊贵与舒适</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="relative overflow-hidden rounded-lg shadow-xl h-96">
+                    <img src="https://picsum.photos/id/1048/800/600" alt="豪华SPA套房" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-2xl font-bold mb-2">豪华SPA套房</h3>
+                            <p>独立私密空间，配备私人按摩浴缸和休息区</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative overflow-hidden rounded-lg shadow-xl h-96">
+                    <img src="https://picsum.photos/id/1058/800/600" alt="蒸汽浴与桑拿" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-2xl font-bold mb-2">蒸汽浴与桑拿</h3>
+                            <p>传统与现代结合的排毒养颜设施</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-gold text-4xl mb-4">
+                        <i class="fa fa-tint"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-royal mb-2">恒温泳池</h3>
+                    <p class="text-gray-600">24小时恒温控制，提供舒适的水中放松体验</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-gold text-4xl mb-4">
+                        <i class="fa fa-leaf"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-royal mb-2">冥想花园</h3>
+                    <p class="text-gray-600">宁静的户外空间，让您与自然和谐共处</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-gold text-4xl mb-4">
+                        <i class="fa fa-cutlery"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-royal mb-2">养生餐厅</h3>
+                    <p class="text-gray-600">提供有机健康餐点，满足您的味蕾与健康需求</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-gold text-4xl mb-4">
+                        <i class="fa fa-bed"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-royal mb-2">休息 lounge</h3>
+                    <p class="text-gray-600">舒适的休息区，提供茶饮与小食，放松身心</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客户评价 -->
+    <section id="testimonials" class="py-20 bg-royal text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">宾客评价</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+                <p class="max-w-3xl mx-auto text-gray-200">听听我们的宾客如何评价梦园皇宫SPA的尊贵体验</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 评价1 -->
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+                    <div class="text-gold mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p class="italic mb-6">"这是我体验过的最好的SPA之一，环境优雅，服务周到，按摩师技术精湛。皇家全身按摩让我彻底放松，缓解了长期的肩颈疼痛。"</p>
+                    <div class="flex items-center">
+                        <img src="https://picsum.photos/id/64/100/100" alt="客户头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold">张女士</h4>
+                            <p class="text-sm text-gray-300">企业高管</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 评价2 -->
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+                    <div class="text-gold mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p class="italic mb-6">"皇室尊享套餐绝对物超所值，从进入SPA的那一刻起就感受到了尊贵的服务。热石疗法尤其出色，让我忘却了所有工作压力，完全沉浸在放松中。"</p>
+                    <div class="flex items-center">
+                        <img src="https://picsum.photos/id/91/100/100" alt="客户头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold">李先生</h4>
+                            <p class="text-sm text-gray-300">律师</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 评价3 -->
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+                    <div class="text-gold mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                    </div>
+                    <p class="italic mb-6">"作为一个经常出差的人，我体验过世界各地的SPA，但梦园皇宫的服务和环境仍然让我惊艳。面部护理后，我的皮肤状态明显改善，同事们都问我用了什么护肤品。"</p>
+                    <div class="flex items-center">
+                        <img src="https://picsum.photos/id/26/100/100" alt="客户头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-semibold">王女士</h4>
+                            <p class="text-sm text-gray-300">市场总监</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 预约表单 -->
+    <section id="booking" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                    <div class="bg-royal p-12 text-white">
+                        <h2 class="text-3xl font-bold mb-6">预约您的<br>皇家SPA体验</h2>
+                        <p class="mb-8 text-gray-200">提前预约可享受9折优惠，会员更有专属礼遇。我们的客服团队将在24小时内与您确认预约详情。</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="text-gold text-xl mr-4 mt-1"><i class="fa fa-clock-o"></i></div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">营业时间</h4>
+                                    <p class="text-gray-300 text-sm">周一至周五: 10:00 - 22:00<br>周六至周日: 9:00 - 23:00</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-gold text-xl mr-4 mt-1"><i class="fa fa-phone"></i></div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">电话预约</h4>
+                                    <p class="text-gray-300 text-sm">+86 123 4567 8910</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-gold text-xl mr-4 mt-1"><i class="fa fa-envelope"></i></div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">邮件预约</h4>
+                                    <p class="text-gray-300 text-sm">booking@mengyuanpalace.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-12">
+                            <h4 class="font-semibold mb-4">会员尊享</h4>
+                            <ul class="space-y-2 text-gray-200">
+                                <li class="flex items-center"><i class="fa fa-check text-gold mr-2"></i> 专属折扣价格</li>
+                                <li class="flex items-center"><i class="fa fa-check text-gold mr-2"></i> 优先预约权</li>
+                                <li class="flex items-center"><i class="fa fa-check text-gold mr-2"></i> 生日特别礼遇</li>
+                                <li class="flex items-center"><i class="fa fa-check text-gold mr-2"></i> 会员专属活动</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="p-12">
+                        <form id="booking-form" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-colors duration-300" placeholder="请输入您的姓名" required>
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-gray-700 font-medium mb-2">手机号码</label>
+                                <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-colors duration-300" placeholder="请输入您的手机号码" required>
+                            </div>
+                            
+                            <div>
+                                <label for="service" class="block text-gray-700 font-medium mb-2">选择服务</label>
+                                <select id="service" name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-colors duration-300" required>
+                                    <option value="">请选择服务项目</option>
+                                    <option value="full-body">皇家全身按摩 - ¥680/90分钟</option>
+                                    <option value="aromatherapy">芳香精油护理 - ¥780/90分钟</option>
+                                    <option value="hot-stone">热石疗法 - ¥880/90分钟</option>
+                                    <option value="facial">面部焕活护理 - ¥980/60分钟</option>
+                                    <option value="exfoliation">身体去角质护理 - ¥580/60分钟</option>
+                                    <option value="royal-package">皇室尊享套餐 - ¥1980/3小时</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="date" class="block text-gray-700 font-medium mb-2">预约日期</label>
+                                <input type="date" id="date" name="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-colors duration-300" required>
+                            </div>
+                            
+                            <div>
+                                <label for="time" class="block text-gray-700 font-medium mb-2">预约时间</label>
+                                <select id="time" name="time" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-colors duration-300" required>
+                                    <option value="">请选择时间</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:30">17:30</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="20:30">20:30</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="notes" class="block text-gray-700 font-medium mb-2">特殊要求（可选）</label>
+                                <textarea id="notes" name="notes" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-colors duration-300" placeholder="请输入您的特殊要求或健康状况"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-royal hover:bg-royal-dark text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
+                                确认预约
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-royal-dark mb-4">联系我们</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+                <p class="max-w-3xl mx-auto text-gray-600">我们期待为您提供皇家般的SPA体验，如有任何疑问，请随时联系我们</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="text-center p-6 hover:shadow-lg transition-shadow duration-300 rounded-lg">
+                    <div class="text-gold text-4xl mb-4 inline-block">
+                        <i class="fa fa-map-marker"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-royal mb-2">地址</h3>
+                    <p class="text-gray-600">广东深圳南山区华侨城香山西街18号<br>首地容御1栋</p>
+                </div>
+                
+                <div class="text-center p-6 hover:shadow-lg transition-shadow duration-300 rounded-lg">
+                    <div class="text-gold text-4xl mb-4 inline-block">
+                        <i class="fa fa-phone"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-royal mb-2">电话</h3>
+                    <p class="text-gray-600">+86 123 4567 8910<br>+86 123 4567 8911</p>
+                </div>
+                
+                <div class="text-center p-6 hover:shadow-lg transition-shadow duration-300 rounded-lg">
+                    <div class="text-gold text-4xl mb-4 inline-block">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-royal mb-2">邮箱</h3>
+                    <p class="text-gray-600">info@mengyuanpalace.com<br>booking@mengyuanpalace.com</p>
+                </div>
+            </div>
+            
+            <!-- 地图 -->
+            <div class="rounded-xl overflow-hidden shadow-xl h-96 mb-12">
+                <!-- 这里使用图片替代实际地图 -->
+                <img src="https://picsum.photos/id/1031/1200/400" alt="梦园皇宫SPA位置地图" class="w-full h-full object-cover">
+            </div>
+            
+            <!-- 简单联系表单 -->
+            <div class="max-w-2xl mx-auto">
+                <h3 class="text-2xl font-semibold text-royal text-center mb-8">发送咨询</h3>
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="contact-name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                            <input type="text" id="contact-name" name="contact-name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-colors duration-300" placeholder="请输入您的姓名" required>
+                        </div>
+                        
+                        <div>
+                            <label for="contact-email" class="block text-gray-700 font-medium mb-2">邮箱</label>
+                            <input type="email" id="contact-email" name="contact-email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-colors duration-300" placeholder="请输入您的邮箱" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="contact-subject" class="block text-gray-700 font-medium mb-2">主题</label>
+                        <input type="text" id="contact-subject" name="contact-subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-colors duration-300" placeholder="请输入咨询主题" required>
+                    </div>
+                    
+                    <div>
+                        <label for="contact-message" class="block text-gray-700 font-medium mb-2">留言</label>
+                        <textarea id="contact-message" name="contact-message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-colors duration-300" placeholder="请输入您的留言内容" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full md:w-auto bg-gold hover:bg-gold-dark text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
+                        发送留言
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-royal-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6">梦园皇宫<span class="text-gold-light">SPA</span></h3>
+                    <p class="text-gray-400 mb-6">为您提供皇家般的奢华SPA体验，让身心在繁忙的生活中找到宁静与平衡。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">快速链接</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-400 hover:text-gold-light transition-colors duration-300">关于我们</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-gold-light transition-colors duration-300">服务项目</a></li>
+                        <li><a href="#facilities" class="text-gray-400 hover:text-gold-light transition-colors duration-300">奢华设施</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-gold-light transition-colors duration-300">客户评价</a></li>
+                        <li><a href="#booking" class="text-gray-400 hover:text-gold-light transition-colors duration-300">在线预约</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-gold-light transition-colors duration-300">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">服务项目</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="text-gray-400 hover:text-gold-light transition-colors duration-300">皇家全身按摩</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-gold-light transition-colors duration-300">芳香精油护理</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-gold-light transition-colors duration-300">热石疗法</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-gold-light transition-colors duration-300">面部焕活护理</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-gold-light transition-colors duration-300">身体去角质护理</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-gold-light transition-colors duration-300">皇室尊享套餐</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">营业时间</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex justify-between">
+                            <span>周一至周五:</span>
+                            <span>10:00 - 22:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>周六:</span>
+                            <span>9:00 - 23:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>周日:</span>
+                            <span>9:00 - 23:00</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>法定节假日:</span>
+                            <span>9:00 - 23:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2023 梦园皇宫SPA. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-gold hover:bg-gold-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-royal-dark', 'bg-opacity-95', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+                
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                navbar.classList.remove('bg-royal-dark', 'bg-opacity-95', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+                
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        // 移动端菜单切换
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuToggle.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // 关闭移动端菜单（当点击导航链接时）
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+        
+        // 返回顶部功能
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 表单提交处理
+        const bookingForm = document.getElementById('booking-form');
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // 模拟表单提交
+                alert('预约请求已发送！我们将尽快与您联系确认详情。');
+                bookingForm.reset();
+            });
+        }
+        
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // 模拟表单提交
+                alert('您的留言已发送！我们将尽快回复您。');
+                contactForm.reset();
+            });
+        }
+        
+        // 图片懒加载和淡入效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            
+            const fadeInImages = function() {
+                images.forEach(img => {
+                    const imgTop = img.getBoundingClientRect().top;
+                    const imgVisible = 150;
+                    
+                    if (imgTop < window.innerHeight - imgVisible) {
+                        img.classList.add('animate-fade-in');
+                    }
+                });
+            };
+            
+            // 初始检查
+            fadeInImages();
+            
+            // 滚动时检查
+            window.addEventListener('scroll', fadeInImages);
+        });
+    </script>
+</body>
+</html>

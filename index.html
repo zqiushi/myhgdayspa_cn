@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>梦园皇宫SPA - 奢华体验，尊贵享受</title>
+    <title>梦园皇宫 - 年轻化管理集团</title>
     <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Font Awesome -->
@@ -47,12 +47,12 @@
                             DEFAULT: '#d4af37',
                             dark: '#b8860b'
                         },
-                        royal: {
-                            light: '#6a89cc',
-                            DEFAULT: '#1a365d',
-                            dark: '#0d1b2a'
-                        },
-                        cream: '#f8f4e3'
+                        pink: {
+                    light: '#ffc0cb',
+                    DEFAULT: '#ff69b4',
+                    dark: '#db7093'
+                },
+                cream: '#ffffff'
                     },
                     fontFamily: {
                         inter: ['Inter', 'sans-serif'],
@@ -82,7 +82,7 @@
         
         /* 渐变背景动画 */
         .hero-gradient {
-            background: linear-gradient(135deg, rgba(26, 54, 93, 0.9), rgba(184, 134, 11, 0.7)), url('https://picsum.photos/id/1060/1920/1080');
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.9), rgba(184, 134, 11, 0.7)), url('./images/index-top.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -112,16 +112,16 @@
 
 <body class="font-inter bg-cream text-gray-800 antialiased">
     <!-- 导航栏 -->
-    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-black">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center">
-                <span class="text-2xl font-bold text-white text-shadow">梦园皇宫<span class="text-gold-light">SPA</span></span>
+                <img src="images/logo.png" alt="梦园皇宫年轻化管理集团" class="h-10">
             </a>
             
             <!-- 桌面导航 -->
             <nav class="hidden md:flex space-x-8">
                 <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
+                    <a href="#" class="text-[#e26a88] hover:text-gold-light transition-colors duration-300 flex items-center">
                         品牌介绍
                         <i class="fa fa-chevron-down ml-1 text-xs"></i>
                     </a>
@@ -132,7 +132,7 @@
                     </div>
                 </div>
                 <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
+                    <a href="#" class="text-[#e26a88] hover:text-gold-light transition-colors duration-300 flex items-center">
                         门店介绍
                         <i class="fa fa-chevron-down ml-1 text-xs"></i>
                     </a>
@@ -143,7 +143,7 @@
                     </div>
                 </div>
                 <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
+                    <a href="#" class="text-[#e26a88] hover:text-gold-light transition-colors duration-300 flex items-center">
                         年轻化方案
                         <i class="fa fa-chevron-down ml-1 text-xs"></i>
                     </a>
@@ -153,10 +153,10 @@
                         </div>
                     </div>
                 </div>
-                <a href="services.html" class="text-white hover:text-gold-light transition-colors duration-300">服务项目</a>
-                <a href="testimonials.html" class="text-white hover:text-gold-light transition-colors duration-300">客户评价</a>
+                <a href="services.html" class="text-[#e26a88] hover:text-gold-light transition-colors duration-300">服务项目</a>
+                <a href="testimonials.html" class="text-[#e26a88] hover:text-gold-light transition-colors duration-300">客户评价</a>
                 <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
+                    <a href="#" class="text-[#e26a88] hover:text-gold-light transition-colors duration-300 flex items-center">
                         关于我们
                         <i class="fa fa-chevron-down ml-1 text-xs"></i>
                     </a>
@@ -171,7 +171,7 @@
             </nav>
             
             <!-- 预约按钮 -->
-            <a href="booking.html" class="hidden md:block bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            <a href="booking.html" class="hidden md:block bg-[#e26a88] hover:bg-[#d15a78] text-white px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                 立即预约
             </a>
             
@@ -224,7 +224,7 @@
                         <a href="info.html" class="text-white hover:text-gold-light py-2 block">其他信息</a>
                     </div>
                 </div>
-                <a href="booking.html" class="bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full text-center transition-all duration-300">
+                <a href="booking.html" class="bg-[#e26a88] hover:bg-[#d15a78] text-white px-6 py-2 rounded-full text-center transition-all duration-300">
                     立即预约
                 </a>
             </div>
@@ -234,11 +234,12 @@
     <!-- 英雄区域 -->
     <section class="hero-gradient min-h-screen flex items-center justify-center text-center text-white">
         <div class="container mx-auto px-4 py-20 z-10">
-            <h1 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold mb-6 leading-tight animate-fade-in">
-                释放身心，<br class="md:hidden">尊享皇家礼遇
-            </h1>
-            <p class="text-[clamp(1rem,2vw,1.25rem)] max-w-2xl mx-auto mb-10 text-gray-100 animate-fade-in delay-100">
-                梦园皇宫SPA为您提供顶级的放松体验，结合东方传统疗法与现代技术，让您在皇家般的环境中重焕活力
+            <h3 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-6 leading-tight animate-fade-in text-black">
+                为追求高品质生活人士提供实现年轻化梦想<br class="md:hidden">
+            </h3>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] max-w-2xl mx-auto mb-10 text-black animate-fade-in delay-100">
+                梦园皇宫成立于2000年，是一家为客户提供年轻化解决方案的干啥
+                主要业务包括生活美容、医疗美容、健康管理、康复美疗、红粉会社群、美业AI等业务
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in delay-200">
                 <a href="services.html" class="bg-gold hover:bg-gold-dark text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
@@ -264,19 +265,19 @@
             <div class="text-center mb-16">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-royal-dark mb-4">探索梦园皇宫</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-3xl mx-auto text-gray-600">发现我们为您精心打造的奢华体验与专属服务</p>
+                <p class="max-w-3xl mx-auto text-gray-600">三美联动，为尊贵会实现年轻化梦想</p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- 品牌介绍 -->
                 <a href="brand.html" class="feature-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
                     <div class="h-48 overflow-hidden">
-                        <img src="https://picsum.photos/id/1061/600/400" alt="品牌介绍" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        <img src="images/brand.jpg" alt="品牌介绍" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-royal mb-2">品牌介绍</h3>
-                        <p class="text-gray-600 mb-4">探索梦园皇宫的品牌故事与核心价值</p>
-                        <div class="text-gold font-medium flex items-center">
+                    <div class="p-6 bg-black">
+                        <h3 class="text-xl font-semibold text-[#e62a88] mb-2">品牌介绍</h3>
+                        <p class="text-[#e62a88] mb-4">梦园皇宫的美丽事业</p>
+                        <div class="text-[#fdf4f9] font-medium flex items-center">
                             了解更多 <i class="fa fa-arrow-right ml-2"></i>
                         </div>
                     </div>
@@ -285,12 +286,12 @@
                 <!-- 门店介绍 -->
                 <a href="stores.html" class="feature-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
                     <div class="h-48 overflow-hidden">
-                        <img src="https://picsum.photos/id/1062/600/400" alt="门店介绍" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        <img src="images/store.jpg" alt="门店介绍" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-royal mb-2">门店介绍</h3>
-                        <p class="text-gray-600 mb-4">参观我们的奢华门店与顶级设施</p>
-                        <div class="text-gold font-medium flex items-center">
+                    <div class="p-6 bg-black">
+                        <h3 class="text-xl font-semibold text-[#e62a88] mb-2">门店介绍</h3>
+                        <p class="text-[#e62a88] mb-4">繁华都市的私密高奢美容会所</p>
+                        <div class="text-[#fdf4f9] font-medium flex items-center">
                             了解更多 <i class="fa fa-arrow-right ml-2"></i>
                         </div>
                     </div>
@@ -299,26 +300,26 @@
                 <!-- 年轻化方案 -->
                 <a href="youth.html" class="feature-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
                     <div class="h-48 overflow-hidden">
-                        <img src="https://picsum.photos/id/1063/600/400" alt="年轻化方案" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        <img src="images/youth.jpg" alt="年轻化方案" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-royal mb-2">年轻化方案</h3>
-                        <p class="text-gray-600 mb-4">专属定制的青春焕活方案</p>
-                        <div class="text-gold font-medium flex items-center">
+                    <div class="p-6 bg-black">
+                        <h3 class="text-xl font-semibold text-[#e62a88] mb-2">年轻化方案</h3>
+                        <p class="text-[#e62a88] mb-4">新综合六维年轻化解决方案</p>
+                        <div class="text-[#fdf4f9] font-medium flex items-center">
                             了解更多 <i class="fa fa-arrow-right ml-2"></i>
                         </div>
                     </div>
                 </a>
                 
-                <!-- 服务项目 -->
+                <!-- 高端品质 -->
                 <a href="services.html" class="feature-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
                     <div class="h-48 overflow-hidden">
-                        <img src="https://picsum.photos/id/1064/600/400" alt="服务项目" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        <img src="images/quality.jpg" alt="高端品质" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-royal mb-2">服务项目</h3>
-                        <p class="text-gray-600 mb-4">探索我们的顶级SPA服务与套餐</p>
-                        <div class="text-gold font-medium flex items-center">
+                    <div class="p-6 bg-black">
+                        <h3 class="text-xl font-semibold text-[#e62a88] mb-2">高端品质</h3>
+                        <p class="text-[#e62a88] mb-4">全球高科技抗衰老设备产品</p>
+                        <div class="text-[#fdf4f9] font-medium flex items-center">
                             了解更多 <i class="fa fa-arrow-right ml-2"></i>
                         </div>
                     </div>
@@ -328,17 +329,17 @@
     </section>
 
     <!-- 客户评价预览 -->
-    <section class="py-20 bg-royal text-white">
+    <section class="py-20 bg-[#e62a88] text-black">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">宾客评价</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-3xl mx-auto text-gray-200">听听我们的宾客如何评价梦园皇宫SPA的尊贵体验</p>
+                <p class="max-w-3xl mx-auto text-black">听听我们的宾客如何评价梦园皇宫SPA的尊贵体验</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- 评价1 -->
-                <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+                <div class="bg-black p-8 rounded-lg shadow-lg text-white">
                     <div class="text-gold mb-4">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -357,7 +358,7 @@
                 </div>
                 
                 <!-- 评价2 -->
-                <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+                <div class="bg-black p-8 rounded-lg shadow-lg text-white">
                     <div class="text-gold mb-4">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -376,7 +377,7 @@
                 </div>
                 
                 <!-- 评价3 -->
-                <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+                <div class="bg-black p-8 rounded-lg shadow-lg text-white">
                     <div class="text-gold mb-4">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -408,38 +409,59 @@
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden">
                 <div class="grid md:grid-cols-2">
-                    <div class="p-12 bg-royal text-white flex flex-col justify-center">
-                        <h2 class="text-3xl font-bold mb-6">准备好<br>尊享皇家体验了吗？</h2>
-                        <p class="mb-8 text-gray-200">立即预约，开启您的奢华SPA之旅。提前预约可享受9折优惠，会员更有专属礼遇。</p>
-                        <a href="booking.html" class="bg-gold hover:bg-gold-dark text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 inline-block w-full text-center">
+                    <div class="p-12 bg-[#e62a88] text-black flex flex-col justify-center">
+                        <h2 class="text-3xl font-bold mb-6">开启您的年轻化之旅</h2>
+                        <p class="mb-8 text-black">只需要输入一些个人信息，我们的年轻化设计师将会联系您并为您定制专属年轻化方案</p>
+                        <a href="booking.html" class="bg-black hover:bg-gray-800 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 inline-block w-full text-center">
                             立即预约
                         </a>
                     </div>
-                    <div class="p-12 flex flex-col justify-center">
-                        <h3 class="text-2xl font-semibold text-royal mb-6">营业时间</h3>
-                        <ul class="space-y-4 text-gray-600">
+                    <div class="p-12 bg-black text-white flex flex-col justify-center">
+                        <h3 class="text-2xl font-semibold text-white mb-6">营业时间</h3>
+                        <ul class="space-y-4 text-white">
                             <li class="flex justify-between pb-2 border-b border-gray-200">
-                                <span>周一至周五</span>
-                                <span class="font-medium">10:00 - 22:00</span>
-                            </li>
-                            <li class="flex justify-between pb-2 border-b border-gray-200">
-                                <span>周六</span>
-                                <span class="font-medium">9:00 - 23:00</span>
-                            </li>
-                            <li class="flex justify-between pb-2 border-b border-gray-200">
-                                <span>周日</span>
-                                <span class="font-medium">9:00 - 23:00</span>
+                                <span>周一至周日</span>
+                                <span class="font-medium">09:30 - 22:30</span>
                             </li>
                             <li class="flex justify-between">
-                                <span>法定节假日</span>
-                                <span class="font-medium">9:00 - 23:00</span>
+                                <span>节假日正常营业</span>
+                                <span class="font-medium">如有歇业另行通知</span>
                             </li>
                         </ul>
                         <div class="mt-8">
-                            <h4 class="font-semibold text-royal mb-4">联系方式</h4>
+                            <!-- <h4 class="font-semibold text-royal mb-4">联系方式</h4> -->
+                             <h3 class="text-2xl font-semibold text-white mb-6">联系方式</h3>
                             <div class="space-y-2">
-                                <p class="flex items-center"><i class="fa fa-phone text-gold mr-3"></i> +86 123 4567 8910</p>
-                                <p class="flex items-center"><i class="fa fa-envelope text-gold mr-3"></i> booking@mengyuanpalace.com</p>
+                                <!-- <p class="flex items-center"><i class="fa fa-phone text-gold mr-3"></i> +86 123 4567 8910</p>
+                                <p class="flex items-center"><i class="fa fa-envelope text-gold mr-3"></i> booking@mengyuanpalace.com</p> -->
+
+                                                        <ul class="space-y-4 text-white">
+                            <li class="flex justify-between pb-2 border-b border-gray-200">
+                                <span>24H官方客户热线</span>
+                                <span class="font-medium">400-8866-010</span>
+                            </li>
+                             <li class="flex justify-between pb-2 border-b border-gray-200">
+                                <span>梦园皇宫.晴会所</span>
+                                <span class="font-medium">0755-83500200</span>
+                            </li>
+                             <li class="flex justify-between pb-2 border-b border-gray-200">
+                                <span>梦园皇宫.湖畔会所</span>
+                                <span class="font-medium">0755-86080065</span>
+                            </li>
+                             <li class="flex justify-between pb-2 border-b border-gray-200">
+                                <span>梦园皇宫.湖畔会所</span>
+                                <span class="font-medium">0755-86080065</span>
+                            </li>
+                             <li class="flex justify-between pb-2 border-b border-gray-200">
+                                <span>梦园皇宫.风情会所</span>
+                                <span class="font-medium">0755-8374739</span>
+                            </li>
+                            <li class="flex justify-between pb-2 border-b border-gray-200">
+                                <span>梦园皇宫.凤凰会所</span>
+                                <span class="font-medium">0755-33011636</span>
+                            </li>
+
+                        </ul>
                             </div>
                         </div>
                     </div>
@@ -449,12 +471,12 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-royal-dark text-white py-12">
+    <footer class="bg-black text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <h3 class="text-2xl font-bold mb-6">梦园皇宫<span class="text-gold-light">SPA</span></h3>
-                    <p class="text-gray-400 mb-6">为您提供皇家般的奢华SPA体验，让身心在繁忙的生活中找到宁静与平衡。</p>
+                    <h3 class="text-2xl font-bold mb-6"><img src="images/logo.png" alt="梦园皇宫" class="h-8 w-auto"></h3>
+                    <p class="text-gray-400 mb-6">为追求高品质生活人士提供实现年轻化梦想</p>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
                             <i class="fa fa-weixin"></i>
@@ -499,11 +521,11 @@
                     <ul class="space-y-3 text-gray-400">
                         <li class="flex items-start">
                             <i class="fa fa-map-marker mt-1 mr-3 text-gold"></i>
-                            <span>北京市朝阳区建国路88号<br>梦园皇宫酒店5层</span>
+                            <span>广东深圳南山区华侨城香山西街18号<br>首地容御1栋</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fa fa-phone mr-3 text-gold"></i>
-                            <span>+86 123 4567 8910</span>
+                            <span>400-8866-010</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fa fa-envelope mr-3 text-gold"></i>
@@ -514,7 +536,7 @@
             </div>
             
             <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 2023 梦园皇宫SPA. 保留所有权利.</p>
+                <p>&copy; 2023 梦园皇宫. 保留所有权利.</p>
             </div>
         </div>
     </footer>
