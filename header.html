@@ -1,0 +1,119 @@
+<header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-black bg-royal-dark bg-opacity-95 shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="images/logo.png" alt="梦圆皇宫年轻化管理集团" class="h-10 animate-fade-in">
+            </a>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex space-x-8 bg-royal-dark">
+                <div class="relative group">
+                    <a href="#" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300 flex items-center">
+                        品牌介绍
+                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
+                    </a>
+                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+                        <div class="py-2">
+                            <a href="brand.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">品牌故事</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <a href="#" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300 flex items-center">
+                        门店介绍
+                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
+                    </a>
+                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+                        <div class="py-2">
+                            <a href="stores.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">门店展示</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <a href="#" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300 flex items-center">
+                        年轻化方案
+                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
+                    </a>
+                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+                        <div class="py-2">
+                            <a href="youth.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">方案详情</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="services.html" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300">服务项目</a>
+                <a href="testimonials.html" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300">客户评价</a>
+                <div class="relative group">
+                    <a href="#" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300 flex items-center">
+                        关于我们
+                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
+                    </a>
+                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
+                        <div class="py-2">
+                            <a href="careers.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">招聘信息</a>
+                            <a href="contact.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">联系我们</a>
+                            <a href="info.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">其他信息</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- 预约按钮 -->
+            <a href="booking.html" class="hidden md:block bg-[#e62a88] hover:bg-[#d15a78] text-black px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                立即预约
+            </a>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-white text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-royal-dark bg-opacity-95">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <div class="relative">
+                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
+                        品牌介绍
+                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
+                    </a>
+                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
+                        <a href="brand.html" class="text-white hover:text-gold-light py-2 block">品牌故事</a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
+                        门店介绍
+                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
+                    </a>
+                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
+                        <a href="stores.html" class="text-white hover:text-gold-light py-2 block">门店展示</a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
+                        年轻化方案
+                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
+                    </a>
+                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
+                        <a href="youth.html" class="text-white hover:text-gold-light py-2 block">方案详情</a>
+                    </div>
+                </div>
+                <a href="services.html" class="text-white hover:text-gold-light py-2 border-b border-gray-700">服务项目</a>
+                <a href="testimonials.html" class="text-white hover:text-gold-light py-2 border-b border-gray-700">客户评价</a>
+                <div class="relative">
+                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
+                        关于我们
+                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
+                    </a>
+                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
+                        <a href="careers.html" class="text-white hover:text-gold-light py-2 block">招聘信息</a>
+                        <a href="contact.html" class="text-white hover:text-gold-light py-2 block">联系我们</a>
+                        <a href="info.html" class="text-white hover:text-gold-light py-2 block">其他信息</a>
+                    </div>
+                </div>
+                <a href="booking.html" class="bg-[#e62a88] hover:bg-[#d15a78] text-white px-6 py-2 rounded-full text-center transition-all duration-300">
+                    立即预约
+                </a>
+            </div>
+        </div>
+        <script src="/js/navbar.js"></script>
+</header>

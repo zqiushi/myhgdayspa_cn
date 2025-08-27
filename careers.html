@@ -87,124 +87,16 @@
 
 <body class="font-inter bg-cream text-gray-800 antialiased">
     <!-- 导航栏 -->
-    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-royal-dark bg-opacity-95 shadow-lg">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <span class="text-2xl font-bold text-white text-shadow">梦园皇宫<span class="text-gold-light">SPA</span></span>
-            </a>
+    <div id="header-placeholder"></div>
+<script>
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+            initNavbar();
+        });
+</script>
 
-            <!-- 桌面导航 -->
-            <nav class="hidden md:flex space-x-8">
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        品牌介绍
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="brand.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">品牌故事</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        门店介绍
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="stores.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">门店展示</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        年轻化方案
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="youth.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">方案详情</a>
-                        </div>
-                    </div>
-                </div>
-                <a href="services.html" class="text-white hover:text-gold-light transition-colors duration-300">服务项目</a>
-                <a href="testimonials.html" class="text-white hover:text-gold-light transition-colors duration-300">客户评价</a>
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        关于我们
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="careers.html" class="block px-4 py-2 text-sm text-white font-bold bg-gold-light bg-opacity-20 hover:bg-opacity-30 border-l-4 border-gold-light">招聘信息</a>
-                            <a href="contact.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">联系我们</a>
-                            <a href="info.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">其他信息</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- 预约按钮 -->
-            <a href="booking.html" class="hidden md:block bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                立即预约
-            </a>
-
-            <!-- 移动端菜单按钮 -->
-            <button id="menu-toggle" class="md:hidden text-white text-2xl">
-                <i class="fa fa-bars"></i>
-            </button>
-        </div>
-
-        <!-- 移动端导航菜单 -->
-        <div id="mobile-menu" class="md:hidden hidden bg-royal-dark bg-opacity-95">
-            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
-                <div class="relative">
-                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
-                        品牌介绍
-                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
-                    </a>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="brand.html" class="text-white hover:text-gold-light py-2 block">品牌故事</a>
-                    </div>
-                </div>
-                <div class="relative">
-                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
-                        门店介绍
-                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
-                    </a>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="stores.html" class="text-white hover:text-gold-light py-2 block">门店展示</a>
-                    </div>
-                </div>
-                <div class="relative">
-                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
-                        年轻化方案
-                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
-                    </a>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="youth.html" class="text-white hover:text-gold-light py-2 block">方案详情</a>
-                    </div>
-                </div>
-                <a href="services.html" class="text-white hover:text-gold-light py-2 border-b border-gray-700">服务项目</a>
-                <a href="testimonials.html" class="text-white hover:text-gold-light py-2 border-b border-gray-700">客户评价</a>
-                <div class="relative">
-                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
-                        关于我们
-                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
-                    </a>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="careers.html" class="text-white font-bold bg-gold-light bg-opacity-20 py-2 block border-l-4 border-gold-light ml-4 -ml-4 pl-4">招聘信息</a>
-                        <a href="contact.html" class="text-white hover:text-gold-light py-2 block pl-4">联系我们</a>
-                        <a href="info.html" class="text-white hover:text-gold-light py-2 block pl-4">其他信息</a>
-                    </div>
-                </div>
-                <a href="booking.html" class="bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full text-center transition-all duration-300">
-                    立即预约
-                </a>
-            </div>
-        </div>
-    </header>
 
     <!-- 页面标题区域 -->
     <section class="bg-royal text-white py-24 md:py-32">
@@ -616,81 +508,15 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-royal-dark text-white py-12 md:py-16">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-                <div class="animate-fade-in delay-100">
-                    <h3 class="text-2xl font-bold mb-6">梦园皇宫<span class="text-gold-light">SPA</span></h3>
-                    <p class="text-gray-300 mb-6">
-                        梦园皇宫SPA创立于2008年，是一家专注于高端SPA服务的连锁品牌，致力于为客户提供专业、舒适、私密的SPA体验。
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-weixin"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-weibo"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="animate-fade-in delay-200">
-                    <h4 class="text-lg font-bold mb-6 text-gold-light">快速链接</h4>
-                    <ul class="space-y-3">
-                        <li><a href="brand.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">品牌介绍</a></li>
-                        <li><a href="stores.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">门店介绍</a></li>
-                        <li><a href="youth.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">年轻化方案</a></li>
-                        <li><a href="services.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">服务项目</a></li>
-                        <li><a href="testimonials.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">客户评价</a></li>
-                        <li><a href="booking.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">在线预约</a></li>
-                    </ul>
-                </div>
-
-                <div class="animate-fade-in delay-300">
-                    <h4 class="text-lg font-bold mb-6 text-gold-light">关于我们</h4>
-                    <ul class="space-y-3">
-                        <li><a href="careers.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300 font-bold text-white">招聘信息</a></li>
-                        <li><a href="contact.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">联系我们</a></li>
-                        <li><a href="info.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">其他信息</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300">隐私政策</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300">服务条款</a></li>
-                    </ul>
-                </div>
-
-                <div class="animate-fade-in delay-400">
-                    <h4 class="text-lg font-bold mb-6 text-gold-light">联系我们</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fa fa-map-marker text-gold-light mt-1 mr-3"></i>
-                            <span class="text-gray-300">广东深圳南山区华侨城香山西街18号</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-phone text-gold-light mt-1 mr-3"></i>
-                            <span class="text-gray-300">400-888-8888</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-envelope text-gold-light mt-1 mr-3"></i>
-                            <span class="text-gray-300">info@myhgdayspa.com</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-clock-o text-gold-light mt-1 mr-3"></i>
-                            <span class="text-gray-300">周一至周日 10:00-22:00</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-                <p>© 2023 梦园皇宫SPA. 保留所有权利.</p>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
+<script>
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+            initFooter();
+        });
+</script>
 
     <!-- 返回顶部按钮 -->
     <button id="back-to-top" class="fixed bottom-8 right-8 bg-gold hover:bg-gold-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible z-50">
