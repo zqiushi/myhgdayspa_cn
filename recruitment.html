@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>招聘信息 - 深圳梦园皇宫美容会所</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#e62a88',
+                        dark: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .transition-all duration-300 {
+                transition: all 0.3s ease-in-out;
+            }
+        }
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .job-card:hover {
+            transform: translateY(-5px);
+        }
+        .bg-gradient-to-b from-black to-dark {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- 导航栏 -->
+    <div id="header-placeholder"></div>
+
+    <!-- 英雄区域 -->
+    <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images/pub_img/picsum-1060-1920-1080.jpg" alt="招聘背景" class="w-full h-full object-cover opacity-50">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40"></div>
+        </div>
+        <div class="container mx-auto px-4 z-10 text-center">
+            <h1 class="text-[clamp(2rem,5vw,4rem)] font-bold text-white mb-4 text-shadow">加入我们的团队</h1>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-200 max-w-2xl mx-auto">
+                在深圳梦园皇宫美容会所，我们致力于为客户提供卓越的美容体验。加入我们，一起创造美丽与健康的事业
+            </p>
+        </div>
+    </section>
+
+    <!-- 招聘信息区域 -->
+    <section class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-white mb-4">当前职位空缺</h2>
+                <div class="w-24 h-1 bg-[#e62a88] mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 美容师职位 -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary/20 hover:-translate-y-1">
+                    <div class="h-48 bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
+                        <i class="fas fa-spa text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">美容师</h3>
+                        <p class="text-gray-600 mb-4">负责为客户提供专业的美容服务，包括面部护理、身体护理等，确保服务质量和客户满意度。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">薪资：8K-15K</span>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">经验：1年以上</span>
+                        </div>
+                        <h4 class="font-semibold text-dark mb-2">任职要求：</h4>
+                        <ul class="text-gray-600 space-y-1 mb-6">
+                            <li>• 1年以上美容相关工作经验</li>
+                            <li>• 熟悉各类美容仪器操作</li>
+                            <li>• 具备良好的沟通能力和服务意识</li>
+                            <li>• 持有美容师资格证书者优先</li>
+                        </ul>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-custom" onclick="document.getElementById('application-form').scrollIntoView({behavior: 'smooth'})")>申请该职位</button>
+                    </div>
+                </div>
+
+                <!-- 前台接待职位 -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary/20 hover:-translate-y-1">
+                    <div class="h-48 bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
+                        <i class="fas fa-reception-4 text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">前台接待</h3>
+                        <p class="text-gray-600 mb-4">负责客户接待、电话咨询、预约安排、收银结算等工作，为客户提供优质的前台服务体验。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">薪资：5K-8K</span>
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">经验：不限</span>
+                        </div>
+                        <h4 class="font-semibold text-dark mb-2">任职要求：</h4>
+                        <ul class="text-gray-600 space-y-1 mb-6">
+                            <li>• 形象气质佳，具备良好的沟通能力</li>
+                            <li>• 熟悉前台接待工作流程</li>
+                            <li>• 会使用办公软件和收银系统</li>
+                            <li>• 有相关工作经验者优先</li>
+                        </ul>
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-custom" onclick="document.getElementById('application-form').scrollIntoView({behavior: 'smooth'})")>申请该职位</button>
+                    </div>
+                </div>
+
+                <!-- 美容顾问职位 -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary/20 hover:-translate-y-1">
+                    <div class="h-48 bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
+                        <i class="fas fa-user-tie text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">美容顾问</h3>
+                        <p class="text-gray-600 mb-4">为客户提供专业的美容咨询服务，根据客户需求制定个性化美容方案，推广公司美容项目和产品。</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">薪资：10K-20K</span>
+                            <span class="bg-pink/10 text-pink px-3 py-1 rounded-full text-sm">经验：2年以上</span>
+                        </div>
+                        <h4 class="font-semibold text-dark mb-2">任职要求：</h4>
+                        <ul class="text-gray-600 space-y-1 mb-6">
+                            <li>• 2年以上美容行业咨询或销售经验</li>
+                            <li>• 熟悉各类美容产品和项目知识</li>
+                            <li>• 具备优秀的沟通能力和销售技巧</li>
+                            <li>• 有客户资源者优先</li>
+                        </ul>
+                        <button class="w-full bg-[#e62a88] hover:bg-[#d11a78] text-white font-medium py-3 px-6 rounded-lg transition-custom" onclick="document.getElementById('application-form').scrollIntoView({behavior: 'smooth'})")>申请该职位</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 申请表单区域 -->
+    <section id="application-form" class="py-20 bg-gradient-to-b from-black to-dark">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto bg-black/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-white mb-6 text-center">职位申请表</h2>
+                <form id="job-application-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-2">姓名</label>
+                            <input type="text" id="name" name="name" class="w-full bg-white/10 border border-gray-700 focus:border-primary rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary" placeholder="请输入您的姓名" required>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-300 mb-2">电话</label>
+                            <input type="tel" id="phone" name="phone" class="w-full bg-white/10 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#e62a88]" placeholder="请输入您的联系电话" required>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">邮箱</label>
+                            <input type="email" id="email" name="email" class="w-full bg-white/10 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#e62a88]" placeholder="请输入您的邮箱地址">
+                        </div>
+                        <div>
+                            <label for="position" class="block text-sm font-medium text-gray-300 mb-2">申请职位</label>
+                            <select id="position" name="position" class="w-full bg-white/10 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#e62a88]" required>
+                                <option value="">请选择职位</option>
+                                <option value="beautician">美容师</option>
+                                <option value="receptionist">前台接待</option>
+                                <option value="consultant">美容顾问</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="experience" class="block text-sm font-medium text-gray-300 mb-2">工作经验</label>
+                        <textarea id="experience" name="experience" rows="3" class="w-full bg-white/10 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#e62a88]" placeholder="请简要描述您的工作经验"></textarea>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300 mb-2">自我介绍</label>
+                        <textarea id="message" name="message" rows="4" class="w-full bg-white/10 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#e62a88]" placeholder="请简单介绍您的优势和专长"></textarea>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg">
+                            提交申请
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <div id="footer-placeholder"></div>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-[#e62a88] w-12 h-12 rounded-full flex items-center justify-center text-white opacity-0 invisible transition-all duration-300 z-50">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // 导航栏初始化函数
+        function initNavbar() {
+            const navbar = document.getElementById('navbar');
+            const menuBtn = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // 检查元素是否存在
+            if (!navbar || !menuBtn || !mobileMenu) {
+                console.error('导航栏元素缺失，无法初始化导航栏');
+                return;
+            }
+
+            const menuItems = document.querySelectorAll('#mobile-menu a, #navbar a');
+
+            // 滚动效果
+            function handleScroll() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-black/90', 'backdrop-blur-sm', 'shadow-lg');
+                    navbar.classList.remove('bg-transparent');
+                } else {
+                    navbar.classList.remove('bg-black/90', 'backdrop-blur-sm', 'shadow-lg');
+                    navbar.classList.add('bg-transparent');
+                }
+            }
+
+            // 移动端菜单切换
+            function toggleMobileMenu() {
+                mobileMenu.classList.toggle('hidden');
+                menuBtn.classList.toggle('fa-bars');
+                menuBtn.classList.toggle('fa-times');
+            }
+
+            // 点击菜单项关闭移动菜单
+            function closeMenuOnClick() {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    menuBtn.classList.add('fa-bars');
+                    menuBtn.classList.remove('fa-times');
+                }
+            }
+
+            // 事件监听
+            window.addEventListener('scroll', handleScroll);
+            menuBtn.addEventListener('click', toggleMobileMenu);
+            menuItems.forEach(item => item.addEventListener('click', closeMenuOnClick));
+
+            // 初始调用一次处理滚动状态
+            handleScroll();
+        }
+
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载头部
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                    // 头部加载完成后初始化导航栏
+                    setTimeout(initNavbar, 100); // 短暂延迟确保DOM已更新
+                })
+                .catch(error => console.error('加载头部失败:', error));
+
+            // 加载底部
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                })
+                .catch(error => console.error('加载底部失败:', error));
+
+            // 表单提交处理
+            const form = document.getElementById('job-application-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // 在实际项目中，这里会有表单提交逻辑
+                    alert('申请已提交，我们会尽快与您联系！');
+                    form.reset();
+                });
+            }
+
+            // 返回顶部按钮
+            const backToTopButton = document.getElementById('back-to-top');
+            if (backToTopButton) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTopButton.classList.remove('opacity-0', 'invisible');
+                        backToTopButton.classList.add('opacity-100', 'visible');
+                    } else {
+                        backToTopButton.classList.add('opacity-0', 'invisible');
+                        backToTopButton.classList.remove('opacity-100', 'visible');
+                    }
+                });
+
+                backToTopButton.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

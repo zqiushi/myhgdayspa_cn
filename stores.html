@@ -3,31 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>门店介绍 - 梦园皇宫SPA</title>
-    <!-- 引入Tailwind CSS -->
+    <title>门店展示 - 梦圆皇宫年轻化管理集团</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- 引入Google Fonts - Inter -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- 配置Tailwind自定义主题 -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        gold: {
-                            light: '#f5d48e',
-                            DEFAULT: '#d4af37',
-                            dark: '#b8860b'
-                        },
-                        royal: {
-                            light: '#6a89cc',
-                            DEFAULT: '#1a365d',
-                            dark: '#0d1b2a'
-                        },
-                        cream: '#f8f4e3'
+                        black: '#000000',
+                        white: '#ffffff',
+                        'accent-pink': '#e62a88',
+                        'light-gray': '#f8f5f0',
+                        'dark-gray': '#333333'
                     },
                     fontFamily: {
                         inter: ['Inter', 'sans-serif'],
@@ -36,8 +26,6 @@
             }
         }
     </script>
-    
-    <!-- 自定义工具类 -->
     <style type="text/tailwindcss">
         @layer utilities {
             .content-auto {
@@ -46,552 +34,335 @@
             .text-shadow {
                 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             }
-        }
-    </style>
-    
-    <style>
-        /* 基础动画设置 */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* 门店卡片悬停效果 */
-        .store-card:hover .store-image {
-            transform: scale(1.05);
-        }
-        
-        /* 加载动画 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 0.8s ease forwards;
+            .transition-navbar {
+                transition: background-color 0.3s, padding 0.3s, box-shadow 0.3s;
+            }
+            .bg-blur {
+                backdrop-filter: blur(8px);
+            }
+            .store-card-hover {
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            .store-card-hover:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+            }
         }
     </style>
 </head>
-
-<body class="font-inter bg-cream text-gray-800 antialiased">
+<body class="font-inter bg-light-gray text-dark-gray antialiased">
     <!-- 导航栏 -->
-    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-royal-dark bg-opacity-95 shadow-lg">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <span class="text-2xl font-bold text-white text-shadow">梦园皇宫<span class="text-gold-light">SPA</span></span>
-            </a>
-            
-            <!-- 桌面导航 -->
-            <nav class="hidden md:flex space-x-8">
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        品牌介绍
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="brand.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">品牌故事</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <a href="#" class="text-gold-light transition-colors duration-300 flex items-center">
-                        门店介绍
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="stores.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">门店展示</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        年轻化方案
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="youth.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">方案详情</a>
-                        </div>
-                    </div>
-                </div>
-                <a href="services.html" class="text-white hover:text-gold-light transition-colors duration-300">服务项目</a>
-                <a href="testimonials.html" class="text-white hover:text-gold-light transition-colors duration-300">客户评价</a>
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        关于我们
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="careers.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">招聘信息</a>
-                            <a href="contact.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">联系我们</a>
-                            <a href="info.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">其他信息</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            
-            <!-- 预约按钮 -->
-            <a href="booking.html" class="hidden md:block bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                立即预约
-            </a>
-            
-            <!-- 移动端菜单按钮 -->
-        <button id="menu-toggle" class="md:hidden text-white text-2xl">
-            <i class="fa fa-bars"></i>
-        </button>
-    </div>
-
+    <div id="header-placeholder"></div>
     <script>
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('py-2');
-                navbar.classList.remove('py-4');
-            } else {
-                navbar.classList.add('py-4');
-                navbar.classList.remove('py-2');
-            }
-        });
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+                // 导航栏交互逻辑
+                const navbar = document.getElementById('navbar');
+                const menuToggle = document.getElementById('menu-toggle');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const mobileSubmenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
 
-        // 移动端菜单切换
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // 移动端子菜单切换
-        document.querySelectorAll('.mobile-submenu-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                const submenu = this.closest('div').querySelector('.mobile-submenu');
-                submenu.classList.toggle('hidden');
-            });
-        });
-
-        // 等待DOM加载完成后执行
-        document.addEventListener('DOMContentLoaded', function() {
-            // 视频播放按钮点击事件
-            const playButton = document.querySelector('.fa-play');
-            if (playButton && playButton.parentElement) {
-                playButton.parentElement.addEventListener('click', function() {
-                    alert('视频播放功能将在完整版网站中提供');
+                // 滚动效果
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('bg-black/90', 'bg-blur', 'py-2', 'shadow-md');
+                        navbar.classList.remove('py-4');
+                    } else {
+                        navbar.classList.remove('bg-black/90', 'bg-blur', 'py-2', 'shadow-md');
+                        navbar.classList.add('py-4');
+                    }
                 });
-            }
 
-            // 地图查看按钮点击事件
-        document.getElementById('map-view-btn')?.addEventListener('click', function() {
-            alert('交互式地图功能将在完整版网站中提供');
-        });
+                // 移动端菜单切换
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    const icon = menuToggle.querySelector('i');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    }
+                });
+
+                // 移动端子菜单切换
+                mobileSubmenuToggles.forEach(toggle => {
+                    toggle.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const parent = toggle.closest('div');
+                        const submenu = parent.querySelector('.mobile-submenu');
+                        submenu.classList.toggle('hidden');
+                        if (submenu.classList.contains('hidden')) {
+                            toggle.classList.remove('fa-chevron-up');
+                            toggle.classList.add('fa-chevron-down');
+                        } else {
+                            toggle.classList.remove('fa-chevron-down');
+                            toggle.classList.add('fa-chevron-up');
+                        }
+                    });
+                });
+            });
     </script>
-        
-        <!-- 移动端导航菜单 -->
-        <div id="mobile-menu" class="md:hidden hidden bg-royal-dark bg-opacity-95">
-            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
-                <div class="relative">
-                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
-                        品牌介绍
-                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
-                    </a>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="brand.html" class="text-white hover:text-gold-light py-2 block">品牌故事</a>
-                    </div>
-                </div>
-                <div class="relative">
-                    <a href="#" class="text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
-                        门店介绍
-                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
-                    </a>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="stores.html" class="text-white hover:text-gold-light py-2 block">门店展示</a>
-                    </div>
-                </div>
-                <div class="relative">
-                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
-                        年轻化方案
-                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
-                    </a>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="youth.html" class="text-white hover:text-gold-light py-2 block">方案详情</a>
-                    </div>
-                </div>
-                <a href="services.html" class="text-white hover:text-gold-light py-2 border-b border-gray-700">服务项目</a>
-                <a href="testimonials.html" class="text-white hover:text-gold-light py-2 border-b border-gray-700">客户评价</a>
-                <div class="relative">
-                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
-                        关于我们
-                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
-                    </a>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="careers.html" class="text-white hover:text-gold-light py-2 block">招聘信息</a>
-                        <a href="contact.html" class="text-white hover:text-gold-light py-2 block">联系我们</a>
-                        <a href="info.html" class="text-white hover:text-gold-light py-2 block">其他信息</a>
-                    </div>
-                </div>
-                <a href="booking.html" class="bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full text-center transition-all duration-300">
-                    立即预约
+
+    <!-- 门店头部横幅 -->
+    <section class="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-black text-white overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images/store.jpg" alt="门店形象" class="w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-shadow leading-tight">
+                    奢华门店<br>尊贵体验
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl">
+                    遍布全国核心城市的高端门店，为您提供私密、专业的年轻化管理服务
+                </p>
+                <a href="#stores" class="inline-block bg-accent-pink hover:bg-[#d15a78] text-white px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    探索门店网络
                 </a>
             </div>
         </div>
-    </header>
-
-    <!-- 页面标题区域 -->
-    <section class="bg-royal text-white py-24 md:py-32">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4">门店介绍</h1>
-            <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-            <p class="max-w-2xl mx-auto text-gray-200">探索梦园皇宫SPA在全国各地的奢华门店，感受皇家般的尊贵体验</p>
-        </div>
+        <div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-light-gray to-transparent"></div>
     </section>
 
-    <!-- 门店视频 -->
-    <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-royal-dark mb-4">门店环境展示</h2>
-                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-3xl mx-auto text-gray-600">通过视频，沉浸式体验梦园皇宫SPA的奢华环境与设施</p>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="relative rounded-xl overflow-hidden shadow-2xl aspect-video bg-gray-800 group cursor-pointer">
-                    <!-- 视频占位符 -->
-                    <img src="https://picsum.photos/id/1071/1200/675" alt="门店环境视频封面" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <button class="w-24 h-24 rounded-full bg-gold bg-opacity-90 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 transform hover:-translate-y-2 shadow-lg">
-                            <i class="fa fa-play text-3xl ml-1"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 门店列表 -->
-    <section class="py-20 bg-white">
+    <!-- 门店介绍 -->
+    <section id="stores" class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-royal-dark mb-4">全国门店</h2>
-                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-3xl mx-auto text-gray-600">梦园皇宫SPA在全国主要城市设有多家旗舰店，为您提供一致的高品质服务</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black">全国门店网络</h2>
+                <div class="w-20 h-1 bg-accent-pink mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    我们在全国核心城市精心打造奢华体验空间，每一家门店都彰显独特风格与专业品质
+                </p>
             </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- 北京旗舰店 -->
-                <div class="store-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
-                    <div class="h-60 overflow-hidden">
-                        <img src="https://picsum.photos/id/1076/600/400" alt="北京旗舰店" class="store-image w-full h-full object-cover transition-transform duration-700">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <!-- 深圳旗舰店 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden store-card-hover border border-gray-100">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="images/pub_img/picsum-1060-1920-1080.jpg" alt="深圳旗舰店" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-accent-pink text-white text-sm font-bold px-3 py-1 rounded-full">
+                            旗舰店
+                        </div>
                     </div>
                     <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-semibold text-royal">北京旗舰店</h3>
-                            <span class="bg-gold text-white text-xs px-3 py-1 rounded-full">旗舰店</span>
-                        </div>
+                        <h3 class="text-2xl font-semibold mb-2 text-black">深圳华侨城旗舰店</h3>
                         <p class="text-gray-600 mb-4">
-                            位于北京CBD核心区域，面积1200平方米，拥有15间豪华SPA套房，是我们的品牌发源地。
+                            坐落于深圳华侨城高端生活区，拥有2000㎡奢华空间，配备国际顶级设备与私享护理套房。
                         </p>
-                        <div class="space-y-2 text-gray-600 text-sm mb-6">
-                            <p class="flex items-start">
-                                <i class="fa fa-map-marker text-gold mt-1 mr-3"></i>
-                                <span>广东深圳南山区华侨城香山西街18号首地容御1栋</span>
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fa fa-phone text-gold mr-3"></i>
-                                <span>+86 10 8888 7777</span>
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fa fa-clock-o text-gold mr-3"></i>
-                                <span>10:00 - 22:00</span>
-                            </p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-start">
+                                <i class="fa fa-map-marker text-accent-pink mt-1 mr-3"></i>
+                                <span class="text-gray-700">广东省深圳市南山区华侨城香山西街18号首地容御1栋</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-phone text-accent-pink mr-3"></i>
+                                <span class="text-gray-700">0755-8888-6666</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-clock-o text-accent-pink mr-3"></i>
+                                <span class="text-gray-700">10:00 - 22:00 (周一至周日)</span>
+                            </div>
                         </div>
-                        <a href="booking.html" class="inline-block bg-royal hover:bg-royal-dark text-white px-6 py-2 rounded-full text-sm transition-all duration-300">
-                            预约体验
+                        <a href="#" class="inline-block text-accent-pink hover:text-[#d15a78] font-medium transition-colors duration-300">
+                            预约体验 <i class="fa fa-long-arrow-right ml-1"></i>
                         </a>
                     </div>
                 </div>
-                
+
+                <!-- 北京国贸店 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden store-card-hover border border-gray-100">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="images/pub_img/picsum-1070-1200-675.jpg" alt="北京国贸店" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-black">北京国贸中心店</h3>
+                        <p class="text-gray-600 mb-4">
+                            位于北京CBD核心区域，融合东方美学与现代设计，为商务精英提供高效便捷的年轻化管理服务。
+                        </p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-start">
+                                <i class="fa fa-map-marker text-accent-pink mt-1 mr-3"></i>
+                                <span class="text-gray-700">北京市朝阳区建国门外大街1号国贸中心三期B座23层</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-phone text-accent-pink mr-3"></i>
+                                <span class="text-gray-700">010-8888-9999</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-clock-o text-accent-pink mr-3"></i>
+                                <span class="text-gray-700">09:30 - 21:30 (周一至周日)</span>
+                            </div>
+                        </div>
+                        <a href="#" class="inline-block text-accent-pink hover:text-[#d15a78] font-medium transition-colors duration-300">
+                            预约体验 <i class="fa fa-long-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
                 <!-- 上海外滩店 -->
-                <div class="store-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
-                    <div class="h-60 overflow-hidden">
-                        <img src="https://picsum.photos/id/1077/600/400" alt="上海外滩店" class="store-image w-full h-full object-cover transition-transform duration-700">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden store-card-hover border border-gray-100">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="images/pub_img/picsum-1071-1200-675.jpg" alt="上海外滩店" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
                     </div>
                     <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-semibold text-royal">上海外滩店</h3>
-                            <span class="bg-gold text-white text-xs px-3 py-1 rounded-full">旗舰店</span>
-                        </div>
+                        <h3 class="text-2xl font-semibold mb-2 text-black">上海外滩精品店</h3>
                         <p class="text-gray-600 mb-4">
-                            坐落于上海外滩金融中心，拥有无敌江景，12间豪华SPA套房，提供专属定制服务。
+                            坐拥外滩无敌江景，融合法式优雅与东方禅意，打造极致私密的高端护理空间。
                         </p>
-                        <div class="space-y-2 text-gray-600 text-sm mb-6">
-                            <p class="flex items-start">
-                                <i class="fa fa-map-marker text-gold mt-1 mr-3"></i>
-                                <span>上海市黄浦区中山东一路18号外滩金融中心3层</span>
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fa fa-phone text-gold mr-3"></i>
-                                <span>+86 21 6666 5555</span>
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fa fa-clock-o text-gold mr-3"></i>
-                                <span>10:00 - 22:00</span>
-                            </p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-start">
+                                <i class="fa fa-map-marker text-accent-pink mt-1 mr-3"></i>
+                                <span class="text-gray-700">上海市黄浦区中山东一路32号外滩金融中心5层</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-phone text-accent-pink mr-3"></i>
+                                <span class="text-gray-700">021-6888-7777</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-clock-o text-accent-pink mr-3"></i>
+                                <span class="text-gray-700">10:00 - 22:00 (周一至周日)</span>
+                            </div>
                         </div>
-                        <a href="booking.html" class="inline-block bg-royal hover:bg-royal-dark text-white px-6 py-2 rounded-full text-sm transition-all duration-300">
-                            预约体验
+                        <a href="#" class="inline-block text-accent-pink hover:text-[#d15a78] font-medium transition-colors duration-300">
+                            预约体验 <i class="fa fa-long-arrow-right ml-1"></i>
                         </a>
                     </div>
                 </div>
-                
-                <!-- 广州天河店 -->
-                <div class="store-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
-                    <div class="h-60 overflow-hidden">
-                        <img src="https://picsum.photos/id/1078/600/400" alt="广州天河店" class="store-image w-full h-full object-cover transition-transform duration-700">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-semibold text-royal">广州天河店</h3>
-                            <span class="bg-royal-light text-white text-xs px-3 py-1 rounded-full">标准店</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">
-                            位于广州天河商圈核心位置，面积800平方米，拥有10间豪华SPA套房，环境优雅。
-                        </p>
-                        <div class="space-y-2 text-gray-600 text-sm mb-6">
-                            <p class="flex items-start">
-                                <i class="fa fa-map-marker text-gold mt-1 mr-3"></i>
-                                <span>广州市天河区天河路385号太古汇商场4层</span>
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fa fa-phone text-gold mr-3"></i>
-                                <span>+86 20 3333 2222</span>
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fa fa-clock-o text-gold mr-3"></i>
-                                <span>10:00 - 22:00</span>
-                            </p>
-                        </div>
-                        <a href="booking.html" class="inline-block bg-royal hover:bg-royal-dark text-white px-6 py-2 rounded-full text-sm transition-all duration-300">
-                            预约体验
-                        </a>
-                    </div>
+            </div>
+
+            <!-- 门店环境展示 -->
+            <div class="mt-24">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black">奢华门店环境</h2>
+                    <div class="w-20 h-1 bg-accent-pink mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        每一处细节都彰显极致品味，为您营造尊贵舒适的放松空间
+                    </p>
                 </div>
-                
-                <!-- 深圳湾店 -->
-                <div class="store-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
-                    <div class="h-60 overflow-hidden">
-                        <img src="https://picsum.photos/id/1079/600/400" alt="深圳湾店" class="store-image w-full h-full object-cover transition-transform duration-700">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-semibold text-royal">深圳湾店</h3>
-                            <span class="bg-royal-light text-white text-xs px-3 py-1 rounded-full">标准店</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">
-                            位于深圳湾万象城，面朝深圳湾，风景宜人，9间豪华SPA套房，提供特色服务。
-                        </p>
-                        <div class="space-y-2 text-gray-600 text-sm mb-6">
-                            <p class="flex items-start">
-                                <i class="fa fa-map-marker text-gold mt-1 mr-3"></i>
-                                <span>深圳市南山区科苑南路2888号深圳湾万象城3层</span>
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fa fa-phone text-gold mr-3"></i>
-                                <span>+86 755 2222 1111</span>
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fa fa-clock-o text-gold mr-3"></i>
-                                <span>10:00 - 22:00</span>
-                            </p>
-                        </div>
-                        <a href="booking.html" class="inline-block bg-royal hover:bg-royal-dark text-white px-6 py-2 rounded-full text-sm transition-all duration-300">
-                            预约体验
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- 成都太古里店 -->
-                <div class="store-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
-                    <div class="h-60 overflow-hidden">
-                        <img src="https://picsum.photos/id/1080/600/400" alt="成都太古里店" class="store-image w-full h-full object-cover transition-transform duration-700">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-semibold text-royal">成都太古里店</h3>
-                            <span class="bg-royal-light text-white text-xs px-3 py-1 rounded-full">标准店</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">
-                            位于成都远洋太古里，融合传统与现代风格，10间豪华SPA套房，独具特色。
-                        </p>
-                        <div class="space-y-2 text-gray-600 text-sm mb-6">
-                            <p class="flex items-start">
-                                <i class="fa fa-map-marker text-gold mt-1 mr-3"></i>
-                                <span>成都市锦江区中纱帽街8号成都远洋太古里2层</span>
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fa fa-phone text-gold mr-3"></i>
-                                <span>+86 28 1111 9999</span>
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fa fa-clock-o text-gold mr-3"></i>
-                                <span>10:00 - 22:00</span>
-                            </p>
-                        </div>
-                        <a href="booking.html" class="inline-block bg-royal hover:bg-royal-dark text-white px-6 py-2 rounded-full text-sm transition-all duration-300">
-                            预约体验
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- 杭州西湖店 -->
-                <div class="store-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
-                    <div class="h-60 overflow-hidden">
-                        <img src="https://picsum.photos/id/1081/600/400" alt="杭州西湖店" class="store-image w-full h-full object-cover transition-transform duration-700">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-semibold text-royal">杭州西湖店</h3>
-                            <span class="bg-royal-light text-white text-xs px-3 py-1 rounded-full">标准店</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">
-                            坐落于杭州西湖边，湖光山色尽收眼底，8间豪华SPA套房，环境幽静雅致。
-                        </p>
-                        <div class="space-y-2 text-gray-600 text-sm mb-6">
-                            <p class="flex items-start">
-                                <i class="fa fa-map-marker text-gold mt-1 mr-3"></i>
-                                <span>杭州市上城区湖滨路39号西湖国贸中心5层</span>
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fa fa-phone text-gold mr-3"></i>
-                                <span>+86 571 9999 8888</span>
-                            </p>
-                            <p class="flex items-center">
-                                <i class="fa fa-clock-o text-gold mr-3"></i>
-                                <span>10:00 - 22:00</span>
-                            </p>
-                        </div>
-                        <a href="booking.html" class="inline-block bg-royal hover:bg-royal-dark text-white px-6 py-2 rounded-full text-sm transition-all duration-300">
-                            预约体验
-                        </a>
-                    </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <img src="images/pub_img/picsum-1048-800-600.jpg" alt="门店环境" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <img src="images/pub_img/picsum-1058-800-600.jpg" alt="护理室" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <img src="images/pub_img/picsum-1059-800-600.jpg" alt="休息区" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <img src="images/pub_img/picsum-1068-800-600.jpg" alt="SPA区" class="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 门店特色 -->
-    <section class="py-20 bg-royal text-white">
+    <section class="py-16 md:py-24 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">门店特色</h2>
-                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-3xl mx-auto text-gray-200">每一家梦园皇宫SPA门店，都为您带来独特而一致的奢华体验</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black">门店特色服务</h2>
+                <div class="w-20 h-1 bg-accent-pink mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    每家门店均配备国际顶级设备与专业团队，提供定制化年轻化解决方案
+                </p>
             </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-lg shadow-lg">
-                    <div class="text-gold text-4xl mb-6 text-center">
-                        <i class="fa fa-map-marker"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-center">黄金地段</h3>
-                    <p class="text-gray-300 text-center">
-                        所有门店均位于城市核心商圈或风景绝佳位置，交通便利，环境优雅。
-                    </p>
-                </div>
-                
-                <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-lg shadow-lg">
-                    <div class="text-gold text-4xl mb-6 text-center">
-                        <i class="fa fa-paint-brush"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-center">奢华设计</h3>
-                    <p class="text-gray-300 text-center">
-                        由国际知名设计师打造，融合东西方美学，营造皇家般的尊贵氛围。
-                    </p>
-                </div>
-                
-                <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-lg shadow-lg">
-                    <div class="text-gold text-4xl mb-6 text-center">
-                        <i class="fa fa-lock"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-center">私密空间</h3>
-                    <p class="text-gray-300 text-center">
-                        独立SPA套房设计，确保您的隐私得到最大程度保护，尽享放松时光。
-                    </p>
-                </div>
-                
-                <div class="bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-lg shadow-lg">
-                    <div class="text-gold text-4xl mb-6 text-center">
-                        <i class="fa fa-tint"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4 text-center">高端设施</h3>
-                    <p class="text-gray-300 text-center">
-                        配备私人按摩浴缸、蒸汽浴、桑拿等高端设施，提供全方位的放松体验。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- 门店地图 -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-royal-dark mb-4">门店分布地图</h2>
-                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-3xl mx-auto text-gray-600">查看梦园皇宫SPA在全国的门店分布，找到离您最近的一家</p>
-            </div>
-            
-            <div class="rounded-xl overflow-hidden shadow-xl h-96 relative group cursor-pointer">
-                <!-- 地图占位符 -->
-                <img src="https://picsum.photos/id/101/1200/400" alt="梦园皇宫SPA门店分布地图" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-royal bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div class="text-center p-6">
-                        <i class="fa fa-map-marker text-5xl text-gold mb-4"></i>
-                        <h3 class="text-2xl font-bold text-white mb-2">查看交互式地图</h3>
-                        <p class="text-white text-opacity-90 mb-4">点击查看全国门店详细分布</p>
-                        <button id="map-view-btn" class="bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300 transform hover:-translate-y-1">
-                            查看地图
-                        </button>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 特色1 -->
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-black/10 rounded-full flex items-center justify-center mb-6 text-black">
+                        <i class="fa fa-user-md text-2xl"></i>
                     </div>
+                    <h3 class="text-xl font-semibold mb-4 text-black">专业团队</h3>
+                    <p class="text-gray-600">
+                        每位护理师均拥有国际认证资质与多年临床经验，提供专业贴心的服务体验。
+                    </p>
+                </div>
+
+                <!-- 特色2 -->
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-black/10 rounded-full flex items-center justify-center mb-6 text-black">
+                        <i class="fa fa-shield text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-black">私密空间</h3>
+                    <p class="text-gray-600">
+                        独立护理套房配备智能控制系统，确保您在完全私密的环境中享受专属服务。
+                    </p>
+                </div>
+
+                <!-- 特色3 -->
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-black/10 rounded-full flex items-center justify-center mb-6 text-black">
+                        <i class="fa fa-flask text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-black">顶级产品</h3>
+                    <p class="text-gray-600">
+                        精选国际顶级品牌产品，结合先进科技，为您提供安全有效的年轻化解决方案。
+                    </p>
+                </div>
+
+                <!-- 特色4 -->
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-black/10 rounded-full flex items-center justify-center mb-6 text-black">
+                        <i class="fa fa-calendar-check-o text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-black">定制服务</h3>
+                    <p class="text-gray-600">
+                        根据个人肤质与需求，量身定制个性化护理方案，提供专属一对一服务体验。
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 预约区域 -->
-    <section class="py-20 bg-gray-50">
+    <section class="py-16 md:py-24 bg-black text-white">
         <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden">
-                <div class="grid md:grid-cols-2">
-                    <div class="p-12 bg-royal text-white flex flex-col justify-center">
-                        <h2 class="text-3xl font-bold mb-6">预约您附近的<br>梦园皇宫SPA</h2>
-                        <p class="mb-8 text-gray-200">选择离您最近的门店，预约专属SPA体验，感受皇家般的尊贵服务。</p>
-                        <a href="booking.html" class="bg-gold hover:bg-gold-dark text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 inline-block w-full text-center">
-                            立即预约
-                        </a>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">预约您的专属体验</h2>
+                    <p class="text-lg text-gray-300 mb-8">
+                        选择就近门店，预约专业顾问，开启您的年轻化之旅
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-accent-pink mt-1 mr-3"></i>
+                            <span>全国门店通用会员体系</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-accent-pink mt-1 mr-3"></i>
+                            <span>线上预约享优先服务权</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-accent-pink mt-1 mr-3"></i>
+                            <span>首次到店赠欢迎礼遇</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-accent-pink mt-1 mr-3"></i>
+                            <span>会员专享免费停车服务</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="inline-block bg-accent-pink hover:bg-[#d15a78] text-white px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        立即预约咨询
+                    </a>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-6 text-center">全国服务热线</h3>
+                    <div class="text-center mb-8">
+                        <p class="text-3xl text-accent-pink font-bold mb-4">400-8866-010</p>
+                        <p class="text-gray-300">7:00 - 23:00 全天候服务</p>
                     </div>
-                    <div class="p-12">
-                        <h3 class="text-2xl font-semibold text-royal mb-6">选择城市</h3>
-                        <div class="grid grid-cols-2 gap-4">
-                            <a href="booking.html?city=beijing" class="bg-gray-100 hover:bg-royal hover:text-white p-4 rounded-lg text-center transition-colors duration-300">
-                                北京
-                            </a>
-                            <a href="booking.html?city=shanghai" class="bg-gray-100 hover:bg-royal hover:text-white p-4 rounded-lg text-center transition-colors duration-300">
-                                上海
-                            </a>
-                            <a href="booking.html?city=guangzhou" class="bg-gray-100 hover:bg-royal hover:text-white p-4 rounded-lg text-center transition-colors duration-300">
-                                广州
-                            </a>
-                            <a href="booking.html?city=shenzhen" class="bg-gray-100 hover:bg-royal hover:text-white p-4 rounded-lg text-center transition-colors duration-300">
-                                深圳
-                            </a>
-                            <a href="booking.html?city=chengdu" class="bg-gray-100 hover:bg-royal hover:text-white p-4 rounded-lg text-center transition-colors duration-300">
-                                成都
-                            </a>
-                            <a href="booking.html?city=hangzhou" class="bg-gray-100 hover:bg-royal hover:text-white p-4 rounded-lg text-center transition-colors duration-300">
-                                杭州
-                            </a>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-700">
+                            <span>在线客服</span>
+                            <a href="#" class="text-accent-pink hover:text-[#d15a78] transition-colors duration-300">立即咨询</a>
+                        </div>
+                        <div class="flex justify-between items-center pb-3 border-b border-gray-700">
+                            <span>微信客服</span>
+                            <a href="#" class="text-accent-pink hover:text-[#d15a78] transition-colors duration-300">扫码添加</a>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>邮件咨询</span>
+                            <a href="mailto:service@myhgdayspa.com" class="text-accent-pink hover:text-[#d15a78] transition-colors duration-300">service@myhgdayspa.com</a>
                         </div>
                     </div>
                 </div>
@@ -600,71 +371,59 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-royal-dark text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">梦园皇宫<span class="text-gold-light">SPA</span></h3>
-                    <p class="text-gray-400 mb-6">为您提供皇家般的奢华SPA体验，让身心在繁忙的生活中找到宁静与平衡。</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-weixin"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-weibo"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-gold-light">快速链接</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300">首页</a></li>
-                        <li><a href="brand.html" class="text-gray-400 hover:text-white transition-colors duration-300">品牌故事</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors duration-300">服务项目</a></li>
-                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white transition-colors duration-300">客户评价</a></li>
-                        <li><a href="booking.html" class="text-gray-400 hover:text-white transition-colors duration-300">在线预约</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-gold-light">联系我们</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li class="flex items-start">
-                            <i class="fa fa-map-marker text-gold mt-1 mr-3"></i>
-                            <span>上海市黄浦区中山东一路18号外滩金融中心3层</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa fa-phone text-gold mr-3"></i>
-                            <span>400-888-8888</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa fa-envelope text-gold mr-3"></i>
-                            <span>contact@myhgdayspa.com</span>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-gold-light">营业时间</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li class="flex justify-between">
-                            <span>周一至周五</span>
-                            <span>10:00 - 22:00</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span>周六至周日</span>
-                            <span>09:00 - 23:00</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span>法定节假日</span>
-                            <span>09:00 - 23:00</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 梦园皇宫SPA. 保留所有权利.</p>
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-accent-pink text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 opacity-0 invisible hover:bg-[#d15a78] hover:scale-110">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <!-- 页面脚本 -->
+    <script>
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 图片懒加载淡入效果
+        document.addEventListener('DOMContentLoaded', () => {
+            const lazyImages = document.querySelectorAll('img');
+
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('opacity-100');
+                        img.classList.remove('opacity-0');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => {
+                img.classList.add('transition-opacity', 'duration-700', 'opacity-0');
+                imageObserver.observe(img);
+            });
+        });
+    </script>
+</body>
+</html>

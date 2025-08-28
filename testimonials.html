@@ -3,31 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>客户评价 - 梦园皇宫SPA</title>
+    <title>客户评价 - 梦圆皇宫</title>
     <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- 引入Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- 引入vite-client-fallback.js以解决页面空白问题 -->
-    <script>
-        // 检测是否在file协议下运行
-        if (window.location.protocol === 'file:') {
-            // 直接加载本地的vite-client-fallback.js
-            document.write('<script src="/vite-client-fallback.js"><\/script>');
-        } else {
-            // 尝试加载/@vite/client，如果失败则加载回退脚本
-            const script = document.createElement('script');
-            script.src = '/@vite/client';
-            script.onerror = function() {
-                const fallbackScript = document.createElement('script');
-                fallbackScript.src = '/vite-client-fallback.js';
-                document.head.appendChild(fallbackScript);
-            };
-            document.head.appendChild(script);
-        }
-    </script>
 
     <!-- 配置Tailwind自定义主题 -->
     <script>
@@ -40,12 +22,12 @@
                             DEFAULT: '#d4af37',
                             dark: '#b8860b'
                         },
-                        royal: {
-                            light: '#6a89cc',
-                            DEFAULT: '#1a365d',
-                            dark: '#0d1b2a'
+                        pink: {
+                            light: '#ffc0cb',
+                            DEFAULT: '#ff69b4',
+                            dark: '#db7093'
                         },
-                        cream: '#f8f4e3'
+                        cream: '#ffffff'
                     },
                     fontFamily: {
                         inter: ['Inter', 'sans-serif'],
@@ -54,7 +36,7 @@
             }
         }
     </script>
-
+    
     <!-- 自定义工具类 -->
     <style type="text/tailwindcss">
         @layer utilities {
@@ -66,508 +48,550 @@
             }
         }
     </style>
-
+    
     <style>
         /* 基础动画设置 */
         html {
             scroll-behavior: smooth;
         }
-
+        
+        /* 渐变背景动画 */
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.9), rgba(184, 134, 11, 0.7)), url('./images/index-top.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* 卡片悬停效果 */
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+        
         /* 加载动画 */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
+        
         .animate-fade-in {
             animation: fadeIn 0.8s ease forwards;
         }
-
-        /* 评价卡片悬停效果 */
-        .testimonial-card:hover {
-            transform: translateY(-10px);
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        
+        /* 轮播效果 */
+        .testimonial-slider {
+            transition: transform 0.5s ease-in-out;
         }
     </style>
 </head>
 
 <body class="font-inter bg-cream text-gray-800 antialiased">
     <!-- 导航栏 -->
-    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-royal-dark bg-opacity-95 shadow-lg">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <span class="text-2xl font-bold text-white text-shadow">梦园皇宫<span class="text-gold-light">SPA</span></span>
-            </a>
+    <div id="header-placeholder"></div>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+    </script>
 
-            <!-- 桌面导航 -->
-            <nav class="hidden md:flex space-x-8">
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        品牌介绍
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="brand.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">品牌故事</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        门店介绍
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="stores.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">门店展示</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        年轻化方案
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="youth.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">方案详情</a>
-                        </div>
-                    </div>
-                </div>
-                <a href="services.html" class="text-white hover:text-gold-light transition-colors duration-300">服务项目</a>
-                <a href="testimonials.html" class="text-gold-light transition-colors duration-300">客户评价</a>
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        关于我们
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="careers.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">招聘信息</a>
-                            <a href="contact.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">联系我们</a>
-                            <a href="info.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">其他信息</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- 预约按钮 -->
-            <a href="booking.html" class="hidden md:block bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                立即预约
-            </a>
-
-            <!-- 移动端菜单按钮 -->
-            <button id="menu-toggle" class="md:hidden text-white text-2xl">
-                <i class="fa fa-bars"></i>
-            </button>
-        </div>
-
-        <!-- 移动端导航菜单 -->
-        <div id="mobile-menu" class="md:hidden hidden bg-royal-dark bg-opacity-95">
-            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
-                <div class="relative">
-                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
-                        品牌介绍
-                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
-                    </a>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="brand.html" class="text-white hover:text-gold-light py-2 block">品牌故事</a>
-                    </div>
-                </div>
-                <div class="relative">
-                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
-                        门店介绍
-                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
-                    </a>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="stores.html" class="text-white hover:text-gold-light py-2 block">门店展示</a>
-                    </div>
-                </div>
-                <div class="relative">
-                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
-                        年轻化方案
-                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
-                    </a>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="youth.html" class="text-white hover:text-gold-light py-2 block">方案详情</a>
-                    </div>
-                </div>
-                <a href="services.html" class="text-white hover:text-gold-light py-2 border-b border-gray-700">服务项目</a>
-                <a href="testimonials.html" class="text-gold-light py-2 border-b border-gray-700">客户评价</a>
-                <div class="relative">
-                    <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
-                        关于我们
-                        <i class="fa fa-chevron-down text-xs mobile-submenu-toggle"></i>
-                    </a>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="careers.html" class="text-white hover:text-gold-light py-2 block">招聘信息</a>
-                        <a href="contact.html" class="text-white hover:text-gold-light py-2 block">联系我们</a>
-                        <a href="info.html" class="text-white hover:text-gold-light py-2 block">其他信息</a>
-                    </div>
-                </div>
-                <a href="booking.html" class="bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full text-center transition-all duration-300">
-                    立即预约
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- 页面标题区域 -->
-    <section class="bg-royal text-white py-24 md:py-32">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4">客户评价</h1>
-            <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-            <p class="max-w-2xl mx-auto text-gray-200">聆听我们客户的真实体验和反馈，了解梦园皇宫SPA如何为他们带来身心的愉悦和放松</p>
+    <!-- 英雄区域 -->
+    <section class="hero-gradient py-28 flex items-center justify-center text-center text-white">
+        <div class="container mx-auto px-4 z-10">
+            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-6 leading-tight animate-fade-in text-black">
+                客户真实评价<br class="md:hidden">
+            </h1>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] max-w-2xl mx-auto mb-10 text-black animate-fade-in delay-100">
+                聆听真实的声音，感受梦圆皇宫为顾客带来的卓越体验
+            </p>
         </div>
     </section>
 
-    <!-- 客户评价区域 -->
-    <section class="py-16 md:py-24 bg-white">
+    <!-- 评分概览 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-gold mb-2">4.9</div>
+                    <div class="text-xl text-gray-600">平均评分</div>
+                    <div class="flex justify-center mt-2 text-gold text-2xl">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-2 w-full md:w-auto">
+                    <div class="flex items-center gap-2">
+                        <span class="w-24 text-sm text-gray-600">5 星</span>
+                        <div class="flex-1 bg-gray-200 rounded-full h-3">
+                            <div class="bg-gold h-3 rounded-full" style="width: 85%"></div>
+                        </div>
+                        <span class="w-8 text-sm font-medium">85%</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-24 text-sm text-gray-600">4 星</span>
+                        <div class="flex-1 bg-gray-200 rounded-full h-3">
+                            <div class="bg-gold h-3 rounded-full" style="width: 12%"></div>
+                        </div>
+                        <span class="w-8 text-sm font-medium">12%</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-24 text-sm text-gray-600">3 星</span>
+                        <div class="flex-1 bg-gray-200 rounded-full h-3">
+                            <div class="bg-gold h-3 rounded-full" style="width: 2%"></div>
+                        </div>
+                        <span class="w-8 text-sm font-medium">2%</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-24 text-sm text-gray-600">2 星</span>
+                        <div class="flex-1 bg-gray-200 rounded-full h-3">
+                            <div class="bg-gold h-3 rounded-full" style="width: 1%"></div>
+                        </div>
+                        <span class="w-8 text-sm font-medium">1%</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-24 text-sm text-gray-600">1 星</span>
+                        <div class="flex-1 bg-gray-200 rounded-full h-3">
+                            <div class="bg-gold h-3 rounded-full" style="width: 0%"></div>
+                        </div>
+                        <span class="w-8 text-sm font-medium">0%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center text-gray-600">
+                <p>基于 <span class="font-semibold text-gold">2,386</span> 位客户的真实评价</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 精选评价 -->
+    <section class="py-20 bg-[#e62a88] text-black">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-4">客户真实评价</h2>
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">精选评价</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-2xl mx-auto text-gray-600">每一条评价都是客户对我们服务的真实反馈，是我们不断进步的动力</p>
+                <p class="max-w-3xl mx-auto text-black">听听我们的客户分享他们在梦圆皇宫的真实体验</p>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- 评价1 -->
-                <div class="bg-cream rounded-lg shadow-lg p-8 transition-all duration-500 hover:shadow-xl testimonial-card animate-fade-in delay-100">
-                    <div class="flex items-center mb-6">
-                        <img src="https://picsum.photos/id/64/100/100" alt="客户头像" class="w-16 h-16 rounded-full object-cover mr-4" />
+                <div class="testimonial-card bg-black p-8 rounded-lg shadow-lg text-white transition-all duration-300">
+                    <div class="text-gold mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p class="italic mb-6">"这是我体验过的最好的SPA之一，环境优雅，服务周到，按摩师技术精湛。皇家全身按摩让我彻底放松，缓解了长期的肩颈疼痛。"</p>
+                    <div class="flex items-center">
+                        <img src="images/pub_img/picsum-64-100-100.jpg" alt="张女士头像" class="w-12 h-12 rounded-full object-cover mr-4">
                         <div>
-                            <h3 class="text-xl font-bold text-royal-dark">张女士</h3>
-                            <div class="flex text-gold mt-1">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
+                            <h4 class="font-semibold">张女士</h4>
+                            <p class="text-sm text-gray-300">企业高管 · 晴会所</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">
-                        "这是我体验过的最棒的SPA之一！环境非常优雅，服务人员专业且友好，热石疗法让我彻底放松，感觉整个人都焕然一新。强烈推荐给所有想要放松身心的朋友！"
-                    </p>
-                    <p class="text-gray-500 text-sm">体验项目：热石疗法</p>
                 </div>
-
+                
                 <!-- 评价2 -->
-                <div class="bg-cream rounded-lg shadow-lg p-8 transition-all duration-500 hover:shadow-xl testimonial-card animate-fade-in delay-200">
-                    <div class="flex items-center mb-6">
-                        <img src="https://picsum.photos/id/91/100/100" alt="客户头像" class="w-16 h-16 rounded-full object-cover mr-4" />
+                <div class="testimonial-card bg-black p-8 rounded-lg shadow-lg text-white transition-all duration-300">
+                    <div class="text-gold mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p class="italic mb-6">"皇室尊享套餐绝对物超所值，从进入SPA的那一刻起就感受到了尊贵的服务。热石疗法尤其出色，让我忘却了所有工作压力。"</p>
+                    <div class="flex items-center">
+                        <img src="images/pub_img/picsum-91-100-100.jpg" alt="李先生头像" class="w-12 h-12 rounded-full object-cover mr-4">
                         <div>
-                            <h3 class="text-xl font-bold text-royal-dark">王先生</h3>
-                            <div class="flex text-gold mt-1">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
+                            <h4 class="font-semibold">李先生</h4>
+                            <p class="text-sm text-gray-300">律师 · 湖畔会所</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">
-                        "工作压力很大，经常感到腰酸背痛。在这里做了全身按摩后，感觉整个人都轻松了很多，睡眠质量也明显改善。按摩师的手法非常专业，环境也很安静舒适。"
-                    </p>
-                    <p class="text-gray-500 text-sm">体验项目：全身舒缓按摩</p>
                 </div>
-
+                
                 <!-- 评价3 -->
-                <div class="bg-cream rounded-lg shadow-lg p-8 transition-all duration-500 hover:shadow-xl testimonial-card animate-fade-in delay-300">
-                    <div class="flex items-center mb-6">
-                        <img src="https://picsum.photos/id/55/100/100" alt="客户头像" class="w-16 h-16 rounded-full object-cover mr-4" />
+                <div class="testimonial-card bg-black p-8 rounded-lg shadow-lg text-white transition-all duration-300">
+                    <div class="text-gold mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                    </div>
+                    <p class="italic mb-6">"作为一个经常出差的人，我体验过世界各地的SPA，但梦圆皇宫的服务和环境仍然让我惊艳。面部护理效果显著，皮肤明显焕发活力。"</p>
+                    <div class="flex items-center">
+                        <img src="images/pub_img/picsum-22-100-100.jpg" alt="王女士头像" class="w-12 h-12 rounded-full object-cover mr-4">
                         <div>
-                            <h3 class="text-xl font-bold text-royal-dark">李女士</h3>
-                            <div class="flex text-gold mt-1">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
+                            <h4 class="font-semibold">王女士</h4>
+                            <p class="text-sm text-gray-300">市场总监 · 风情会所</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">
-                        "皮肤一直很干燥，尝试了很多护理产品都没有明显效果。在这里做了保湿修护护理后，皮肤明显变得水润有弹性，效果非常显著。服务也很贴心，会根据我的肤质推荐适合的产品。"
-                    </p>
-                    <p class="text-gray-500 text-sm">体验项目：保湿修护护理</p>
                 </div>
-
+                
                 <!-- 评价4 -->
-                <div class="bg-cream rounded-lg shadow-lg p-8 transition-all duration-500 hover:shadow-xl testimonial-card animate-fade-in delay-400">
-                    <div class="flex items-center mb-6">
-                        <img src="https://picsum.photos/id/22/100/100" alt="客户头像" class="w-16 h-16 rounded-full object-cover mr-4" />
+                <div class="testimonial-card bg-black p-8 rounded-lg shadow-lg text-white transition-all duration-300">
+                    <div class="text-gold mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p class="italic mb-6">"我已经是梦圆皇宫的会员五年了，他们的服务始终如一的专业和贴心。每一次体验都让我感到放松和愉悦，是我忙碌生活中的避风港。"</p>
+                    <div class="flex items-center">
+                        <img src="images/pub_img/picsum-55-100-100.jpg" alt="刘女士头像" class="w-12 h-12 rounded-full object-cover mr-4">
                         <div>
-                            <h3 class="text-xl font-bold text-royal-dark">赵先生</h3>
-                            <div class="flex text-gold mt-1">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
+                            <h4 class="font-semibold">刘女士</h4>
+                            <p class="text-sm text-gray-300">设计师 · 凤凰会所</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">
-                        "作为一名长期久坐的办公室工作者，肩颈问题一直困扰着我。在这里做了中医调理护理后，肩颈疼痛明显减轻，整个人也感觉更有活力了。中医顾问的专业知识非常丰富，给了我很多实用的保健建议。"
-                    </p>
-                    <p class="text-gray-500 text-sm">体验项目：中医调理护理</p>
                 </div>
-
+                
                 <!-- 评价5 -->
-                <div class="bg-cream rounded-lg shadow-lg p-8 transition-all duration-500 hover:shadow-xl testimonial-card animate-fade-in delay-500">
-                    <div class="flex items-center mb-6">
-                        <img src="https://picsum.photos/id/65/100/100" alt="客户头像" class="w-16 h-16 rounded-full object-cover mr-4" />
+                <div class="testimonial-card bg-black p-8 rounded-lg shadow-lg text-white transition-all duration-300">
+                    <div class="text-gold mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p class="italic mb-6">"作为生日礼物，我妻子为我预订了梦圆皇宫的男士专属SPA套餐。从没想过SPA能让我如此放松，服务人员专业且不会过度推销，非常值得推荐！"</p>
+                    <div class="flex items-center">
+                        <img src="images/pub_img/picsum-92-100-100.jpg" alt="张先生头像" class="w-12 h-12 rounded-full object-cover mr-4">
                         <div>
-                            <h3 class="text-xl font-bold text-royal-dark">陈女士</h3>
-                            <div class="flex text-gold mt-1">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
+                            <h4 class="font-semibold">张先生</h4>
+                            <p class="text-sm text-gray-300">企业主 · 晴会所</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">
-                        "精油SPA护理的体验非常棒！环境优雅，服务周到，精油的香味很舒服，按摩师的手法也很专业。整个过程非常放松，结束后感觉整个人都轻盈了许多。已经成为这里的常客了！"
-                    </p>
-                    <p class="text-gray-500 text-sm">体验项目：精油SPA护理</p>
                 </div>
-
+                
                 <!-- 评价6 -->
-                <div class="bg-cream rounded-lg shadow-lg p-8 transition-all duration-500 hover:shadow-xl testimonial-card animate-fade-in delay-600">
-                    <div class="flex items-center mb-6">
-                        <img src="https://picsum.photos/id/92/100/100" alt="客户头像" class="w-16 h-16 rounded-full object-cover mr-4" />
+                <div class="testimonial-card bg-black p-8 rounded-lg shadow-lg text-white transition-all duration-300">
+                    <div class="text-gold mb-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p class="italic mb-6">"新推出的六维年轻化方案真是太棒了！不仅改善了我的皮肤状态，还给了我整体的健康建议。顾问非常专业，会根据个人情况定制方案，而不是千篇一律的服务。"</p>
+                    <div class="flex items-center">
+                        <img src="images/pub_img/picsum-65-100-100.jpg" alt="陈女士头像" class="w-12 h-12 rounded-full object-cover mr-4">
                         <div>
-                            <h3 class="text-xl font-bold text-royal-dark">刘先生</h3>
-                            <div class="flex text-gold mt-1">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
+                            <h4 class="font-semibold">陈女士</h4>
+                            <p class="text-sm text-gray-300">医生 · 湖畔会所</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">
-                        "深层清洁护理的效果非常好，我的皮肤一直比较油腻，容易长痘。做了这个护理后，皮肤明显变得清爽了许多，毛孔也细致了。服务人员的态度也很好，会详细解释每一步的护理流程。"
-                    </p>
-                    <p class="text-gray-500 text-sm">体验项目：深层清洁护理</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 满意度统计区域 -->
-    <section class="py-16 md:py-24 bg-cream">
+    <!-- 评价轮播 -->
+    <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-4">客户满意度</h2>
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-royal-dark mb-4">更多评价</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-2xl mx-auto text-gray-600">我们致力于为每一位客户提供最优质的服务，您的满意是我们最大的追求</p>
+                <p class="max-w-3xl mx-auto text-gray-600">查看更多客户的真实体验分享</p>
             </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
-                <!-- 统计1 -->
-                <div class="animate-fade-in delay-100">
-                    <div class="w-24 h-24 bg-royal rounded-full flex items-center justify-center text-white text-4xl font-bold mx-auto mb-6">
-                        98%
+            
+            <div class="relative overflow-hidden">
+                <div id="testimonialSlider" class="flex testimonial-slider">
+                    <!-- 轮播评价1 -->
+                    <div class="min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md h-full">
+                            <div class="text-gold mb-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 mb-4 text-sm">"环境非常舒适，服务人员很专业，会根据我的需求调整按摩力度。全程无推销，体验感很好。"</p>
+                            <div class="flex items-center text-sm">
+                                <span class="font-medium mr-2">赵女士</span>
+                                <span class="text-gray-500">· 全身按摩</span>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-royal-dark mb-2">服务满意度</h3>
-                    <p class="text-gray-600">客户对我们服务的满意度评价</p>
+                    
+                    <!-- 轮播评价2 -->
+                    <div class="min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md h-full">
+                            <div class="text-gold mb-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 mb-4 text-sm">"面部护理效果明显，做完后皮肤水润有光泽。产品也很好，没有任何不适。值得再次光顾。"</p>
+                            <div class="flex items-center text-sm">
+                                <span class="font-medium mr-2">孙女士</span>
+                                <span class="text-gray-500">· 面部护理</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 轮播评价3 -->
+                    <div class="min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md h-full">
+                            <div class="text-gold mb-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 mb-4 text-sm">"六维年轻化方案真的改变了我的生活，不仅外貌有了改善，整个人的精神状态也焕然一新。"</p>
+                            <div class="flex items-center text-sm">
+                                <span class="font-medium mr-2">钱女士</span>
+                                <span class="text-gray-500">· 年轻化管理</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 轮播评价4 -->
+                    <div class="min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md h-full">
+                            <div class="text-gold mb-3">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <p class="text-gray-700 mb-4 text-sm">"作为会员，享受了很多专属服务和优惠。工作人员记得我的喜好，每次去都像回家一样亲切。"</p>
+                            <div class="flex items-center text-sm">
+                                <span class="font-medium mr-2">周先生</span>
+                                <span class="text-gray-500">· 会员</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
+                <!-- 轮播控制按钮 -->
+                <button id="prevBtn" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gold text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-gold-dark transition-colors duration-300">
+                    <i class="fa fa-chevron-left"></i>
+                </button>
+                <button id="nextBtn" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gold text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-gold-dark transition-colors duration-300">
+                    <i class="fa fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
 
-                <!-- 统计2 -->
-                <div class="animate-fade-in delay-200">
-                    <div class="w-24 h-24 bg-royal rounded-full flex items-center justify-center text-white text-4xl font-bold mx-auto mb-6">
-                        95%
-                    </div>
-                    <h3 class="text-xl font-bold text-royal-dark mb-2">环境满意度</h3>
-                    <p class="text-gray-600">客户对我们环境的满意度评价</p>
+    <!-- 体验分享 -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-royal-dark mb-4">客户体验分享</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+                <p class="max-w-3xl mx-auto text-gray-600">真实记录客户在梦圆皇宫的美好时刻</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <img src="images/pub_img/picsum-174-800-600.jpg" alt="客户体验照片" class="w-full h-48 object-cover transition-transform duration-700 hover:scale-110">
                 </div>
-
-                <!-- 统计3 -->
-                <div class="animate-fade-in delay-300">
-                    <div class="w-24 h-24 bg-royal rounded-full flex items-center justify-center text-white text-4xl font-bold mx-auto mb-6">
-                        96%
-                    </div>
-                    <h3 class="text-xl font-bold text-royal-dark mb-2">技师专业度</h3>
-                    <p class="text-gray-600">客户对我们技师专业度的评价</p>
+                <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <img src="images/pub_img/picsum-1068-800-600.jpg" alt="客户体验照片" class="w-full h-48 object-cover transition-transform duration-700 hover:scale-110">
                 </div>
-
-                <!-- 统计4 -->
-                <div class="animate-fade-in delay-400">
-                    <div class="w-24 h-24 bg-royal rounded-full flex items-center justify-center text-white text-4xl font-bold mx-auto mb-6">
-                        92%
-                    </div>
-                    <h3 class="text-xl font-bold text-royal-dark mb-2">回头客率</h3>
-                    <p class="text-gray-600">我们的客户回头率</p>
+                <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <img src="images/pub_img/picsum-1059-800-600.jpg" alt="客户体验照片" class="w-full h-48 object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <img src="images/pub_img/picsum-1048-800-600.jpg" alt="客户体验照片" class="w-full h-48 object-cover transition-transform duration-700 hover:scale-110">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 预约区域 -->
-    <section class="py-16 md:py-24 bg-royal text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">预约您的专属SPA体验</h2>
-            <p class="max-w-2xl mx-auto mb-8">
-                立即预约，享受我们专业的SPA服务，让身心得到彻底的放松和修复。我们的专业顾问将为您提供一对一的咨询和服务。
-            </p>
-            <a href="booking.html" class="inline-block bg-gold hover:bg-gold-dark text-white px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg font-bold">
-                立即预约
-            </a>
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-[#e62a88] rounded-xl shadow-xl overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-12 text-black flex flex-col justify-center">
+                        <h2 class="text-3xl font-bold mb-6">开启您的奢华体验</h2>
+                        <p class="mb-8 text-black">立即预约，感受梦圆皇宫为您带来的尊贵服务体验</p>
+                        <a href="booking.html" class="bg-black hover:bg-gray-800 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 inline-block w-full text-center">
+                            立即预约
+                        </a>
+                    </div>
+                    <div class="p-12 bg-black text-white flex flex-col justify-center">
+                        <h3 class="text-2xl font-semibold text-white mb-6">营业时间</h3>
+                        <ul class="space-y-4 text-white">
+                            <li class="flex justify-between pb-2 border-b border-gray-200">
+                                <span>周一至周日</span>
+                                <span class="font-medium">09:30 - 22:30</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span>节假日正常营业</span>
+                                <span class="font-medium">如有歇业另行通知</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-royal-dark text-white py-12 md:py-16">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-                <div class="animate-fade-in delay-100">
-                    <h3 class="text-2xl font-bold mb-6">梦园皇宫<span class="text-gold-light">SPA</span></h3>
-                    <p class="text-gray-300 mb-6">
-                        梦园皇宫SPA创立于2008年，是一家专注于高端SPA服务的连锁品牌，致力于为客户提供专业、舒适、私密的SPA体验。
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-weixin"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-weibo"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="animate-fade-in delay-200">
-                    <h4 class="text-lg font-bold mb-6 text-gold-light">快速链接</h4>
-                    <ul class="space-y-3">
-                        <li><a href="brand.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">品牌介绍</a></li>
-                        <li><a href="stores.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">门店介绍</a></li>
-                        <li><a href="youth.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">年轻化方案</a></li>
-                        <li><a href="services.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">服务项目</a></li>
-                        <li><a href="testimonials.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">客户评价</a></li>
-                        <li><a href="booking.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">在线预约</a></li>
-                    </ul>
-                </div>
-
-                <div class="animate-fade-in delay-300">
-                    <h4 class="text-lg font-bold mb-6 text-gold-light">关于我们</h4>
-                    <ul class="space-y-3">
-                        <li><a href="careers.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">招聘信息</a></li>
-                        <li><a href="contact.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">联系我们</a></li>
-                        <li><a href="info.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">其他信息</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300">隐私政策</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300">服务条款</a></li>
-                    </ul>
-                </div>
-
-                <div class="animate-fade-in delay-400">
-                    <h4 class="text-lg font-bold mb-6 text-gold-light">联系我们</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fa fa-map-marker text-gold-light mt-1 mr-3"></i>
-                            <span class="text-gray-300">广东深圳南山区华侨城香山西街18号</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-phone text-gold-light mt-1 mr-3"></i>
-                            <span class="text-gray-300">400-888-8888</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-envelope text-gold-light mt-1 mr-3"></i>
-                            <span class="text-gray-300">info@myhgdayspa.com</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-clock-o text-gold-light mt-1 mr-3"></i>
-                            <span class="text-gray-300">周一至周日 10:00-22:00</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-                <p>© 2023 梦园皇宫SPA. 保留所有权利.</p>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
 
     <!-- 返回顶部按钮 -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 bg-gold hover:bg-gold-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible z-50">
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-gold hover:bg-gold-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible">
         <i class="fa fa-chevron-up"></i>
     </button>
 
+    <!-- JavaScript -->
     <script>
         // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('back-to-top');
+        
         window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('py-2');
-                navbar.classList.remove('py-4');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-royal-dark', 'bg-opacity-95', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+                
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
             } else {
-                navbar.classList.add('py-4');
-                navbar.classList.remove('py-2');
+                navbar.classList.remove('bg-royal-dark', 'bg-opacity-95', 'shadow-lg');
+                navbar.classList.add('bg-black');
+                
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
             }
         });
-
+        
         // 移动端菜单切换
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
-
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                const icon = menuToggle.querySelector('i');
+                if (icon.classList.contains('fa-bars')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+        
         // 移动端子菜单切换
-        document.querySelectorAll('.mobile-submenu-toggle').forEach(function(toggle) {
+        const submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+        submenuToggles.forEach(toggle => {
             toggle.addEventListener('click', function(e) {
                 e.preventDefault();
-                const parent = this.closest('a');
-                const submenu = parent.nextElementSibling;
+                const submenu = this.closest('div').querySelector('.mobile-submenu');
                 submenu.classList.toggle('hidden');
+                
+                // 切换箭头方向
+                if (submenu.classList.contains('hidden')) {
+                    this.classList.remove('fa-chevron-up');
+                    this.classList.add('fa-chevron-down');
+                } else {
+                    this.classList.remove('fa-chevron-down');
+                    this.classList.add('fa-chevron-up');
+                }
             });
         });
-
-        // 返回顶部按钮
-        const backToTopButton = document.getElementById('back-to-top');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopButton.classList.add('opacity-0', 'invisible');
-                backToTopButton.classList.remove('opacity-100', 'visible');
-            }
-        });
-
-        backToTopButton.addEventListener('click', function() {
+        
+        // 返回顶部功能
+        backToTop.addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
-
-        // 图片懒加载淡入效果
+        
+        // 图片懒加载和淡入效果
         document.addEventListener('DOMContentLoaded', function() {
             const images = document.querySelectorAll('img');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
+            
+            const fadeInImages = function() {
+                images.forEach(img => {
+                    const imgTop = img.getBoundingClientRect().top;
+                    const imgVisible = 150;
+                    
+                    if (imgTop < window.innerHeight - imgVisible) {
                         img.classList.add('animate-fade-in');
-                        observer.unobserve(img);
                     }
                 });
-            });
-
-            images.forEach(img => {
-                observer.observe(img);
-            });
+            };
+            
+            // 初始检查
+            fadeInImages();
+            
+            // 滚动时检查
+            window.addEventListener('scroll', fadeInImages);
         });
+        
+        // 评价轮播功能
+        const testimonialSlider = document.getElementById('testimonialSlider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentPosition = 0;
+        const slideCount = document.querySelectorAll('#testimonialSlider > div').length;
+        
+        function updateSliderPosition() {
+            let slideWidth = 100;
+            if (window.innerWidth >= 768 && window.innerWidth < 1024) {
+                slideWidth = 50;
+            } else if (window.innerWidth >= 1024) {
+                slideWidth = 33.333;
+            }
+            
+            const maxPosition = slideCount - Math.floor(100 / slideWidth);
+            
+            if (currentPosition < 0) {
+                currentPosition = 0;
+            } else if (currentPosition > maxPosition) {
+                currentPosition = maxPosition;
+            }
+            
+            testimonialSlider.style.transform = `translateX(-${currentPosition * slideWidth}%)`;
+        }
+        
+        prevBtn.addEventListener('click', function() {
+            currentPosition--;
+            updateSliderPosition();
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            currentPosition++;
+            updateSliderPosition();
+        });
+        
+        // 窗口大小改变时更新轮播位置
+        window.addEventListener('resize', updateSliderPosition);
     </script>
 </body>
 </html>
