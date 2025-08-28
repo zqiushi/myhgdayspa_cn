@@ -91,7 +91,7 @@
 </head>
 
 <body class="font-inter bg-cream text-gray-800 antialiased">
-    <!-- 导航栏 -->
+      <!-- 导航栏 -->
     <div id="header-placeholder"></div>
     <script>
         fetch('header.html')
@@ -100,18 +100,7 @@
                 document.getElementById('header-placeholder').innerHTML = data;
             });
     </script>
-                    <div class="mobile-submenu hidden pl-4 py-2 border-l-2 border-gold">
-                        <a href="careers.html" class="text-white hover:text-gold-light py-2 block">招聘信息</a>
-                        <a href="contact.html" class="text-white hover:text-gold-light py-2 block">联系我们</a>
-                        <a href="info.html" class="text-white hover:text-gold-light py-2 block">其他信息</a>
-                    </div>
-                </div>
-                <a href="booking.html" class="bg-[#e62a88] hover:bg-[#d15a78] text-white px-6 py-2 rounded-full text-center transition-all duration-300">
-                    立即预约
-                </a>
-            </div>
-        </div>
-    </header>
+
 
     <!-- 英雄区域 -->
     <section class="hero-gradient min-h-screen flex items-center justify-center text-center text-white">
@@ -216,7 +205,7 @@
             <div class="text-center mb-16">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">宾客评价</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-3xl mx-auto text-black">听听我们的宾客如何评价梦圆皇宫SPA的尊贵体验</p>
+                <p class="max-w-3xl mx-auto text-black">听听我们的宾客如何评价梦圆皇宫的尊贵体验</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
@@ -391,37 +380,35 @@ navbar.classList.add('bg-black');
         });
         
         // 移动端菜单切换
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-            const icon = menuToggle.querySelector('i');
-            if (icon.classList.contains('fa-bars')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    mobileMenu.classList.toggle('hidden');
+                });
             }
-        });
-        
-        // 移动端子菜单切换
-        const submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
-        submenuToggles.forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                const submenu = this.closest('div').querySelector('.mobile-submenu');
-                submenu.classList.toggle('hidden');
-                
-                // 切换箭头方向
-                if (submenu.classList.contains('hidden')) {
-                    this.classList.remove('fa-chevron-up');
-                    this.classList.add('fa-chevron-down');
-                } else {
-                    this.classList.remove('fa-chevron-down');
-                    this.classList.add('fa-chevron-up');
-                }
+            
+            // 移动端子菜单切换
+            const submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+            submenuToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const submenu = this.closest('div').querySelector('.mobile-submenu');
+                    submenu.classList.toggle('hidden');
+                    
+                    // 切换箭头方向
+                    if (submenu.classList.contains('hidden')) {
+                        this.classList.remove('fa-chevron-up');
+                        this.classList.add('fa-chevron-down');
+                    } else {
+                        this.classList.remove('fa-chevron-down');
+                        this.classList.add('fa-chevron-up');
+                    }
+                });
             });
         });
         

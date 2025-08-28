@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <!-- 基础资源引入 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>联系我们 - 深圳梦园皇宫美容会所</title>
+    <title>联系我们 - 深圳梦圆皇宫美容会所</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#e62a88',
-                        secondary: '#f8b400',
-                        dark: '#333333',
-                        light: '#f8f8f8',
+                        gold: '#D4AF37',
+                        'gold-light': '#F9F18A',
+                        pink: '#FF6B8B',
+                        cream: '#FFF8E1',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
                     },
                 }
             }
         }
     </script>
+    
+    <!-- 自定义工具类 -->
     <style type="text/tailwindcss">
         @layer utilities {
             .content-auto {
@@ -31,74 +36,37 @@
             .text-shadow {
                 text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
             }
-            .transition-all duration-300 {
-                transition: all 0.3s ease-in-out;
+            .hero-gradient {
+                background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+            }
+            .card-hover {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            .fade-in {
+                animation: fadeIn 0.5s ease-in-out;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            .scale-in {
+                animation: scaleIn 0.5s ease-out;
+            }
+            @keyframes scaleIn {
+                from { transform: scale(0.95); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
             }
         }
     </style>
 </head>
-<body class="bg-gray-50 font-sans text-dark">
-    <!-- 导航栏 -->
-    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-black shadow-lg">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <img src="images/logo.png" alt="梦圆皇宫年轻化管理集团" class="h-10">
-            </a>
-
-            <!-- 桌面导航 -->
-            <nav class="hidden md:flex space-x-8 bg-royal-dark">
-                <div class="relative group">
-                    <a href="#" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300 flex items-center">
-                        品牌介绍
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="brand.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">品牌故事</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <a href="#" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300 flex items-center">
-                        门店介绍
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="stores.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">门店展示</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <a href="#" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300 flex items-center">
-                        年轻化方案
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="youth.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">方案详情</a>
-                        </div>
-                    </div>
-                </div>
-                <a href="services.html" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300">服务项目</a>
-                <a href="testimonials.html" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300">客户评价</a>
-                <div class="relative group">
-                    <a href="#" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300 flex items-center">
-                        关于我们
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="careers.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">招聘信息</a>
-                            <a href="contact.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">联系我们</a>
-                            <a href="info.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">其他信息</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- 预约按钮 -->
-            <a href="booking.html" class="hidden md:block bg-[#e62a88] hover:bg-[#d15a78] text-black px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+<body class="font-inter bg-cream text-gray-800 antialiased">
+    <!-- 导航栏占位 -->
+    <div id="header-placeholder"></div>
+            <a href="booking.html" class="hidden md:block bg-[#FF6B8B] hover:bg-[#e55a7a] text-black px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                 立即预约
             </a>
 
@@ -109,7 +77,7 @@
         </div>
 
         <!-- 移动端导航菜单 -->
-        <div id="mobile-menu" class="md:hidden hidden bg-royal-dark bg-opacity-95">
+        <div id="mobile-menu" class="md:hidden hidden bg-pink-900 bg-opacity-95">
             <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
                 <div class="relative">
                     <a href="#" class="text-white hover:text-gold-light py-2 border-b border-gray-700 block flex items-center justify-between">
@@ -151,7 +119,7 @@
                         <a href="info.html" class="text-white hover:text-gold-light py-2 block">其他信息</a>
                     </div>
                 </div>
-                <a href="booking.html" class="bg-[#e62a88] hover:bg-[#d15a78] text-white px-6 py-2 rounded-full text-center transition-all duration-300">
+                <a href="booking.html" class="bg-[#FF6B8B] hover:bg-[#e55a7a] text-white px-6 py-2 rounded-full text-center transition-all duration-300">
                     立即预约
                 </a>
             </div>
@@ -159,23 +127,24 @@
     </header>
 
     <!-- 英雄区域 -->
-    <section class="pt-24 pb-16 bg-gradient-to-br from-primary/90 via-primary to-primary/80 relative overflow-hidden text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-shadow animate-fade-in">联系我们</h1>
-<div class="absolute inset-0 bg-[url('images/pattern.png')] opacity-10"></div>
-        </div>
+    <section class="pt-24 pb-16 bg-[url('images/background-contact.jpg')] bg-cover bg-center relative overflow-hidden text-white">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="absolute inset-0 bg-[url('images/pattern.png')] opacity-10"></div>
+    <div class="container mx-auto px-4 text-center relative z-10">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-shadow animate-fade-in">联系我们</h1>
+    </div>
     </section>
 
                     <div class="mt-12 bg-black text-white p-6 rounded-xl shadow-lg transform transition-all duration-500 hover:shadow-xl hover:scale-[1.02]">
                         <h3 class="text-lg font-semibold mb-4">24H官方客户热线</h3>
-                        <p class="text-2xl text-primary font-bold">400-8866-010</p>
+                        <p class="text-2xl text-pink font-bold">400-8866-010</p>
                     </div>
                 </div>
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary/20 hover:-translate-y-1">
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">梦圆皇宫·晴会所</h3>
                             <p class="text-gray-700 mb-4 leading-relaxed">
-                                <i class="fa fa-map-marker text-primary mr-2"></i>
+                                <i class="fa fa-map-marker text-pink mr-2"></i>
                                 深圳市南山区华侨城香山西街18号首地容御
                             </p>
                             <a href="https://maps.baidu.com/search/深圳市南山区华侨城香山西街18号首地容御" target="_blank" class="inline-flex items-center text-primary hover:text-primary/80 transition-custom">
@@ -186,7 +155,7 @@
                         <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-custom">
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">梦圆皇宫·湖畔会所</h3>
                             <p class="text-gray-600 mb-4">
-                                <i class="fa fa-map-marker text-primary mr-2"></i>
+                                <i class="fa fa-map-marker text-pink mr-2"></i>
                                 深圳市南山区华侨城香山街波托菲诺商业街
                             </p>
                             <a href="https://maps.baidu.com/search/深圳市南山区华侨城香山街波托菲诺商业街" target="_blank" class="inline-flex items-center text-primary hover:text-primary/80 transition-custom">
@@ -197,7 +166,7 @@
                         <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-custom">
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">梦圆皇宫·风情会所</h3>
                             <p class="text-gray-600 mb-4">
-                                <i class="fa fa-map-marker text-primary mr-2"></i>
+                                <i class="fa fa-map-marker text-pink mr-2"></i>
                                 深圳市福田区华强北群星广场中庭7楼全层
                             </p>
                             <a href="https://maps.baidu.com/search/深圳市福田区华强北群星广场中庭7楼全层" target="_blank" class="inline-flex items-center text-primary hover:text-primary/80 transition-custom">
@@ -208,7 +177,7 @@
                         <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-custom">
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">梦圆皇宫·凤凰会所</h3>
                             <p class="text-gray-600 mb-4">
-                                <i class="fa fa-map-marker text-primary mr-2"></i>
+                                <i class="fa fa-map-marker text-pink mr-2"></i>
                                 深圳市深南大道2008号中国凤凰大厦二栋105三层
                             </p>
                             <a href="https://maps.baidu.com/search/深圳市深南大道2008号中国凤凰大厦二栋105三层" target="_blank" class="inline-flex items-center text-primary hover:text-primary/80 transition-custom">
@@ -306,25 +275,97 @@
         <i class="fa fa-arrow-up"></i>
     </button>
 
-    <script src="js/navbar.js"></script>
     <script>
-        // 返回顶部按钮功能
-        const backToTopButton = document.getElementById('back-to-top');
+        // 加载导航栏和页脚
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载导航栏
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                    initNavbar();
+                })
+                .catch(error => console.error('加载导航栏失败:', error));
 
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopButton.classList.remove('opacity-100', 'visible');
-                backToTopButton.classList.add('opacity-0', 'invisible');
+            // 初始化导航栏相关功能
+            function initNavbar() {
+                // 移动端菜单切换
+                const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+                const mobileMenu = document.getElementById('mobile-menu');
+                
+                if (mobileMenuToggle && mobileMenu) {
+                    mobileMenuToggle.addEventListener('click', function() {
+                        const icon = mobileMenuToggle.querySelector('i');
+                        if (icon.classList.contains('fa-bars')) {
+                            icon.classList.remove('fa-bars');
+                            icon.classList.add('fa-times');
+                            mobileMenu.classList.remove('hidden');
+                            mobileMenu.classList.add('block', 'scale-in');
+                        } else {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                            mobileMenu.classList.add('hidden');
+                            mobileMenu.classList.remove('block', 'scale-in');
+                        }
+                    });
+                }
+
+                // 移动端子菜单箭头方向切换
+                const mobileSubmenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+                mobileSubmenuToggles.forEach(toggle => {
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const submenu = this.nextElementSibling;
+                        const icon = this.querySelector('.fa-chevron-down');
+                        
+                        if (submenu.classList.contains('hidden')) {
+                            submenu.classList.remove('hidden');
+                            icon.style.transform = 'rotate(180deg)';
+                        } else {
+                            submenu.classList.add('hidden');
+                            icon.style.transform = 'rotate(0deg)';
+                        }
+                    });
+                });
+
+                // 返回顶部按钮功能
+                const backToTopButton = document.getElementById('back-to-top');
+                if (backToTopButton) {
+                    window.addEventListener('scroll', function() {
+                        if (window.pageYOffset > 300) {
+                            backToTopButton.classList.remove('opacity-0', 'invisible');
+                            backToTopButton.classList.add('opacity-100', 'visible');
+                        } else {
+                            backToTopButton.classList.remove('opacity-100', 'visible');
+                            backToTopButton.classList.add('opacity-0', 'invisible');
+                        }
+                    });
+
+                    backToTopButton.addEventListener('click', function() {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    });
+                }
             }
-        });
 
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            // 图片懒加载和淡入效果
+            const images = document.querySelectorAll('img');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('fade-in');
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            images.forEach(img => {
+                observer.observe(img);
             });
         });
     </script>

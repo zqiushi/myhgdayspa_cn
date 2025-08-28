@@ -1,87 +1,82 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <!-- 基础资源引入 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>品牌故事 - 梦园皇宫</title>
+    <title>品牌故事 - 梦圆皇宫</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         gold: '#D4AF37',
-                        'gold-light': '#F8F0C6',
-                        'gold-dark': '#B8860B',
+                        'gold-light': '#F9F18A',
                         pink: '#e62a88',
-                        'pink-light': '#f8c8dc',
-                        'pink-dark': '#b31a6d',
-                        dark: '#1a1a1a',
-                        'dark-light': '#333333'
+                        cream: '#FFF8E1',
                     },
                     fontFamily: {
-                        inter: ['Inter', 'sans-serif'],
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
                     },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.7s ease-out',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        }
-                    },
-                },
+                }
             }
         }
     </script>
+    
+    <!-- 自定义工具类 -->
     <style type="text/tailwindcss">
         @layer utilities {
             .content-auto {
                 content-visibility: auto;
             }
             .text-shadow {
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
             }
-            .text-shadow-gold {
-                text-shadow: 0 0 5px rgba(212, 175, 55, 0.7);
+            .hero-gradient {
+                background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
             }
-            .bg-gradient-brand {
-                background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            .card-hover {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
             }
-            .bg-blur {
-                backdrop-filter: blur(8px);
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             }
-            .transition-transform-opacity {
-                transition-property: transform, opacity;
+            .fade-in {
+                animation: fadeIn 0.5s ease-in-out;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            .scale-in {
+                animation: scaleIn 0.5s ease-out;
+            }
+            @keyframes scaleIn {
+                from { transform: scale(0.95); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
             }
         }
     </style>
 </head>
-<body class="font-inter bg-black text-white overflow-x-hidden">
-    <!-- 导航栏 -->
-    <div id="navbar"></div>
+<body class="font-inter bg-cream text-gray-800 antialiased overflow-x-hidden">
+    <!-- 导航栏占位 -->
+    <div id="header-placeholder"></div>
 
     <!-- 英雄区域 -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="images/brand.jpg" alt="梦园皇宫品牌形象" class="w-full h-full object-cover opacity-60">
+            <img src="images/brand.jpg" alt="梦圆皇宫品牌形象" class="w-full h-full object-cover opacity-60">
             <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black"></div>
         </div>
         <div class="container mx-auto px-4 z-10 text-center">
             <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-bold text-white mb-6 animate-fade-in text-shadow-gold">
-                梦园皇宫
+                梦圆皇宫
             </h1>
             <p class="text-[clamp(1.2rem,3vw,1.8rem)] text-gold-light mb-10 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.2s">
                 二十年匠心，定义高端年轻化管理新标准
@@ -106,7 +101,7 @@
             <div class="text-center mb-16">
                 <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4 text-gold">品牌故事</h2>
                 <div class="w-24 h-1 bg-pink mx-auto mb-6"></div>
-                <p class="text-gray-300 max-w-3xl mx-auto">从2000年创立至今，梦园皇宫始终秉持"以客为尊，追求卓越"的理念，致力于为客户提供全方位的年轻化解决方案。</p>
+                <p class="text-gray-300 max-w-3xl mx-auto">从2000年创立至今，梦圆皇宫始终秉持"以客为尊，追求卓越"的理念，致力于为客户提供全方位的年轻化解决方案。</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -117,7 +112,7 @@
                                 <i class="fa fa-history text-pink mr-3"></i>品牌起源
                             </h3>
                             <p class="text-gray-300 leading-relaxed">
-                                梦园皇宫创立于2000年，由美容行业资深专家黄晓慧女士（乙晴）创办。二十余年来，我们从一家小型美容沙龙起步，发展成为集生活美容、医疗美容、健康管理、康复美疗、红粉会社群及美业AI于一体的综合性年轻化管理集团。
+                                梦圆皇宫创立于2000年，由美容行业资深专家黄晓慧女士（乙晴）创办。二十余年来，我们从一家小型美容沙龙起步，发展成为集生活美容、医疗美容、健康管理、康复美疗、红粉会社群及美业AI于一体的综合性年轻化管理集团。
                             </p>
                         </div>
 
@@ -126,7 +121,7 @@
                                 <i class="fa fa-lightbulb-o text-pink mr-3"></i>品牌理念
                             </h3>
                             <p class="text-gray-300 leading-relaxed">
-                                我们相信，真正的年轻化不仅是外表的焕新，更是身心灵的和谐统一。梦园皇宫以"科技赋能美丽，服务创造价值"为核心理念，融合东方养生智慧与西方尖端科技，为每位客户量身定制个性化年轻化方案。
+                                我们相信，真正的年轻化不仅是外表的焕新，更是身心灵的和谐统一。梦圆皇宫以"科技赋能美丽，服务创造价值"为核心理念，融合东方养生智慧与西方尖端科技，为每位客户量身定制个性化年轻化方案。
                             </p>
                         </div>
 
@@ -142,7 +137,7 @@
                 </div>
                 <div class="order-1 md:order-2 relative">
                     <div class="relative z-10 rounded-lg overflow-hidden shadow-2xl transform transition-all duration-700 hover:scale-[1.02] hover:shadow-gold/20">
-                        <img src="images/pub_img/picsum-1060-1920-1080.jpg" alt="梦园皇宫环境展示" class="w-full h-auto">
+                        <img src="images/pub_img/picsum-1060-1920-1080.jpg" alt="梦圆皇宫环境展示" class="w-full h-auto">
                     </div>
                     <div class="absolute -bottom-6 -left-6 w-64 h-64 bg-pink/20 rounded-full filter blur-3xl opacity-70 animate-pulse"></div>
                     <div class="absolute -top-6 -right-6 w-64 h-64 bg-gold/20 rounded-full filter blur-3xl opacity-70 animate-pulse" style="animation-delay: 1s"></div>
@@ -158,7 +153,7 @@
             <div class="text-center mb-16">
                 <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold mb-4 text-gold">创始人故事</h2>
                 <div class="w-24 h-1 bg-pink mx-auto mb-6"></div>
-                <p class="text-gray-300 max-w-3xl mx-auto">黄晓慧（乙晴）女士以远见卓识和不懈坚持，引领梦园皇宫成为行业标杆</p>
+                <p class="text-gray-300 max-w-3xl mx-auto">黄晓慧（乙晴）女士以远见卓识和不懈坚持，引领梦圆皇宫成为行业标杆</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-16 items-center">
@@ -173,7 +168,7 @@
                 <div class="space-y-8">
                     <div class="bg-dark-light/50 p-8 rounded-xl border border-gold/20 transform transition-all duration-300 hover:border-gold/40 hover:shadow-lg hover:shadow-gold/5">
                         <h3 class="text-2xl font-bold text-gold mb-4">黄晓慧（乙晴）</h3>
-                        <p class="text-gray-300 mb-4">梦园皇宫创始人 & 首席执行官</p>
+                        <p class="text-gray-300 mb-4">梦圆皇宫创始人 & 首席执行官</p>
                         <div class="flex flex-wrap gap-3 mb-6">
                             <span class="bg-pink/20 text-pink px-3 py-1 rounded-full text-sm">美业领军人物</span>
                             <span class="bg-gold/20 text-gold px-3 py-1 rounded-full text-sm">健康管理专家</span>
@@ -194,11 +189,11 @@
                         </div>
 
                         <p class="text-gray-300 leading-relaxed">
-                            黄晓慧女士拥有超过25年的美业经验，是中国高端美容行业的开拓者和创新者。凭借对美业发展趋势的敏锐洞察和对品质服务的极致追求，她于2000年创立了梦园皇宫，开启了中国高端年轻化管理的新篇章。
+                            黄晓慧女士拥有超过25年的美业经验，是中国高端美容行业的开拓者和创新者。凭借对美业发展趋势的敏锐洞察和对品质服务的极致追求，她于2000年创立了梦圆皇宫，开启了中国高端年轻化管理的新篇章。
                         </p>
 
                         <p class="text-gray-300 leading-relaxed">
-                            在她的领导下，梦园皇宫从单一美容院发展成为拥有多家子公司、涵盖生活美容、医疗美容、健康管理、康复美疗、红粉会社群、美业AI等多元化业务的综合性集团企业，成为行业标杆。
+                            在她的领导下，梦圆皇宫从单一美容院发展成为拥有多家子公司、涵盖生活美容、医疗美容、健康管理、康复美疗、红粉会社群、美业AI等多元化业务的综合性集团企业，成为行业标杆。
                         </p>
                     </div>
                 </div>
@@ -227,7 +222,7 @@
                         <div class="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 mt-8 md:mt-0">
                             <h3 class="text-3xl font-bold text-gold mb-3">2000年</h3>
                             <h4 class="text-xl text-white mb-4">品牌创立</h4>
-                            <p class="text-gray-300">梦园皇宫在深圳正式成立，开设第一家高端美容会所，引入先进美容理念和技术，开创了中国高端美容服务的新纪元。</p>
+                            <p class="text-gray-300">梦圆皇宫在深圳正式成立，开设第一家高端美容会所，引入先进美容理念和技术，开创了中国高端美容服务的新纪元。</p>
                         </div>
                         <div class="z-10 flex items-center justify-center order-1 md:order-2">
                             <div class="w-20 h-20 rounded-full bg-black border-4 border-gold flex items-center justify-center shadow-lg shadow-gold/30 transform transition-all duration-300 hover:scale-110">
@@ -308,7 +303,7 @@
                         <div class="md:w-1/2 md:pl-16 order-2 md:order-3 mt-8 md:mt-0">
                             <h3 class="text-3xl font-bold text-gold mb-3">今天</h3>
                             <h4 class="text-xl text-white mb-4">行业领导者</h4>
-                            <p class="text-gray-300">梦园皇宫已发展成为拥有多家子公司、业务涵盖生活美容、医疗美容、健康管理、康复美疗、红粉会社群、美业AI等多个领域的综合性年轻化管理集团，成为行业标杆企业。</p>
+                            <p class="text-gray-300">梦圆皇宫已发展成为拥有多家子公司、业务涵盖生活美容、医疗美容、健康管理、康复美疗、红粉会社群、美业AI等多个领域的综合性年轻化管理集团，成为行业标杆企业。</p>
                         </div>
                     </div>
                 </div>
@@ -488,7 +483,7 @@
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="relative">
                     <div class="relative z-10 rounded-lg overflow-hidden shadow-2xl transform transition-all duration-700 hover:scale-[1.02] hover:shadow-gold/20">
-                        <img src="images/pub_img/picsum-1079-600-400.jpg" alt="梦园皇宫团队文化" class="w-full h-auto">
+                        <img src="images/pub_img/picsum-1079-600-400.jpg" alt="梦圆皇宫团队文化" class="w-full h-auto">
                     </div>
                     <div class="absolute -bottom-6 -left-6 w-64 h-64 bg-pink/20 rounded-full filter blur-3xl opacity-70 animate-pulse"></div>
                     <div class="absolute -top-6 -right-6 w-64 h-64 bg-gold/20 rounded-full filter blur-3xl opacity-70 animate-pulse" style="animation-delay: 1s"></div>
@@ -547,7 +542,7 @@
                         <div class="relative rounded-lg overflow-hidden aspect-video bg-black/50 flex items-center justify-center">
                             <img src="images/pub_img/picsum-1080-600-400.jpg" alt="抖音视频封面" class="w-full h-full object-cover opacity-70">
                             <div class="absolute inset-0 flex items-center justify-center">
-                                <a href="https://www.douyin.com/user/深圳梦园皇宫年轻化管理中心" target="_blank" class="w-20 h-20 rounded-full bg-pink/80 flex items-center justify-center transform transition-all duration-300 hover:scale-110 hover:bg-pink">
+                                <a href="https://www.douyin.com/user/深圳梦圆皇宫年轻化管理中心" target="_blank" class="w-20 h-20 rounded-full bg-pink/80 flex items-center justify-center transform transition-all duration-300 hover:scale-110 hover:bg-pink">
                                     <i class="fa fa-play text-white text-2xl ml-1"></i>
                                 </a>
                             </div>
@@ -559,19 +554,19 @@
                     <div class="md:w-1/2 md:pl-8">
                         <div class="flex items-center mb-6">
                             <div class="w-16 h-16 rounded-full overflow-hidden mr-4 border-2 border-gold">
-                                <img src="images/logo.png" alt="梦园皇宫抖音头像" class="w-full h-full object-cover">
+                                <img src="images/logo.png" alt="梦圆皇宫抖音头像" class="w-full h-full object-cover">
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-white">深圳梦园皇宫年轻化管理中心</h3>
+                                <h3 class="text-xl font-bold text-white">深圳梦圆皇宫年轻化管理中心</h3>
                                 <p class="text-gold flex items-center"><i class="fa fa-douyin mr-2"></i> 官方抖音账号</p>
                             </div>
                         </div>
                         <p class="text-gray-300 mb-6">关注我们的抖音账号，获取最新的年轻化资讯、美容技巧、健康知识和品牌活动信息。我们定期更新专业内容，与您分享美丽秘诀。</p>
                         <div class="flex flex-wrap gap-4">
-                            <a href="https://www.douyin.com/user/深圳梦园皇宫年轻化管理中心" target="_blank" class="inline-flex items-center bg-pink hover:bg-pink-dark text-white font-semibold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105">
+                            <a href="https://www.douyin.com/user/深圳梦圆皇宫年轻化管理中心" target="_blank" class="inline-flex items-center bg-pink hover:bg-pink-dark text-white font-semibold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105">
                                 <i class="fa fa-douyin mr-2"></i> 关注抖音账号
                             </a>
-                            <a href="https://www.douyin.com/user/深圳梦园皇宫年轻化管理中心" target="_blank" class="inline-flex items-center bg-transparent border border-gold text-gold hover:bg-gold hover:text-black font-semibold py-2 px-6 rounded-full transition-all duration-300">
+                            <a href="https://www.douyin.com/user/深圳梦圆皇宫年轻化管理中心" target="_blank" class="inline-flex items-center bg-transparent border border-gold text-gold hover:bg-gold hover:text-black font-semibold py-2 px-6 rounded-full transition-all duration-300">
                                 <i class="fa fa-play-circle mr-2"></i> 观看更多视频
                             </a>
                         </div>
@@ -587,8 +582,8 @@
             <div class="bg-gradient-to-r from-dark-light/30 to-dark-light/50 rounded-2xl overflow-hidden">
                 <div class="grid md:grid-cols-2">
                     <div class="p-8 md:p-12 flex flex-col justify-center">
-                        <h2 class="text-3xl font-bold text-gold mb-6">加入梦园皇宫</h2>
-                        <p class="text-gray-300 mb-8">无论您是寻求年轻化服务，还是希望加入我们的团队，我们都期待与您联系。梦园皇宫，与您一起定义美丽新境界。</p>
+                        <h2 class="text-3xl font-bold text-gold mb-6">加入梦圆皇宫</h2>
+                        <p class="text-gray-300 mb-8">无论您是寻求年轻化服务，还是希望加入我们的团队，我们都期待与您联系。梦圆皇宫，与您一起定义美丽新境界。</p>
                         <div class="space-y-6">
                             <div class="flex items-start">
                                 <div class="w-10 h-10 rounded-full bg-pink/20 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
@@ -626,7 +621,7 @@
                         </div>
                     </div>
                     <div class="hidden md:block relative">
-                        <img src="images/pub_img/picsum-1081-600-400.jpg" alt="梦园皇宫环境展示" class="absolute inset-0 w-full h-full object-cover">
+                        <img src="images/pub_img/picsum-1081-600-400.jpg" alt="梦圆皇宫环境展示" class="absolute inset-0 w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -643,66 +638,78 @@
 
     <!-- JavaScript -->
     <script>
-        // 加载导航栏
+        // 加载导航栏和页脚
         document.addEventListener('DOMContentLoaded', function() {
+            // 加载导航栏
             fetch('header.html')
                 .then(response => response.text())
                 .then(data => {
-                    document.getElementById('navbar').innerHTML = data;
+                    document.getElementById('header-placeholder').innerHTML = data;
                     initNavbar();
-                });
+                })
+                .catch(error => console.error('加载导航栏失败:', error));
 
-            // 加载页脚
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer').innerHTML = data;
-                });
-
-            // 初始化导航栏
+            // 初始化导航栏相关功能
             function initNavbar() {
-                const navbar = document.getElementById('navbar');
-                const menuToggle = document.getElementById('menu-toggle');
-                const mobileMenu = document.getElementById('mobile-menu');
-                const navLinks = document.querySelectorAll('#navbar a');
-
                 // 移动端菜单切换
-                if (menuToggle && mobileMenu) {
-                    menuToggle.addEventListener('click', function() {
-                        mobileMenu.classList.toggle('hidden');
-                        const icon = menuToggle.querySelector('i');
-                        if (mobileMenu.classList.contains('hidden')) {
-                            icon.classList.remove('fa-times');
-                            icon.classList.add('fa-bars');
-                        } else {
+                const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+                const mobileMenu = document.getElementById('mobile-menu');
+                
+                if (mobileMenuToggle && mobileMenu) {
+                    mobileMenuToggle.addEventListener('click', function() {
+                        const icon = mobileMenuToggle.querySelector('i');
+                        if (icon.classList.contains('fa-bars')) {
                             icon.classList.remove('fa-bars');
                             icon.classList.add('fa-times');
+                            mobileMenu.classList.remove('hidden');
+                            mobileMenu.classList.add('block', 'scale-in');
+                        } else {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                            mobileMenu.classList.add('hidden');
+                            mobileMenu.classList.remove('block', 'scale-in');
                         }
                     });
                 }
 
-                // 导航链接点击关闭移动菜单
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                            mobileMenu.classList.add('hidden');
-                            const icon = menuToggle.querySelector('i');
-                            icon.classList.remove('fa-times');
-                            icon.classList.add('fa-bars');
+                // 移动端子菜单箭头方向切换
+                const mobileSubmenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+                mobileSubmenuToggles.forEach(toggle => {
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const submenu = this.nextElementSibling;
+                        const icon = this.querySelector('.fa-chevron-down');
+                        
+                        if (submenu.classList.contains('hidden')) {
+                            submenu.classList.remove('hidden');
+                            icon.style.transform = 'rotate(180deg)';
+                        } else {
+                            submenu.classList.add('hidden');
+                            icon.style.transform = 'rotate(0deg)';
                         }
                     });
                 });
 
-                // 滚动时导航栏样式变化
-                window.addEventListener('scroll', function() {
-                    if (window.scrollY > 50) {
-                        navbar.classList.add('bg-black/90', 'bg-blur', 'shadow-lg');
-                        navbar.classList.remove('bg-transparent');
-                    } else {
-                        navbar.classList.remove('bg-black/90', 'bg-blur', 'shadow-lg');
-                        navbar.classList.add('bg-transparent');
-                    }
-                });
+                // 返回顶部按钮功能
+                const backToTopButton = document.getElementById('back-to-top');
+                if (backToTopButton) {
+                    window.addEventListener('scroll', function() {
+                        if (window.pageYOffset > 300) {
+                            backToTopButton.classList.remove('opacity-0', 'invisible');
+                            backToTopButton.classList.add('opacity-100', 'visible');
+                        } else {
+                            backToTopButton.classList.remove('opacity-100', 'visible');
+                            backToTopButton.classList.add('opacity-0', 'invisible');
+                        }
+                    });
+
+                    backToTopButton.addEventListener('click', function() {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    });
+                }
             }
 
             // 平滑滚动
@@ -719,25 +726,6 @@
                             behavior: 'smooth'
                         });
                     }
-                });
-            });
-
-            // 返回顶部按钮
-            const backToTopButton = document.getElementById('backToTop');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 300) {
-                    backToTopButton.classList.remove('opacity-0', 'translate-y-10');
-                    backToTopButton.classList.add('opacity-100', 'translate-y-0');
-                } else {
-                    backToTopButton.classList.add('opacity-0', 'translate-y-10');
-                    backToTopButton.classList.remove('opacity-100', 'translate-y-0');
-                }
-            });
-
-            backToTopButton.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
                 });
             });
 
@@ -763,6 +751,24 @@
             window.addEventListener('scroll', animateOnScroll);
             // 初始检查
             setTimeout(animateOnScroll, 300);
+
+            // 图片懒加载和淡入效果
+            const images = document.querySelectorAll('img');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('fade-in');
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            images.forEach(img => {
+                observer.observe(img);
+            });
         });
     </script>
 </body>

@@ -3,45 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>招聘信息 - 深圳梦园皇宫美容会所</title>
+    <title>招聘信息 - 深圳梦圆皇宫美容会所</title>
+    <!-- 引入基础资源 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- 配置Tailwind自定义主题 -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#e62a88',
-                        dark: '#1a1a1a',
+                        gold: '#d4af37',
+                        'gold-light': '#F9F18A',
+                        pink: '#e62a88',
+                        cream: '#f8f4e3'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
                     },
                 }
             }
         }
     </script>
+
+    <!-- 自定义工具类 -->
     <style type="text/tailwindcss">
         @layer utilities {
             .content-auto {
                 content-visibility: auto;
             }
             .text-shadow {
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
             }
-            .transition-all duration-300 {
-                transition: all 0.3s ease-in-out;
+            .hero-gradient {
+                background: linear-gradient(135deg, rgba(212, 175, 55, 0.9), rgba(230, 42, 136, 0.8));
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             }
         }
     </style>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* 基础动画设置 */
         html {
             scroll-behavior: smooth;
         }
-        body {
-            font-family: 'Inter', sans-serif;
+
+        /* 淡入动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        /* 缩放动画 */
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .scale-in {
+            animation: scaleIn 0.5s ease forwards;
+        }
+
+        /* 招聘页面特定样式 */
         .job-card:hover {
             transform: translateY(-5px);
         }
@@ -50,9 +84,12 @@
         }
     </style>
 </head>
-<body class="bg-black text-white">
+<body class="font-inter bg-cream text-gray-800 antialiased">
     <!-- 导航栏 -->
     <div id="header-placeholder"></div>
+
+    <!-- 页脚占位容器 -->
+    <div id="footer-placeholder"></div>
 
     <!-- 英雄区域 -->
     <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
@@ -63,7 +100,7 @@
         <div class="container mx-auto px-4 z-10 text-center">
             <h1 class="text-[clamp(2rem,5vw,4rem)] font-bold text-white mb-4 text-shadow">加入我们的团队</h1>
             <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-200 max-w-2xl mx-auto">
-                在深圳梦园皇宫美容会所，我们致力于为客户提供卓越的美容体验。加入我们，一起创造美丽与健康的事业
+                在深圳梦圆皇宫美容会所，我们致力于为客户提供卓越的美容体验。加入我们，一起创造美丽与健康的事业
             </p>
         </div>
     </section>
@@ -211,69 +248,98 @@
     </button>
 
     <script>
-        // 导航栏初始化函数
-        function initNavbar() {
-            const navbar = document.getElementById('navbar');
-            const menuBtn = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            // 检查元素是否存在
-            if (!navbar || !menuBtn || !mobileMenu) {
-                console.error('导航栏元素缺失，无法初始化导航栏');
-                return;
-            }
-
-            const menuItems = document.querySelectorAll('#mobile-menu a, #navbar a');
-
-            // 滚动效果
-            function handleScroll() {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('bg-black/90', 'backdrop-blur-sm', 'shadow-lg');
-                    navbar.classList.remove('bg-transparent');
-                } else {
-                    navbar.classList.remove('bg-black/90', 'backdrop-blur-sm', 'shadow-lg');
-                    navbar.classList.add('bg-transparent');
-                }
-            }
-
-            // 移动端菜单切换
-            function toggleMobileMenu() {
-                mobileMenu.classList.toggle('hidden');
-                menuBtn.classList.toggle('fa-bars');
-                menuBtn.classList.toggle('fa-times');
-            }
-
-            // 点击菜单项关闭移动菜单
-            function closeMenuOnClick() {
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                    menuBtn.classList.add('fa-bars');
-                    menuBtn.classList.remove('fa-times');
-                }
-            }
-
-            // 事件监听
-            window.addEventListener('scroll', handleScroll);
-            menuBtn.addEventListener('click', toggleMobileMenu);
-            menuItems.forEach(item => item.addEventListener('click', closeMenuOnClick));
-
-            // 初始调用一次处理滚动状态
-            handleScroll();
-        }
-
         // 页面加载完成后执行
         document.addEventListener('DOMContentLoaded', function() {
             // 加载头部
+            // 加载导航栏
             fetch('header.html')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('header-placeholder').innerHTML = data;
                     // 头部加载完成后初始化导航栏
-                    setTimeout(initNavbar, 100); // 短暂延迟确保DOM已更新
+                    setTimeout(() => {
+                        // 导航栏滚动效果
+                        const navbar = document.getElementById('navbar');
+                        if (navbar) {
+                            window.addEventListener('scroll', () => {
+                                if (window.scrollY > 50) {
+                                    navbar.classList.add('bg-gold/90', 'py-2', 'shadow-md');
+                                    navbar.classList.remove('bg-transparent', 'py-4');
+                                } else {
+                                    navbar.classList.add('bg-transparent', 'py-4');
+                                    navbar.classList.remove('bg-gold/90', 'py-2', 'shadow-md');
+                                }
+                            });
+                        }
+
+                        // 移动端菜单切换
+                        const menuToggle = document.getElementById('menu-toggle');
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        if (menuToggle && mobileMenu) {
+                            menuToggle.addEventListener('click', function() {
+                                mobileMenu.classList.toggle('hidden');
+                                const icon = this.querySelector('i');
+                                if (mobileMenu.classList.contains('hidden')) {
+                                    icon.classList.remove('fa-times');
+                                    icon.classList.add('fa-bars');
+                                } else {
+                                    icon.classList.remove('fa-bars');
+                                    icon.classList.add('fa-times');
+                                }
+                            });
+                        }
+
+                        // 移动端子菜单切换
+                        const submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+                        submenuToggles.forEach(toggle => {
+                            toggle.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const submenu = this.closest('div').querySelector('.mobile-submenu');
+                                submenu.classList.toggle('hidden');
+                                
+                                // 切换箭头方向
+                                if (submenu.classList.contains('hidden')) {
+                                    this.classList.remove('fa-chevron-up');
+                                    this.classList.add('fa-chevron-down');
+                                } else {
+                                    this.classList.remove('fa-chevron-down');
+                                    this.classList.add('fa-chevron-up');
+                                }
+                            });
+                        });
+
+                        // 平滑滚动到锚点
+                        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                            anchor.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const targetId = this.getAttribute('href');
+                                if (targetId === '#') return;
+
+                                const targetElement = document.querySelector(targetId);
+                                if (targetElement) {
+                                    const navbarHeight = document.getElementById('navbar')?.offsetHeight || 80;
+                                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+
+                                    window.scrollTo({
+                                        top: targetPosition,
+                                        behavior: 'smooth'
+                                    });
+
+                                    // 如果是移动菜单点击，关闭菜单
+                                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                                        mobileMenu.classList.add('hidden');
+                                        const icon = menuToggle.querySelector('i');
+                                        icon.classList.remove('fa-times');
+                                        icon.classList.add('fa-bars');
+                                    }
+                                }
+                            });
+                        });
+                    }, 100); // 短暂延迟确保DOM已更新
                 })
                 .catch(error => console.error('加载头部失败:', error));
 
-            // 加载底部
+            // 加载页脚
             fetch('footer.html')
                 .then(response => response.text())
                 .then(data => {
@@ -293,22 +359,48 @@
             }
 
             // 返回顶部按钮
-            const backToTopButton = document.getElementById('back-to-top');
-            if (backToTopButton) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 300) {
-                        backToTopButton.classList.remove('opacity-0', 'invisible');
-                        backToTopButton.classList.add('opacity-100', 'visible');
-                    } else {
-                        backToTopButton.classList.add('opacity-0', 'invisible');
-                        backToTopButton.classList.remove('opacity-100', 'visible');
-                    }
-                });
+            const backToTopButton = document.createElement('button');
+            backToTopButton.id = 'back-to-top';
+            backToTopButton.className = 'fixed bottom-8 right-8 bg-pink text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-gold transition-all duration-300 opacity-0 invisible z-50';
+            backToTopButton.innerHTML = '<i class="fa fa-chevron-up"></i>';
+            document.body.appendChild(backToTopButton);
 
-                backToTopButton.addEventListener('click', () => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+            // 返回顶部功能
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+
+            // 控制返回顶部按钮显示/隐藏
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+
+            // 图片懒加载淡入效果
+            document.addEventListener('DOMContentLoaded', () => {
+                const lazyImages = document.querySelectorAll('img');
+
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.classList.add('opacity-100');
+                            img.classList.remove('opacity-0');
+                            observer.unobserve(img);
+                        }
+                    });
+                }, { rootMargin: '0px 0px 200px 0px' });
+
+                lazyImages.forEach(img => {
+                    img.classList.add('transition-opacity', 'duration-700', 'opacity-0');
+                    imageObserver.observe(img);
                 });
-            }
+            });
         });
     </script>
 </body>

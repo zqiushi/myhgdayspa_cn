@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!-- 注意：本页面在开发环境下依赖Vite，但在简单HTTP服务器上运行时可能出现空白。
+     以下是临时解决方案，移除了可能导致问题的Vite相关引用 -->
+
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梦圆皇宫 - 年轻化管理集团</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+    
+    <!-- 配置Tailwind自定义主题 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            light: '#f5d48e',
+                            DEFAULT: '#d4af37',
+                            dark: '#b8860b'
+                        },
+                        pink: {
+                    light: '#ffc0cb',
+                    DEFAULT: '#ff69b4',
+                    dark: '#db7093'
+                },
+                cream: '#ffffff'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+        }
+    </style>
+    
+    <style>
+        /* 基础动画设置 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 渐变背景动画 */
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.9), rgba(184, 134, 11, 0.7)), url('./images/index-top.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        /* 卡片悬停效果 */
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* 加载动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+    </style>
+</head>
+
+
+
+<body class="font-inter bg-cream text-gray-800 antialiased">
+      <!-- 导航栏 -->
+    <div id="header-placeholder"></div>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+    </script>
+               
+
+
+
+
+
+
+
+    <!-- 英雄区域 -->
+    <section class="hero-gradient min-h-screen flex items-center justify-center text-center text-white">
+        <div class="container mx-auto px-4 py-20 z-10">
+            <h3 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-6 leading-tight animate-fade-in text-black">
+                为追求高品质生活人士提供实现年轻化梦想<br class="md:hidden">
+            </h3>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] max-w-2xl mx-auto mb-10 text-black animate-fade-in delay-100">
+                梦圆皇宫成立于2000年，是一家为客户提供年轻化解决方案的公司 <br>
+                主要业务包括生活美容、医疗美容、健康管理、康复美疗、红粉会社群、美业AI等业务
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in delay-200">
+                <a href="services.html" class="bg-[#e62a88] hover:bg-[#d15a78] text-black px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    探索服务
+                </a>
+                <a href="booking.html" class="bg-transparent border-2 border-white hover:border-gold hover:text-gold text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300">
+                    立即预约
+                </a>
+            </div>
+            
+            <!-- 向下滚动指示器 -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#features" class="text-white text-3xl">
+                    <i class="fa fa-chevron-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+     <!-- 页脚 -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-gold hover:bg-gold-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-royal-dark', 'bg-opacity-95', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+                
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                navbar.classList.remove('bg-royal-dark', 'bg-opacity-95', 'shadow-lg');
+navbar.classList.add('bg-black');
+                
+                
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        // 移动端菜单切换
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuToggle.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // 移动端子菜单切换
+        const submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+        submenuToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                const submenu = this.closest('div').querySelector('.mobile-submenu');
+                submenu.classList.toggle('hidden');
+                
+                // 切换箭头方向
+                if (submenu.classList.contains('hidden')) {
+                    this.classList.remove('fa-chevron-up');
+                    this.classList.add('fa-chevron-down');
+                } else {
+                    this.classList.remove('fa-chevron-down');
+                    this.classList.add('fa-chevron-up');
+                }
+            });
+        });
+        
+        // 返回顶部功能
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 图片懒加载和淡入效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            
+            const fadeInImages = function() {
+                images.forEach(img => {
+                    const imgTop = img.getBoundingClientRect().top;
+                    const imgVisible = 150;
+                    
+                    if (imgTop < window.innerHeight - imgVisible) {
+                        img.classList.add('animate-fade-in');
+                    }
+                });
+            };
+            
+            // 初始检查
+            fadeInImages();
+            
+            // 滚动时检查
+            window.addEventListener('scroll', fadeInImages);
+        });
+    </script>
+</body>
+</html>
