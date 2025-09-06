@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在线预约 - 梦园皇宫SPA</title>
+    <title>在线预约 - 梦圆皇宫</title>
     <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Font Awesome -->
@@ -86,20 +86,29 @@
 </head>
 
 <body class="font-inter bg-cream text-gray-800 antialiased">
-    <!-- 加载外部导航栏 -->
+    <!-- 导航栏 -->
     <div id="header-placeholder"></div>
+    <script src="/js/navbar.js"></script>
     <script>
         fetch('header.html')
             .then(response => response.text())
-            .then(data => document.getElementById('header-placeholder').innerHTML = data);
+            .then(html => {
+                // 使用DOMParser处理HTML内容
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const headerContent = doc.body.innerHTML;
+                document.getElementById('header-placeholder').innerHTML = headerContent;
+                setTimeout(initNavbar, 0);
+            })
+            .catch(error => console.error('Error loading header:', error));
     </script>
 
     <!-- 页面标题区域 -->
-    <section class="bg-royal text-white py-24 md:py-32">
+    <section class="bg-[#e62a88] text-white py-24 md:py-32">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4">在线预约</h1>
             <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-            <p class="max-w-2xl mx-auto text-gray-200">填写以下表单，预约您的专属SPA体验，我们将尽快与您联系确认</p>
+            <p class="max-w-2xl mx-auto text-gray-200">只需要输入一些个人信息，我们的年轻化设计师将会联系您并为您制定专属年轻化方案并提供上千个特色项目供您选择</p>
         </div>
     </section>
 
@@ -107,7 +116,7 @@
     <section class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                <div class="bg-cream rounded-lg shadow-lg p-8 md:p-10 animate-fade-in delay-100">
+                <div class="bg-[#e62a88] rounded-lg shadow-lg p-8 md:p-10 animate-fade-in delay-100">
                     <h2 class="text-3xl font-bold text-royal-dark mb-6">预约信息</h2>
                     <form id="booking-form" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -121,20 +130,19 @@
                             </div>
                         </div>
 
-                        <div>
-                            <label for="email" class="block text-gray-700 font-medium mb-2">电子邮箱</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold transition-all duration-300" placeholder="请输入您的电子邮箱">
-                        </div>
+                        <!-- <div> -->
+                            <!-- <label for="email" class="block text-gray-700 font-medium mb-2">电子邮箱</label> -->
+                            <!-- <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold transition-all duration-300" placeholder="请输入您的电子邮箱"> -->
+                        <!-- </div> -->
 
                         <div>
                             <label for="store" class="block text-gray-700 font-medium mb-2">选择门店</label>
                             <select id="store" name="store" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold transition-all duration-300" required>
                                 <option value="">请选择门店</option>
-                                <option value="beijing">北京旗舰店</option>
-                                <option value="shanghai">上海外滩店</option>
-                                <option value="guangzhou">广州天河店</option>
-                                <option value="shenzhen">深圳湾店</option>
-                                <option value="chengdu">成都太古里店</option>
+                                <option value="beijing">梦圆皇宫.晴会所</option>
+                                <option value="shanghai">梦圆皇宫.湖畔会所</option>
+                                <option value="guangzhou">梦圆皇宫.凤凰会所</option>
+                                <option value="shenzhen">梦圆皇宫.风情会所</option>
                             </select>
                         </div>
 
@@ -142,12 +150,12 @@
                             <label for="service" class="block text-gray-700 font-medium mb-2">选择服务项目</label>
                             <select id="service" name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold transition-all duration-300" required>
                                 <option value="">请选择服务项目</option>
-                                <option value="facial-clean">深层清洁护理 - ¥398</option>
-                                <option value="facial-moisture">保湿修护护理 - ¥598</option>
-                                <option value="body-massage">全身舒缓按摩 - ¥698</option>
-                                <option value="精油-spa">精油SPA护理 - ¥998</option>
-                                <option value="hot-stone">热石疗法 - ¥1280</option>
-                                <option value="chinese-medical">中医调理护理 - ¥1680</option>
+                                <option value="facial-clean">INDIBA英迪芭面部提升收紧 - ¥1180</option>
+                                <option value="facial-moisture">悦碧施水嫩透白面部护理 - ¥780</option>
+                                <option value="body-massage">VRF负压纤体塑形 - ¥838</option>
+                                <option value="精油-spa">佳塑美身体局部护理 - ¥1380</option>
+                                <option value="hot-stone">IDNIBA筋膜刀身体局部修复 - ¥1380</option>
+                                <option value="chinese-medical">涌动生命代谢疗法 - ¥1380</option>
                             </select>
                         </div>
 
@@ -160,6 +168,7 @@
                                 <label for="time" class="block text-gray-700 font-medium mb-2">预约时间</label>
                                 <select id="time" name="time" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gold focus:border-gold transition-all duration-300" required>
                                     <option value="">请选择时间</option>
+                                    <option value="09:30">09:30</option>
                                     <option value="10:00">10:00</option>
                                     <option value="11:00">11:00</option>
                                     <option value="12:00">12:00</option>
@@ -199,11 +208,11 @@
                         <ul class="space-y-4">
                             <li class="flex items-start">
                                 <i class="fa fa-check-circle text-gold-light mt-1 mr-3"></i>
-                                <span>请提前1-3天预约，周末和节假日请尽早安排</span>
+                                <span>请提前3天预约，周末和节假日可尽量提前</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-check-circle text-gold-light mt-1 mr-3"></i>
-                                <span>预约成功后，我们将通过短信或电话与您确认</span>
+                                <span>预约成功后，我们将通过电话或短信与您确认</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-check-circle text-gold-light mt-1 mr-3"></i>
@@ -211,21 +220,21 @@
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-check-circle text-gold-light mt-1 mr-3"></i>
-                                <span>建议提前15分钟到达门店，填写相关信息</span>
+                                <span>每次到店建议提前15分钟到达，我们将为您进行专业检测</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-check-circle text-gold-light mt-1 mr-3"></i>
-                                <span>SPA过程中如有任何不适，请及时告知我们的服务人员</span>
+                                <span>体验过程中如有任何不适或意见，请及时告知</span>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="bg-cream rounded-lg shadow-lg p-8">
+                    <div class="bg-[#e62a88] rounded-lg shadow-lg p-8">
                         <h3 class="text-2xl font-bold mb-6 text-royal-dark">营业时间</h3>
                         <ul class="space-y-3">
                             <li class="flex justify-between border-b border-gray-300 pb-2">
                                 <span class="font-medium">周一至周五</span>
-                                <span>10:00 - 22:00</span>
+                                <span>09:30 - 22:30</span>
                             </li>
                             <li class="flex justify-between border-b border-gray-300 pb-2">
                                 <span class="font-medium">周六至周日</span>
@@ -242,15 +251,15 @@
                             <ul class="space-y-3">
                                 <li class="flex items-start">
                                     <i class="fa fa-phone text-gold mt-1 mr-3"></i>
-                                    <span>400-888-8888</span>
+                                    <span>400-8866-010</span>
                                 </li>
                                 <li class="flex items-start">
                                     <i class="fa fa-envelope text-gold mt-1 mr-3"></i>
-                                    <span>booking@myhgdayspa.com</span>
+                                    <span>180-2533-1019(招聘热线)</span>
                                 </li>
                                 <li class="flex items-start">
                                     <i class="fa fa-map-marker text-gold mt-1 mr-3"></i>
-                                    <span>广东深圳南山区华侨城香山西街18号</span>
+                                    <span>深圳市南山区华侨城香山西街18号梦圆皇宫.晴会所5楼</span>
                                 </li>
                             </ul>
                         </div>
@@ -260,94 +269,15 @@
         </div>
     </section>
 
-    <!-- 常见问题区域 -->
-    <section class="py-16 md:py-24 bg-cream">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-4">常见问题</h2>
-                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-2xl mx-auto text-gray-600">解答您在预约和体验过程中可能遇到的问题</p>
-            </div>
-
-            <div class="max-w-3xl mx-auto space-y-4">
-                <!-- 问题1 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden animate-fade-in delay-100">
-                    <button class="faq-toggle w-full text-left p-6 focus:outline-none flex justify-between items-center">
-                        <span class="text-xl font-medium text-royal-dark">如何修改或取消预约？</span>
-                        <i class="fa fa-chevron-down text-gold transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-600">
-                            您可以通过以下方式修改或取消预约：<br>
-                            1. 拨打我们的客服电话：400-888-8888<br>
-                            2. 发送电子邮件至：booking@myhgdayspa.com<br>
-                            3. 关注我们的微信公众号，在"我的预约"中进行操作<br><br>
-                            请注意，如需取消预约，请提前24小时通知我们，否则将收取一定的取消费用。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 问题2 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden animate-fade-in delay-200">
-                    <button class="faq-toggle w-full text-left p-6 focus:outline-none flex justify-between items-center">
-                        <span class="text-xl font-medium text-royal-dark">SPA前需要做哪些准备？</span>
-                        <i class="fa fa-chevron-down text-gold transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-600">
-                            为了确保您有最佳的SPA体验，建议您：<br>
-                            1. 提前15分钟到达门店，填写相关信息并更换舒适的服装<br>
-                            2. 避免在SPA前吃得过饱或饮酒<br>
-                            3. 告知我们的服务人员您的健康状况和特殊需求<br>
-                            4. 关闭手机或调至静音模式，保持放松状态<br><br>
-                            我们会为您提供干净的毛巾、浴袍和拖鞋，您无需携带其他物品。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 问题3 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden animate-fade-in delay-300">
-                    <button class="faq-toggle w-full text-left p-6 focus:outline-none flex justify-between items-center">
-                        <span class="text-xl font-medium text-royal-dark">可以指定按摩师吗？</span>
-                        <i class="fa fa-chevron-down text-gold transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-600">
-                            是的，您可以在预约时指定喜欢的按摩师。但由于按摩师的工作安排可能会有变动，我们建议您尽早预约，并在预约时告知我们您的偏好。我们会尽最大努力满足您的需求。<br><br>
-                            如果您是第一次体验，我们的客服人员会根据您的需求为您推荐合适的按摩师。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 问题4 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden animate-fade-in delay-400">
-                    <button class="faq-toggle w-full text-left p-6 focus:outline-none flex justify-between items-center">
-                        <span class="text-xl font-medium text-royal-dark">有哪些支付方式？</span>
-                        <i class="fa fa-chevron-down text-gold transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-600">
-                            我们接受以下支付方式：<br>
-                            1. 现金支付<br>
-                            2. 银行卡支付（ Visa、MasterCard、银联等）<br>
-                            3. 移动支付（微信支付、支付宝）<br>
-                            4. 会员储值卡支付<br><br>
-                            我们也提供多种优惠套餐和会员权益，详情请咨询我们的客服人员。
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- 预约区域 -->
-    <section class="py-16 md:py-24 bg-royal text-white">
+    <section class="py-16 md:py-24 bg-[#e62a88] text-white">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">预约您的专属SPA体验</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">您可在此预约或咨询挑选适合您的项目</h2>
             <p class="max-w-2xl mx-auto mb-8">
-                立即预约，享受我们专业的SPA服务，让身心得到彻底的放松和修复。我们的专业顾问将为您提供一对一的咨询和服务。
+                只需要输入一些个人信息，我们的年轻化设计师将会联系您并为您制定专属年轻化方案并提供上千个特色项目供您选择。
             </p>
-            <a href="#" class="inline-block bg-gold hover:bg-gold-dark text-white px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg font-bold">
+            <a href="booking.html" class="inline-block bg-gold hover:bg-gold-dark text-white px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg font-bold">
                 立即预约
             </a>
         </div>
@@ -469,6 +399,22 @@
             images.forEach(img => {
                 observer.observe(img);
             });
+        });
+    </script>
+    <!-- 页脚 -->
+    <div id="footer-placeholder"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(html => {
+                    // 使用DOMParser处理HTML内容
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const footerContent = doc.body.innerHTML;
+                    document.getElementById('footer-placeholder').innerHTML = footerContent;
+                })
+                .catch(error => console.error('Error loading footer:', error));
         });
     </script>
 </body>

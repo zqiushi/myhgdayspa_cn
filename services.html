@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>服务项目 - 梦园皇宫SPA</title>
+    <title>服务项目 - 梦圆皇宫</title>
     <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Font Awesome -->
@@ -92,62 +92,21 @@
 
 <body class="font-inter bg-cream text-gray-800 antialiased">
     <!-- 导航栏 -->
-    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-royal-dark bg-opacity-95 shadow-lg">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <span class="text-2xl font-bold text-white text-shadow">梦园皇宫<span class="text-gold-light">SPA</span></span>
-            </a>
-
-            <!-- 桌面导航 -->
-            <nav class="hidden md:flex space-x-8">
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        品牌介绍
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="brand.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">品牌故事</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        门店介绍
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="stores.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">门店展示</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        年轻化方案
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="youth.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">方案详情</a>
-                        </div>
-                    </div>
-                </div>
-                <a href="services.html" class="text-gold-light transition-colors duration-300">服务项目</a>
-                <a href="testimonials.html" class="text-white hover:text-gold-light transition-colors duration-300">客户评价</a>
-                <div class="relative group">
-                    <a href="#" class="text-white hover:text-gold-light transition-colors duration-300 flex items-center">
-                        关于我们
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="careers.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">招聘信息</a>
-                            <a href="contact.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">联系我们</a>
-                            <a href="info.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">其他信息</a>
-                        </div>
-                    </div>
-                </div>
+    <div id="header-placeholder"></div>
+    <script src="/js/navbar.js"></script>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(html => {
+                // 使用DOMParser处理HTML内容
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const headerContent = doc.body.innerHTML;
+                document.getElementById('header-placeholder').innerHTML = headerContent;
+                setTimeout(initNavbar, 0);
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
             </nav>
 
             <!-- 预约按钮 -->
@@ -212,31 +171,31 @@
     </header>
 
     <!-- 页面标题区域 -->
-    <section class="bg-royal text-white py-24 md:py-32">
+    <section class="bg-[#e62a88] text-white py-24 md:py-32">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4">服务项目</h1>
             <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-            <p class="max-w-2xl mx-auto text-gray-200">探索我们精心设计的高端SPA服务，为您带来身心愉悦的极致体验</p>
+            <p class="max-w-2xl mx-auto text-gray-200">我们坚持引进高科技和高品质的抗衰老设备和产品</p>
         </div>
     </section>
 
     <!-- 服务类别区域 -->
-    <section class="py-16 md:py-24 bg-white">
+    <section class="py-16 md:py-24 bg-black">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-4">服务类别</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-[#e62a88] mb-4">项目类别</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-2xl mx-auto text-gray-600">我们提供多种类型的SPA服务，满足您不同的需求和偏好</p>
+                <p class="max-w-2xl mx-auto text-[#e62a88]">此处仅展示梦圆皇宫生活美容类的部分项目</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- 类别1 -->
-                <div class="bg-cream rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl service-card animate-fade-in delay-100">
-                    <img src="images/pub_img/picsum-65-800-500.jpg" alt="面部护理" class="w-full h-64 object-cover" />
+                <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl service-card animate-fade-in delay-100">
+                    <img src="images/services/face.jpg" alt="面部护理" class="w-full h-64 object-cover" />
                     <div class="p-8">
                         <h3 class="text-2xl font-bold text-royal-dark mb-4">面部护理</h3>
-                        <p class="text-gray-600 mb-6">
-                            针对不同肤质和肌肤问题，提供深层清洁、补水保湿、抗衰老等专业面部护理服务，让您的肌肤焕发健康光彩。
+                        <p class="text-white mb-6">
+                            梦圆皇宫面部护理包含了面部清洁、控油祛痘、补水保湿、美白嫩肤、抗敏祛痘等多种类别，配合高科技抗衰和激光美肤设备，让您的肤质肤色保持较为理想的状态。
                         </p>
                         <a href="#facial" class="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-white px-6 py-2 rounded-full transition-all duration-300">
                             了解详情
@@ -245,12 +204,12 @@
                 </div>
 
                 <!-- 类别2 -->
-                <div class="bg-cream rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl service-card animate-fade-in delay-200">
-                    <img src="images/pub_img/picsum-26-800-500.jpg" alt="身体护理" class="w-full h-64 object-cover" />
+                <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl service-card animate-fade-in delay-200">
+                    <img src="images/services/body.jpg" alt="身体护理" class="w-full h-64 object-cover" />
                     <div class="p-8">
                         <h3 class="text-2xl font-bold text-royal-dark mb-4">身体护理</h3>
-                        <p class="text-gray-600 mb-6">
-                            结合传统中医理论和现代SPA技法，提供全身按摩、精油护理、去角质等服务，缓解疲劳，促进血液循环。
+                        <p class="text-white mb-6">
+                            梦圆皇宫身体护理包含纤体塑形、身体肌肤护理、激光脱毛等多种类别，引进如佳塑美、slimming、美修斯、LPG、冰点脱毛仪等多种身体护理设备，为您提供多样化的选择。
                         </p>
                         <a href="#body" class="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-white px-6 py-2 rounded-full transition-all duration-300">
                             了解详情
@@ -258,15 +217,33 @@
                     </div>
                 </div>
 
+
                 <!-- 类别3 -->
-                <div class="bg-cream rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl service-card animate-fade-in delay-300">
-                    <img src="images/pub_img/picsum-96-800-500.jpg" alt="特色护理" class="w-full h-64 object-cover" />
+                <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl service-card animate-fade-in delay-200">
+                    <img src="images/services/body.jpg" alt="身体护理" class="w-full h-64 object-cover" />
                     <div class="p-8">
-                        <h3 class="text-2xl font-bold text-royal-dark mb-4">特色护理</h3>
-                        <p class="text-gray-600 mb-6">
-                            融合东西方养生智慧，推出多种特色护理项目，如热石疗法、芳香疗法、中医调理等，为您带来独特的SPA体验。
+                        <h3 class="text-2xl font-bold text-royal-dark mb-4">身体护理</h3>
+                        <p class="text-white mb-6">
+                            梦圆皇宫身体护理包含纤体塑形、身体肌肤护理、激光脱毛等多种类别，引进如佳塑美、slimming、美修斯、LPG、冰点脱毛仪等多种身体护理设备，为您提供多样化的选择。
                         </p>
-                        <a href="#special" class="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-white px-6 py-2 rounded-full transition-all duration-300">
+                        <a href="#body" class="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-white px-6 py-2 rounded-full transition-all duration-300">
+                            了解详情
+                        </a>
+                    </div>
+                </div>
+
+
+
+                <!-- 类别4 -->
+                <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl service-card animate-fade-in delay-300">
+                    <img src="images/services/ktsh.png" alt="康体舒缓" class="w-full h-64 object-cover" />
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-royal-dark mb-4">康体舒缓 
+</h3>
+                        <p class="text-white mb-6" text-white>
+                            作为全国最早一批获得国际SPA协会认证的机构，我们始终注重SPA手法的提升和服务质量；2018年，我们耗资千万引进40余台西班牙INDIBA设备，运用专业手法+科技设备，内外兼修，辅助您解决亚健康问题
+                        </p>
+                        <a href="#special" class="inline-block border-2 border-gold text-black hover:bg-black hover:text-white px-6 py-2 rounded-full transition-all duration-300">
                             了解详情
                         </a>
                     </div>
@@ -276,42 +253,45 @@
     </section>
 
     <!-- 面部护理详情 -->
-    <section id="facial" class="py-16 md:py-24 bg-cream">
+    <section id="facial" class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-4">面部护理</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-[#e62a88] mb-4">项目类别</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+                  <p class="text-[#e62a88] mb-6">
+                            此处展示生活美容日项目。
+                    </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
                 <!-- 项目1 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row animate-fade-in delay-100">
-                    <img src="images/pub_img/picsum-36-800-600.jpg" alt="深层清洁护理" class="w-full md:w-1/3 h-64 md:h-auto object-cover" />
+                <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row animate-fade-in delay-100">
+                    <img src="images/services/INDIBA-face.jpg" alt="深层清洁护理" class="w-full md:w-1/3 h-64 md:h-auto object-cover" />
                     <div class="p-8 w-full md:w-2/3">
-                        <h3 class="text-2xl font-bold text-royal-dark mb-4">深层清洁护理</h3>
+                        <h3 class="text-2xl font-bold text-royal-dark mb-4">INDIBA英迪芭面部提升收紧</h3>
                         <div class="flex items-center mb-4">
-                            <span class="bg-gold-light text-royal-dark text-xs px-3 py-1 rounded-full mr-2">基础护理</span>
+                            <span class="bg-gold-light text-royal-dark text-xs px-3 py-1 rounded-full mr-2">仪器护理</span>
                             <span class="text-gray-600"><i class="fa fa-clock-o mr-1"></i> 60分钟</span>
                         </div>
                         <p class="text-gray-600 mb-6">
-                            彻底清洁面部肌肤，去除老化角质和污垢，疏通毛孔，平衡油脂分泌，改善肌肤暗沉，让肌肤呼吸顺畅。
+                            INDIBA利用448KHz让面部肌肤内生热，排除毒素紧致筋膜层，让肌肤丰盈饱满，紧致弹润，淡化皱纹。
                         </p>
                         <ul class="space-y-2 mb-6">
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>适合所有肤质，特别是油性和混合性肌肤</span>
+                                <span>适合面部有松弛、皱纹的人群包含洁面、仪器深浅头操作、敷面膜、上面霜等步骤使用西班牙INDIBA配套的精华护肤产品</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>包含洁面、去角质、爽肤、面膜等步骤</span>
+                                <span>包含洁面、仪器深浅头操作、敷面膜、上面霜等步骤</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>使用温和无刺激的专业护肤产品</span>
+                                <span>使用西班牙INDIBA配套的精华护肤产品</span>
                             </li>
                         </ul>
                         <div class="mt-auto">
-                            <p class="text-royal-dark font-bold text-xl mb-4">¥398/次</p>
+                            <p class="text-royal-dark font-bold text-xl mb-4">¥1180/次</p>
                             <a href="booking.html" class="inline-block bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300">
                                 立即预约
                             </a>
@@ -320,33 +300,33 @@
                 </div>
 
                 <!-- 项目2 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row animate-fade-in delay-200">
-                    <img src="images/pub_img/picsum-64-800-600.jpg" alt="保湿修护护理" class="w-full md:w-1/3 h-64 md:h-auto object-cover" />
+                <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row animate-fade-in delay-200">
+                    <img src="images/services/fase1.jpg" alt="悦碧施水嫩透白面部护理" class="w-full md:w-1/3 h-64 md:h-auto object-cover" />
                     <div class="p-8 w-full md:w-2/3">
-                        <h3 class="text-2xl font-bold text-royal-dark mb-4">保湿修护护理</h3>
+                        <h3 class="text-2xl font-bold text-royal-dark mb-4">悦碧施水嫩透白面部护理</h3>
                         <div class="flex items-center mb-4">
-                            <span class="bg-gold-light text-royal-dark text-xs px-3 py-1 rounded-full mr-2">滋养护理</span>
-                            <span class="text-gray-600"><i class="fa fa-clock-o mr-1"></i> 90分钟</span>
+                            <span class="bg-gold-light text-royal-dark text-xs px-3 py-1 rounded-full mr-2">手工护理</span>
+                            <span class="text-gray-600"><i class="fa fa-clock-o mr-1"></i> 100分钟</span>
                         </div>
                         <p class="text-gray-600 mb-6">
-                            针对干燥、缺水肌肤，深层补水保湿，修复受损肌肤屏障，改善肌肤粗糙、紧绷等问题，令肌肤水润有弹性。
+                            来自于西班牙的Natura Bissé悦碧施，专注于研发生产院线美容护肤产品，结合梦圆皇宫高标准面部护理手法，帮助肌肤水嫩亮白，更有光泽。
                         </p>
                         <ul class="space-y-2 mb-6">
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>适合干性、中性和敏感性肌肤</span>
+                                <span>适合面部暗黄暗沉的人群</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>包含洁面、爽肤、精华导入、保湿面膜等步骤</span>
+                                <span>包含背部按摩、颈部舒缓、卸妆、清洁、精华导入等步骤</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>使用富含保湿因子的专业护肤产品</span>
+                                <span>使用Natura Bissé悦碧施配套的精华产品</span>
                             </li>
                         </ul>
                         <div class="mt-auto">
-                            <p class="text-royal-dark font-bold text-xl mb-4">¥598/次</p>
+                            <p class="text-royal-dark font-bold text-xl mb-4">¥780/次</p>
                             <a href="booking.html" class="inline-block bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300">
                                 立即预约
                             </a>
@@ -358,7 +338,7 @@
     </section>
 
     <!-- 身体护理详情 -->
-    <section id="body" class="py-16 md:py-24 bg-white">
+    <section id="body" class="py-16 md:py-24 bg-[#e62a88]">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-4">身体护理</h2>
@@ -367,33 +347,33 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
                 <!-- 项目1 -->
-                <div class="bg-cream rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row animate-fade-in delay-100">
-                    <img src="images/pub_img/picsum-177-800-600.jpg" alt="全身舒缓按摩" class="w-full md:w-1/3 h-64 md:h-auto object-cover" />
+                <div class="bg-black rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row animate-fade-in delay-100">
+                    <img src="images/services/VRF_body.png" alt="VRF负压纤体塑形" class="w-full md:w-1/3 h-64 md:h-auto object-cover" />
                     <div class="p-8 w-full md:w-2/3">
-                        <h3 class="text-2xl font-bold text-royal-dark mb-4">全身舒缓按摩</h3>
+                        <h3 class="text-2xl font-bold text-[#e62a88] mb-4">VRF负压纤体塑形</h3>
                         <div class="flex items-center mb-4">
-                            <span class="bg-gold-light text-royal-dark text-xs px-3 py-1 rounded-full mr-2">放松护理</span>
-                            <span class="text-gray-600"><i class="fa fa-clock-o mr-1"></i> 90分钟</span>
+                            <span class="bg-gold-light text-royal-dark text-xs px-3 py-1 rounded-full mr-2">仪器护理</span>
+                            <span class="text-gray-600"><i class="fa fa-clock-o mr-1"></i> 35分钟</span>
                         </div>
-                        <p class="text-gray-600 mb-6">
-                            结合多种按摩手法，针对全身主要穴位和肌肉群进行按摩，缓解身体疲劳，促进血液循环，改善睡眠质量。
+                        <p class="text-white mb-6">
+                            运用VRF纤体设备靶向分解身体局部多余脂肪，排除毒素；帮助身体恢复性感曲线，身体肌肤紧致有光泽。
                         </p>
-                        <ul class="space-y-2 mb-6">
+                        <ul class="space-y-2 mb-6 text-white">
                             <li class="flex items-center">
-                                <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>适合长期久坐、工作压力大的人群</span>
+                                <i class="fa fa-circle text-gold text-xs mr-2 text-white"></i>
+                                <span>适合身体各部位肥胖、赘肉、橘皮组织的人群</span>
                             </li>
                             <li class="flex items-center">
-                                <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>使用天然植物精油，增强按摩效果</span>
+                                <i class="fa fa-circle text-gold text-xs mr-2 text-white"></i>
+                                <span>包含身体舒缓、仪器操作、身体霜等步骤</span>
                             </li>
                             <li class="flex items-center">
-                                <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>可根据个人需求调整按摩力度</span>
+                                <i class="fa fa-circle text-gold text-xs mr-2 text-white"></i>
+                                <span>使用专用的配套身体霜产品</span>
                             </li>
                         </ul>
                         <div class="mt-auto">
-                            <p class="text-royal-dark font-bold text-xl mb-4">¥698/次</p>
+                            <p class="text-royal-dark font-bold text-xl mb-4">¥838/次</p>
                             <a href="booking.html" class="inline-block bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300">
                                 立即预约
                             </a>
@@ -402,33 +382,33 @@
                 </div>
 
                 <!-- 项目2 -->
-                <div class="bg-cream rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row animate-fade-in delay-200">
-                    <img src="images/pub_img/picsum-137-800-600.jpg" alt="精油SPA护理" class="w-full md:w-1/3 h-64 md:h-auto object-cover" />
+                <div class="bg-black rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row animate-fade-in delay-200">
+                    <img src="images/services/jsm_body.png" alt="佳塑美身体局部护理" class="w-full md:w-1/3 h-64 md:h-auto object-cover" />
                     <div class="p-8 w-full md:w-2/3">
-                        <h3 class="text-2xl font-bold text-royal-dark mb-4">精油SPA护理</h3>
+                        <h3 class="text-2xl font-bold text-[#e62a88] mb-4">佳塑美身体局部护理</h3>
                         <div class="flex items-center mb-4">
-                            <span class="bg-gold-light text-royal-dark text-xs px-3 py-1 rounded-full mr-2">奢华护理</span>
-                            <span class="text-gray-600"><i class="fa fa-clock-o mr-1"></i> 120分钟</span>
+                            <span class="bg-gold-light text-royal-dark text-xs px-3 py-1 rounded-full mr-2">仪器护理</span>
+                            <span class="text-gray-600"><i class="fa fa-clock-o mr-1"></i> 45分钟</span>
                         </div>
-                        <p class="text-gray-600 mb-6">
-                            采用进口天然植物精油，通过按摩、热敷等方式，让精油成分深入肌肤，达到放松身心、调理身体机能的效果。
+                        <p class="text-white mb-6 text-white">
+                            2025年新引进设备，对身体的松弛、赘肉、皱纹、粗糙等问题。坚持操作多次可以起到较为显著的改善。
                         </p>
-                        <ul class="space-y-2 mb-6">
+                        <ul class="space-y-2 mb-6 text-white">
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>适合所有人群，特别是注重生活品质的人士</span>
+                                <span>适合腰腹、臀部、四肢等部位出现松弛下垂的人群</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-circle text-gold text-xs mr-2 text-white"></i>
+                                <span>包含身体舒缓、仪器操作、身体霜等步骤</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>包含精油开背、全身按摩、头部按摩等步骤</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>可根据个人需求选择不同功效的精油</span>
+                                <span>使用专用的配套身体霜产品</span>
                             </li>
                         </ul>
                         <div class="mt-auto">
-                            <p class="text-royal-dark font-bold text-xl mb-4">¥998/次</p>
+                            <p class="text-royal-dark font-bold text-xl mb-4">¥1380/次</p>
                             <a href="booking.html" class="inline-block bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300">
                                 立即预约
                             </a>
@@ -439,35 +419,35 @@
         </div>
     </section>
 
-    <!-- 特色护理详情 -->
-    <section id="special" class="py-16 md:py-24 bg-cream">
+    <!-- 精选康体舒缓护理 -->
+    <section id="special" class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-4">特色护理</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-4">精选康体舒缓护理</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
                 <!-- 项目1 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row animate-fade-in delay-100">
-                    <img src="images/pub_img/picsum-116-800-600.jpg" alt="热石疗法" class="w-full md:w-1/3 h-64 md:h-auto object-cover" />
+                    <img src="images/services/INDIBA_jmd.jpg" alt="IDNIBA筋膜刀身体局部修复" class="w-full md:w-1/3 h-64 md:h-auto object-cover" />
                     <div class="p-8 w-full md:w-2/3">
-                        <h3 class="text-2xl font-bold text-royal-dark mb-4">热石疗法</h3>
+                        <h3 class="text-2xl font-bold text-royal-dark mb-4">IDNIBA筋膜刀身体局部修复</h3>
                         <div class="flex items-center mb-4">
-                            <span class="bg-gold-light text-royal-dark text-xs px-3 py-1 rounded-full mr-2">特色护理</span>
-                            <span class="text-gray-600"><i class="fa fa-clock-o mr-1"></i> 120分钟</span>
+                            <span class="bg-gold-light text-royal-dark text-xs px-3 py-1 rounded-full mr-2">仪器护理</span>
+                            <span class="text-gray-600"><i class="fa fa-clock-o mr-1"></i> 45分钟</span>
                         </div>
                         <p class="text-gray-600 mb-6">
-                            采用经过特殊加热的天然火山石，放置在身体关键穴位上，结合按摩手法，深层放松肌肉，促进气血循环，缓解身体疼痛。
+                            适合身体出现各类亚健康状态或辅助医美项目使用。
                         </p>
                         <ul class="space-y-2 mb-6">
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>适合肩颈不适、腰酸背痛的人群</span>
+                                <span>包含身体舒缓、仪器操作、身体霜等步骤使用专用的配套身体霜产品</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>具有温经通络、活血化瘀的功效</span>
+                                <span>使用专用的配套身体霜产品</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
@@ -475,7 +455,7 @@
                             </li>
                         </ul>
                         <div class="mt-auto">
-                            <p class="text-royal-dark font-bold text-xl mb-4">¥1280/次</p>
+                            <p class="text-royal-dark font-bold text-xl mb-4">¥1380/次</p>
                             <a href="booking.html" class="inline-block bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300">
                                 立即预约
                             </a>
@@ -485,32 +465,32 @@
 
                 <!-- 项目2 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row animate-fade-in delay-200">
-                    <img src="images/pub_img/picsum-174-800-600.jpg" alt="中医调理护理" class="w-full md:w-1/3 h-64 md:h-auto object-cover" />
+                    <img src="images/services/ydsm.png" alt="涌动生命代谢疗法" class="w-full md:w-1/3 h-64 md:h-auto object-cover" />
                     <div class="p-8 w-full md:w-2/3">
-                        <h3 class="text-2xl font-bold text-royal-dark mb-4">中医调理护理</h3>
+                        <h3 class="text-2xl font-bold text-royal-dark mb-4">涌动生命代谢疗法</h3>
                         <div class="flex items-center mb-4">
-                            <span class="bg-gold-light text-royal-dark text-xs px-3 py-1 rounded-full mr-2">调理护理</span>
-                            <span class="text-gray-600"><i class="fa fa-clock-o mr-1"></i> 150分钟</span>
+                            <span class="bg-gold-light text-royal-dark text-xs px-3 py-1 rounded-full mr-2"手工护理</span>
+                            <span class="text-gray-600"><i class="fa fa-clock-o mr-1"></i> 90分钟</span>
                         </div>
                         <p class="text-gray-600 mb-6">
-                            结合中医理论，针对个人体质和健康状况，定制专属的调理方案，通过按摩、艾灸、拔罐等方式，调理身体机能，增强免疫力。
+                            靶向改善女性因衰老造成的内分泌失调、精力下降、宫寒等问题，让内循环保持良好状态，由内而外呈现健康气色。
                         </p>
                         <ul class="space-y-2 mb-6">
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>适合亚健康、体质虚弱的人群</span>
+                                <span>适合30+女性</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>由专业中医指导，安全有效</span>
+                                <span>包含背部舒缓、腰腹舒缓、产品导入、身体霜等步骤</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fa fa-circle text-gold text-xs mr-2"></i>
-                                <span>长期调理可改善身体状况，增强体质</span>
+                                <span>使用专用的配套身体霜产品</span>
                             </li>
                         </ul>
                         <div class="mt-auto">
-                            <p class="text-royal-dark font-bold text-xl mb-4">¥1680/次</p>
+                            <p class="text-royal-dark font-bold text-xl mb-4">¥1380/次</p>
                             <a href="booking.html" class="inline-block bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300">
                                 立即预约
                             </a>
@@ -521,86 +501,14 @@
         </div>
     </section>
 
-    <!-- 服务流程区域 -->
-    <section class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-4">服务流程</h2>
-                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-2xl mx-auto text-gray-600">我们的服务流程严谨细致，确保为您提供专业、舒适的SPA体验</p>
-            </div>
 
-            <div class="relative">
-                <!-- 连接线 -->
-                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gold-light transform -translate-x-1/2"></div>
-
-                <div class="space-y-12 md:space-y-24 relative z-10">
-                    <!-- 步骤1 -->
-                    <div class="flex flex-col md:flex-row items-center md:items-start animate-fade-in delay-100">
-                        <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-6 md:mt-0">
-                            <h3 class="text-2xl font-bold text-royal-dark mb-4">客户咨询</h3>
-                            <p class="text-gray-600">
-                                专业顾问与您进行一对一沟通，了解您的需求、偏好和身体状况，为您推荐适合的服务项目和产品。
-                            </p>
-                        </div>
-                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-white font-bold text-xl z-20 order-1 md:order-2">
-                            1
-                        </div>
-                        <div class="md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
-                    </div>
-
-                    <!-- 步骤2 -->
-                    <div class="flex flex-col md:flex-row items-center md:items-start animate-fade-in delay-200">
-                        <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
-                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-white font-bold text-xl z-20 order-1">
-                            2
-                        </div>
-                        <div class="md:w-1/2 md:pl-12 order-2 mt-6 md:mt-0">
-                            <h3 class="text-2xl font-bold text-royal-dark mb-4">个性化定制</h3>
-                            <p class="text-gray-600">
-                                根据您的需求和身体状况，为您定制专属的SPA方案，包括服务项目、产品选择、按摩力度等细节。
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- 步骤3 -->
-                    <div class="flex flex-col md:flex-row items-center md:items-start animate-fade-in delay-300">
-                        <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-6 md:mt-0">
-                            <h3 class="text-2xl font-bold text-royal-dark mb-4">专业服务</h3>
-                            <p class="text-gray-600">
-                                由经验丰富的 therapists 为您提供专业的SPA服务，采用科学的手法和优质的产品，确保服务效果和舒适度。
-                            </p>
-                        </div>
-                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-white font-bold text-xl z-20 order-1 md:order-2">
-                            3
-                        </div>
-                        <div class="md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
-                    </div>
-
-                    <!-- 步骤4 -->
-                    <div class="flex flex-col md:flex-row items-center md:items-start animate-fade-in delay-400">
-                        <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
-                        <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-white font-bold text-xl z-20 order-1">
-                            4
-                        </div>
-                        <div class="md:w-1/2 md:pl-12 order-2 mt-6 md:mt-0">
-                            <h3 class="text-2xl font-bold text-royal-dark mb-4">效果跟进</h3>
-                            <p class="text-gray-600">
-                                服务结束后，我们会对您进行回访，了解服务效果和您的满意度，为您提供后续的护理建议和方案调整。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- 预约区域 -->
-    <section class="py-16 md:py-24 bg-royal text-white">
+    <section class="py-16 md:py-24 bg-[#e62a88] text-white">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">预约您的专属SPA体验</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">您可在此预约或咨询挑选适合您的项目</h2>
             <p class="max-w-2xl mx-auto mb-8">
-                立即预约，享受我们专业的SPA服务，让身心得到彻底的放松和修复。我们的专业顾问将为您提供一对一的咨询和服务。
+                只需要输入一些个人信息，我们的年轻化设计师将会联系您并为您制定专属年轻化方案并提供上千个特色项目供您选择。
             </p>
             <a href="booking.html" class="inline-block bg-gold hover:bg-gold-dark text-white px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg font-bold">
                 立即预约
@@ -608,87 +516,7 @@
         </div>
     </section>
 
-    <!-- 页脚 -->
-    <footer class="bg-royal-dark text-white py-12 md:py-16">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-                <div class="animate-fade-in delay-100">
-                    <h3 class="text-2xl font-bold mb-6">梦园皇宫<span class="text-gold-light">SPA</span></h3>
-                    <p class="text-gray-300 mb-6">
-                        梦园皇宫SPA创立于2008年，是一家专注于高端SPA服务的连锁品牌，致力于为客户提供专业、舒适、私密的SPA体验。
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-weixin"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-weibo"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </div>
-                </div>
 
-                <div class="animate-fade-in delay-200">
-                    <h4 class="text-lg font-bold mb-6 text-gold-light">快速链接</h4>
-                    <ul class="space-y-3">
-                        <li><a href="brand.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">品牌介绍</a></li>
-                        <li><a href="stores.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">门店介绍</a></li>
-                        <li><a href="youth.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">年轻化方案</a></li>
-                        <li><a href="services.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">服务项目</a></li>
-                        <li><a href="testimonials.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">客户评价</a></li>
-                        <li><a href="booking.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">在线预约</a></li>
-                    </ul>
-                </div>
-
-                <div class="animate-fade-in delay-300">
-                    <h4 class="text-lg font-bold mb-6 text-gold-light">关于我们</h4>
-                    <ul class="space-y-3">
-                        <li><a href="careers.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">招聘信息</a></li>
-                        <li><a href="contact.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">联系我们</a></li>
-                        <li><a href="info.html" class="text-gray-300 hover:text-gold-light transition-colors duration-300">其他信息</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300">隐私政策</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-gold-light transition-colors duration-300">服务条款</a></li>
-                    </ul>
-                </div>
-
-                <div class="animate-fade-in delay-400">
-                    <h4 class="text-lg font-bold mb-6 text-gold-light">联系我们</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fa fa-map-marker text-gold-light mt-1 mr-3"></i>
-                            <span class="text-gray-300">广东深圳南山区华侨城香山西街18号</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-phone text-gold-light mt-1 mr-3"></i>
-                            <span class="text-gray-300">400-888-8888</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-envelope text-gold-light mt-1 mr-3"></i>
-                            <span class="text-gray-300">info@myhgdayspa.com</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa fa-clock-o text-gold-light mt-1 mr-3"></i>
-                            <span class="text-gray-300">周一至周日 10:00-22:00</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-                <p>© 2023 梦园皇宫SPA. 保留所有权利.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- 返回顶部按钮 -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 bg-gold hover:bg-gold-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible z-50">
-        <i class="fa fa-chevron-up"></i>
-    </button>
 
     <script>
         // 导航栏滚动效果
@@ -754,6 +582,22 @@
             images.forEach(img => {
                 observer.observe(img);
             });
+        });
+    </script>
+    <!-- 页脚 -->
+    <div id="footer-placeholder"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(html => {
+                    // 使用DOMParser处理HTML内容
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const footerContent = doc.body.innerHTML;
+                    document.getElementById('footer-placeholder').innerHTML = footerContent;
+                })
+                .catch(error => console.error('Error loading footer:', error));
         });
     </script>
 </body>

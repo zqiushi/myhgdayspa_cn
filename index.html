@@ -82,7 +82,7 @@
         
         /* 渐变背景动画 */
         .hero-gradient {
-            background: linear-gradient(135deg, rgba(26, 54, 93, 0.9), rgba(184, 134, 11, 0.7)), url('./images/index-top.png');
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.9), rgba(184, 134, 11, 0.7)), url('./images/index/index-top.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -90,7 +90,7 @@
         
         /* 卡片悬停效果 */
         .feature-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px);index
         }
         
         /* 加载动画 */
@@ -112,63 +112,21 @@
 
 <body class="font-inter bg-cream text-gray-800 antialiased">
     <!-- 导航栏 -->
-    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-black shadow-lg">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <img src="images/logo.png" alt="梦圆皇宫年轻化管理集团" class="h-10">
-            </a>
-            
-            <!-- 桌面导航 -->
-            <nav class="hidden md:flex space-x-8 bg-royal-dark">
-                <div class="relative group">
-                    <a href="#" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300 flex items-center">
-                        品牌介绍
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="brand.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">品牌故事</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <a href="#" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300 flex items-center">
-                        门店介绍
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="stores.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">门店展示</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative group">
-                    <a href="#" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300 flex items-center">
-                        年轻化方案
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="youth.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">方案详情</a>
-                        </div>
-                    </div>
-                </div>
-                <a href="services.html" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300">服务项目</a>
-                <a href="testimonials.html" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300">客户评价</a>
-                <div class="relative group">
-                    <a href="#" class="text-[#e62a88] hover:text-gold-light transition-colors duration-300 flex items-center">
-                        关于我们
-                        <i class="fa fa-chevron-down ml-1 text-xs"></i>
-                    </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-royal-dark rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100">
-                        <div class="py-2">
-                            <a href="careers.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">招聘信息</a>
-                            <a href="contact.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">联系我们</a>
-                            <a href="info.html" class="block px-4 py-2 text-sm text-gray-200 hover:bg-royal hover:text-white">其他信息</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+    <div id="header-placeholder"></div>
+    <script src="/js/navbar.js"></script>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(html => {
+                // 使用DOMParser处理HTML内容
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const headerContent = doc.body.innerHTML;
+                document.getElementById('header-placeholder').innerHTML = headerContent;
+                setTimeout(initNavbar, 0);
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
             
             <!-- 预约按钮 -->
             <a href="booking.html" class="hidden md:block bg-[#e62a88] hover:bg-[#d15a78] text-black px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
@@ -272,7 +230,7 @@
                 <!-- 品牌介绍 -->
                 <a href="brand.html" class="feature-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
                     <div class="h-48 overflow-hidden">
-                        <img src="images/brand.jpg" alt="品牌介绍" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        <img src="images/index/brand.jpg" alt="品牌介绍" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
                     </div>
                     <div class="p-6 bg-black">
                         <h3 class="text-xl font-semibold text-[#e62a88] mb-2">品牌介绍</h3>
@@ -286,7 +244,7 @@
                 <!-- 门店介绍 -->
                 <a href="stores.html" class="feature-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
                     <div class="h-48 overflow-hidden">
-                        <img src="images/store.jpg" alt="门店介绍" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        <img src="images/index/stores.jpg" alt="门店介绍" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
                     </div>
                     <div class="p-6 bg-black">
                         <h3 class="text-xl font-semibold text-[#e62a88] mb-2">门店介绍</h3>
@@ -300,7 +258,7 @@
                 <!-- 年轻化方案 -->
                 <a href="youth.html" class="feature-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
                     <div class="h-48 overflow-hidden">
-                        <img src="images/youth.jpg" alt="年轻化方案" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        <img src="images/index/youth.jpg" alt="年轻化方案" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
                     </div>
                     <div class="p-6 bg-black">
                         <h3 class="text-xl font-semibold text-[#e62a88] mb-2">年轻化方案</h3>
@@ -314,7 +272,7 @@
                 <!-- 高端品质 -->
                 <a href="services.html" class="feature-card bg-gray-50 rounded-lg shadow-lg overflow-hidden transition-all duration-300">
                     <div class="h-48 overflow-hidden">
-                        <img src="images/quality.jpg" alt="高端品质" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        <img src="images/index/service.jpg" alt="高端品质" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
                     </div>
                     <div class="p-6 bg-black">
                         <h3 class="text-xl font-semibold text-[#e62a88] mb-2">高端品质</h3>
@@ -334,7 +292,7 @@
             <div class="text-center mb-16">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">宾客评价</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-3xl mx-auto text-black">听听我们的宾客如何评价梦圆皇宫SPA的尊贵体验</p>
+                <p class="max-w-3xl mx-auto text-black">听听我们的宾客如何评价梦圆皇宫的尊贵体验</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
@@ -471,85 +429,7 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-black text-white py-16">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-1 mb-12">
 
-                
-                <div>
-                    <h4 class="text-base font-semibold mb-4 text-gold border-b border-gray-800 pb-1 inline-block">快速链接</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="brand.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300 hover:pl-2 inline-block">品牌介绍</a></li>
-                        <li><a href="stores.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300 hover:pl-2 inline-block">门店介绍</a></li>
-                        <li><a href="youth.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300 hover:pl-2 inline-block">年轻化方案</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300 hover:pl-2 inline-block">服务项目</a></li>
-                        <li><a href="testimonials.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300 hover:pl-2 inline-block">客户评价</a></li>
-                        <li><a href="booking.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300 hover:pl-2 inline-block">在线预约</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-base font-semibold mb-4 text-gold border-b border-gray-800 pb-1 inline-block">关于我们</h4>
-                    <ul class="space-y-3">
-                        <li><a href="careers.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300 hover:pl-2 inline-block">招聘信息</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300 hover:pl-2 inline-block">联系我们</a></li>
-                        <li><a href="info.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300 hover:pl-2 inline-block">其他信息</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 hover:pl-2 inline-block">隐私政策</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 hover:pl-2 inline-block">服务条款</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-base font-semibold mb-4 text-gold border-b border-gray-800 pb-1 inline-block">联系方式</h4>
-                    <ul class="space-y-4 text-gray-400">
-                        <li class="flex items-start">
-                            <i class="fa fa-map-marker mt-1 mr-3 text-gold"></i>
-                            <span class="text-sm leading-relaxed">广东深圳南山区华侨城香山西街18号<br>首地容御1栋</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa fa-phone mr-3 text-gold"></i>
-                            <span>400-8866-010</span>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-gold border-b border-gray-800 pb-2 inline-block">关注我们</h4>
-                    <div class="flex space-x-4 mb-6 justify-center">
-                        <a href="#" class="text-gray-400 hover:text-gold-light transition-all duration-300 text-lg transform hover:scale-110">
-                            <i class="fa fa-weixin"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-gold-light transition-all duration-300 text-xl transform hover:scale-110">
-                            <i class="fa fa-weibo"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-gold-light transition-all duration-300 text-xl transform hover:scale-110">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-gold-light transition-all duration-300 text-xl transform hover:scale-110">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </div>
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-1 p-0 w-full max-w-full">
-                        <div class="md:col-span-2 text-center w-full flex flex-col items-center">
-                            <div class="bg-white rounded-md shadow-lg mb-2 transform transition-all duration-300 hover:scale-105 w-[80px] h-[80px] flex items-center justify-center">
-    <img src="images/wechat-oa.jpg" alt="微信公众号" class="w-[80px] h-[80px] object-contain">
-</div>
-                            <p class="text-sm text-gray-300 text-center max-w-[80px] mx-auto">官方微信公众号</p>
-                        </div>
-                        <div class="text-center w-full sm:w-auto flex flex-col items-center">
-                            <div class="bg-white rounded-md shadow-lg mb-2 transform transition-all duration-300 hover:scale-105 w-[80px] h-[80px] flex items-center justify-center">
-    <img src="images/wechat-mp.jpg" alt="微信小程序" class="w-[80px] h-[80px] object-contain">
-</div>
-                            <p class="text-sm text-gray-300 text-center max-w-[80px] mx-auto">官方微信小程序</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                <p class="font-medium text-gray-400">© 2023 梦圆皇宫. 保留所有权利.</p>
-            </div>
-        </div>
-    </footer>
 
     <!-- 返回顶部按钮 -->
     <button id="back-to-top" class="fixed bottom-8 right-8 bg-gold hover:bg-gold-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible">
@@ -642,6 +522,22 @@ navbar.classList.add('bg-black');
             
             // 滚动时检查
             window.addEventListener('scroll', fadeInImages);
+        });
+    </script>
+    <!-- 页脚 -->
+    <div id="footer-placeholder"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(html => {
+                    // 使用DOMParser处理HTML内容
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const footerContent = doc.body.innerHTML;
+                    document.getElementById('footer-placeholder').innerHTML = footerContent;
+                })
+                .catch(error => console.error('Error loading footer:', error));
         });
     </script>
 </body>

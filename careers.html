@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>招聘信息 - 梦园皇宫SPA</title>
+    <title>招聘信息 - 梦圆皇宫</title>
     <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Font Awesome -->
@@ -88,22 +88,28 @@
 <body class="font-inter bg-cream text-gray-800 antialiased">
     <!-- 导航栏 -->
     <div id="header-placeholder"></div>
-<script>
-    fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-            initNavbar();
-        });
-</script>
+    <script src="/js/navbar.js"></script>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(html => {
+                // 使用DOMParser处理HTML内容
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const headerContent = doc.body.innerHTML;
+                document.getElementById('header-placeholder').innerHTML = headerContent;
+                setTimeout(initNavbar, 0);
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
 
 
     <!-- 页面标题区域 -->
-    <section class="bg-royal text-white py-24 md:py-32">
+    <section class="bg-[#e62a88] text-white py-24 md:py-32">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4">加入我们</h1>
             <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-            <p class="max-w-2xl mx-auto text-gray-200">梦园皇宫SPA致力于为客户提供卓越的服务体验，现诚邀您加入我们的专业团队</p>
+            <p class="max-w-2xl mx-auto text-gray-200">加入梦圆皇宫大家庭，实现精神与物质双幸福</p>
         </div>
     </section>
 
@@ -112,35 +118,45 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="order-2 lg:order-1 animate-fade-in delay-100">
-                    <h2 class="text-3xl font-bold text-royal-dark mb-6">关于梦园皇宫SPA</h2>
+                    <h2 class="text-3xl font-bold text-royal-dark mb-6">梦圆皇宫人才招募</h2>
                     <p class="text-gray-600 mb-6">
-                        梦园皇宫SPA创立于2008年，是一家专注于高端SPA服务的连锁品牌。我们致力于为客户提供专业、舒适、私密的SPA体验，帮助客户缓解压力、放松身心、提升生活品质。
+                        梦圆皇宫长期招聘大量美业人才
+                        我们提供完善的福利制度
+                        全面的技能和专业培训
+                        阶梯式成长的考核晋升体系
+                        精彩纷呈的员工活动
+                        定期的优秀员工国内国外出游学习机会
+                        年度的股权和期权分红机会。
                     </p>
-                    <p class="text-gray-600 mb-8">
+                    <!-- <p class="text-gray-600 mb-8">
                         十余年来，我们始终坚持"以客为尊，追求卓越"的服务理念，不断提升服务质量和专业水平，赢得了广大客户的信赖和支持。目前，我们已在北京、上海、广州、深圳、成都等多个城市开设了多家高端SPA门店，并计划在未来几年内进一步拓展业务。
-                    </p>
+                    </p> -->
 
-                    <h3 class="text-2xl font-bold text-royal-dark mb-4">我们的企业文化</h3>
+                    <h3 class="text-2xl font-bold text-royal-dark mb-4">招聘渠道：社会招聘、校园招聘</h3>
                     <ul class="space-y-3 mb-8">
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-gold mt-1 mr-3"></i>
-                            <span>客户至上：始终将客户需求放在首位</span>
+                            <span>双美年轻化设计师（美顾</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-gold mt-1 mr-3"></i>
-                            <span>专业专注：不断提升专业技能和服务水平</span>
+                            <span>美容技师/美疗技师</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-gold mt-1 mr-3"></i>
-                            <span>团队协作：相互支持、共同成长</span>
+                            <span>双美年轻化助理</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-gold mt-1 mr-3"></i>
-                            <span>诚信经营：诚实守信、公平公正</span>
+                            <span>店长｜店助</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fa fa-check-circle text-gold mt-1 mr-3"></i>
-                            <span>创新发展：不断创新、追求卓越</span>
+                            <span>技术经理｜总监</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check-circle text-gold mt-1 mr-3"></i>
+                            <span>项目经理｜总监</span>
                         </li>
                     </ul>
                 </div>
@@ -150,7 +166,8 @@
                         <!-- 这里使用背景渐变替代图片 -->
                         <div class="absolute inset-0 bg-gradient-to-br from-royal-light via-royal to-royal-dark flex items-center justify-center">
                             <div class="text-center p-8 text-white">
-                                <i class="fa fa-users text-7xl text-gold-light mb-6"></i>
+                                <!-- <i class="fa fa-users text-7xl text-gold-light mb-6"></i> -->
+                                <img src="/images/careers/Activity.jpg" alt="加入我们的专业团队" class="absolute inset-0 w-full h-full object-cover opacity-90">
                                 <h3 class="text-2xl font-bold mb-2">加入我们的专业团队</h3>
                                 <p class="text-gray-200">共同创造卓越的SPA体验</p>
                             </div>
@@ -162,30 +179,30 @@
     </section>
 
     <!-- 职位招聘区域 -->
-    <section class="py-16 md:py-24 bg-cream">
+    <section class="py-16 md:py-24 bg-[#e62a88]">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-4">热招职位</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-2xl mx-auto text-gray-600">我们提供具有竞争力的薪资待遇和良好的职业发展空间</p>
+                <p class="max-w-2xl mx-auto text-gray-600">7大类岗位，40+待招名额，期待你的加入</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- 职位1 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl animate-fade-in delay-100">
                     <div class="p-8 border-b border-gray-200">
-                        <h3 class="text-xl font-bold text-royal-dark mb-2">SPA美容师</h3>
+                        <h3 class="text-xl font-bold text-royal-dark mb-2">双美年轻化管理师（美顾）</h3>
                         <div class="flex items-center text-gray-500 mb-4">
                             <i class="fa fa-map-marker mr-2"></i>
-                            <span>北京市朝阳区</span>
+                            <span>深圳4店任选</span>
                         </div>
                         <div class="flex items-center text-gray-500 mb-4">
                             <i class="fa fa-money mr-2"></i>
-                            <span>8000-15000元/月</span>
+                            <span>福利待遇面议</span>
                         </div>
                         <div class="flex items-center text-gray-500">
                             <i class="fa fa-graduation-cap mr-2"></i>
-                            <span>经验不限，带薪培训</span>
+                            <span>1年以上工作经验</span>
                         </div>
                     </div>
                     <div class="p-8">
@@ -193,34 +210,34 @@
                         <ul class="space-y-2 mb-6 text-gray-600">
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>为客户提供专业的SPA护理服务</span>
+                                <span>带领团队为会员制定专业的年轻化方案</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>根据客户需求，提供个性化的护理方案</span>
+                                <span>跟进会员的年轻化方案按时执行</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>维护工作环境的整洁和卫生</span>
+                                <span>定期参与公司组织的年轻化管理专业培训</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>完成上级交办的其他工作任务</span>
+                                <span>拓展新客户，激活沉睡客户</span>
                             </li>
                         </ul>
                         <h4 class="font-bold text-gray-700 mb-2">任职要求：</h4>
                         <ul class="space-y-2 mb-6 text-gray-600">
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>形象气质佳，沟通能力强</span>
+                                <span>身高162CM+，形象气质佳</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>有相关工作经验者优先，无经验者可带薪培训</span>
+                                <span>具备高水准的年轻化管理能力和专业知识</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>热爱美容行业，有责任心和服务意识</span>
+                                <span>高审美，有耐心，沟通能力强</span>
                             </li>
                         </ul>
                         <button class="view-job-detail w-full bg-royal hover:bg-royal-dark text-white font-bold py-2 px-4 rounded transition-all duration-300">
@@ -232,18 +249,18 @@
                 <!-- 职位2 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl animate-fade-in delay-200">
                     <div class="p-8 border-b border-gray-200">
-                        <h3 class="text-xl font-bold text-royal-dark mb-2">SPA店长</h3>
+                        <h3 class="text-xl font-bold text-royal-dark mb-2">美容技师/美疗技师</h3>
                         <div class="flex items-center text-gray-500 mb-4">
                             <i class="fa fa-map-marker mr-2"></i>
-                            <span>上海市黄浦区</span>
+                            <span>深圳4店任选</span>
                         </div>
                         <div class="flex items-center text-gray-500 mb-4">
                             <i class="fa fa-money mr-2"></i>
-                            <span>15000-25000元/月</span>
+                            <span>福利待遇面议</span>
                         </div>
                         <div class="flex items-center text-gray-500">
                             <i class="fa fa-graduation-cap mr-2"></i>
-                            <span>3年以上相关管理经验</span>
+                            <span>1年以上工作经验</span>
                         </div>
                     </div>
                     <div class="p-8">
@@ -251,34 +268,34 @@
                         <ul class="space-y-2 mb-6 text-gray-600">
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>全面负责门店的日常运营管理工作</span>
+                                <span>为会员操作各类美容/康体/纤体/SPA等护理</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>制定并完成门店的销售目标和工作计划</span>
+                                <span>善于沟通，挖掘客户潜在需求</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>负责门店员工的招聘、培训和管理工作</span>
+                                <span>定期参与公司组织的各类技术培训</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>维护客户关系，提高客户满意度</span>
+                                <span>按照服务流程维护护理区域的环境卫生及设备保养</span>
                             </li>
                         </ul>
                         <h4 class="font-bold text-gray-700 mb-2">任职要求：</h4>
                         <ul class="space-y-2 mb-6 text-gray-600">
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>有3年以上SPA或美容行业管理经验</span>
+                                <span>身高160CM+</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>具备良好的沟通协调能力和团队管理能力</span>
+                                <span>2年从业经验，手法柔软灵活</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>有较强的市场开拓能力和客户服务意识</span>
+                                <span>爱学习，有匠人精神，具备良好的服务意识</span>
                             </li>
                         </ul>
                         <button class="view-job-detail w-full bg-royal hover:bg-royal-dark text-white font-bold py-2 px-4 rounded transition-all duration-300">
@@ -290,18 +307,18 @@
                 <!-- 职位3 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl animate-fade-in delay-300">
                     <div class="p-8 border-b border-gray-200">
-                        <h3 class="text-xl font-bold text-royal-dark mb-2">前台接待</h3>
+                        <h3 class="text-xl font-bold text-royal-dark mb-2">店长/店长助理</h3>
                         <div class="flex items-center text-gray-500 mb-4">
                             <i class="fa fa-map-marker mr-2"></i>
-                            <span>广州市天河区</span>
+                            <span>深圳4店任选</span>
                         </div>
                         <div class="flex items-center text-gray-500 mb-4">
                             <i class="fa fa-money mr-2"></i>
-                            <span>5000-8000元/月</span>
+                            <span>福利待遇面议</span>
                         </div>
                         <div class="flex items-center text-gray-500">
                             <i class="fa fa-graduation-cap mr-2"></i>
-                            <span>经验不限，形象气质佳</span>
+                            <span>3年以上工作经验</span>
                         </div>
                     </div>
                     <div class="p-8">
@@ -309,34 +326,34 @@
                         <ul class="space-y-2 mb-6 text-gray-600">
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>负责门店客户的接待、登记和引导工作</span>
+                                <span>带领团队完成公司制定的各类业绩目标</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>接听客户电话，处理客户预约和咨询</span>
+                                <span>协助监督团队完成年轻化方案的制定和执行</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>负责门店的收银和账务处理工作</span>
+                                <span>推动团队实现负责门店的日常良好安全经营</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>协助店长完成日常行政工作</span>
+                                <span>定期组织会议，安排团队有序工作</span>
                             </li>
                         </ul>
                         <h4 class="font-bold text-gray-700 mb-2">任职要求：</h4>
                         <ul class="space-y-2 mb-6 text-gray-600">
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>形象气质佳，沟通能力强</span>
+                                <span>身高165CM+，形象气质佳</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>熟悉电脑操作，有收银经验者优先</span>
+                                <span>5年美业从业经验，3年管理经验</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fa fa-circle text-gold text-xs mt-1.5 mr-2"></i>
-                                <span>有良好的服务意识和团队协作精神</span>
+                                <span>沟通协调能力强，具备较强逻辑思维</span>
                             </li>
                         </ul>
                         <button class="view-job-detail w-full bg-royal hover:bg-royal-dark text-white font-bold py-2 px-4 rounded transition-all duration-300">
@@ -359,135 +376,136 @@
     <section class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-4">员工福利</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-[#e62a88] mb-4">员工福利</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-2xl mx-auto text-gray-600">我们为员工提供全面的福利保障和良好的工作环境</p>
+                <p class="max-w-2xl mx-auto text-[#e62a88]">加入梦圆皇宫大家庭，实现精神与物质双幸福</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- 福利1 -->
-                <div class="bg-cream rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-100">
-                    <div class="w-16 h-16 bg-royal rounded-full flex items-center justify-center mx-auto mb-6 text-white">
+                <div class="bg-black rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-100">
+                    <div class="w-16 h-16 bg-[#e62a88] rounded-full flex items-center justify-center mx-auto mb-6 text-white">
                         <i class="fa fa-money text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-royal-dark mb-3">有竞争力的薪资</h3>
-                    <p class="text-gray-600">提供行业内具有竞争力的薪资待遇，年终奖金和绩效奖励</p>
+                    <h3 class="text-xl font-bold text-[#e62a88] mb-3">有竞争力的薪资</h3>
+                    <p class="text-white">提供行业内具有竞争力的薪资待遇，年终奖金和绩效奖励</p>
                 </div>
 
                 <!-- 福利2 -->
-                <div class="bg-cream rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-200">
-                    <div class="w-16 h-16 bg-royal rounded-full flex items-center justify-center mx-auto mb-6 text-white">
+                <div class="bg-black rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-200">
+                    <div class="w-16 h-16 bg-[#e62a88] rounded-full flex items-center justify-center mx-auto mb-6 text-white">
                         <i class="fa fa-heartbeat text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-royal-dark mb-3">完善的社保福利</h3>
-                    <p class="text-gray-600">缴纳五险一金，提供商业保险和年度体检，保障员工健康</p>
+                    <h3 class="text-xl font-bold text-[#e62a88] mb-3">完善的社保福利</h3>
+                    <p class="text-white">按照国家和地方制度为员工提供完善的社会保险福利</p>
                 </div>
 
                 <!-- 福利3 -->
-                <div class="bg-cream rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-300">
-                    <div class="w-16 h-16 bg-royal rounded-full flex items-center justify-center mx-auto mb-6 text-white">
+                <div class="bg-black rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-300">
+                    <div class="w-16 h-16 bg-[#e62a88] rounded-full flex items-center justify-center mx-auto mb-6 text-white">
                         <i class="fa fa-graduation-cap text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-royal-dark mb-3">专业的培训体系</h3>
-                    <p class="text-gray-600">提供系统的入职培训和专业技能培训，帮助员工提升职业素养</p>
+                    <h3 class="text-xl font-bold text-[#e62a88] mb-3">专业的培训体系</h3>
+                    <p class="text-white">定期开展各类专业知识和年轻化管理能力培训，帮助新员工快速提升</p>
                 </div>
 
                 <!-- 福利4 -->
-                <div class="bg-cream rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-400">
-                    <div class="w-16 h-16 bg-royal rounded-full flex items-center justify-center mx-auto mb-6 text-white">
+                <div class="bg-black rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-400">
+                    <div class="w-16 h-16 bg-[#e62a88] rounded-full flex items-center justify-center mx-auto mb-6 text-white">
                         <i class="fa fa-calendar-check-o text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-royal-dark mb-3">良好的工作环境</h3>
-                    <p class="text-gray-600">舒适优雅的工作环境，合理的工作时间和带薪年假</p>
+                    <h3 class="text-xl font-bold text-[#e62a88] mb-3">良好的工作环境</h3>
+                    <p class="text-white">舒适优雅的工作环境，合理的工作时间和带薪年假</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
                 <!-- 福利5 -->
-                <div class="bg-cream rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-500">
-                    <div class="w-16 h-16 bg-royal rounded-full flex items-center justify-center mx-auto mb-6 text-white">
+                <div class="bg-black rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-500">
+                    <div class="w-16 h-16 bg-[#e62a88] rounded-full flex items-center justify-center mx-auto mb-6 text-white">
                         <i class="fa fa-users text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-royal-dark mb-3">团队建设活动</h3>
-                    <p class="text-gray-600">定期组织团队建设活动，增强团队凝聚力和员工归属感</p>
+                    <h3 class="text-xl font-bold text-[#e62a88] mb-3">团队建设活动</h3>
+                    <p class="text-white">定期组织团队建设活动，增强团队凝聚力和员工归属感</p>
                 </div>
 
                 <!-- 福利6 -->
-                <div class="bg-cream rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-600">
-                    <div class="w-16 h-16 bg-royal rounded-full flex items-center justify-center mx-auto mb-6 text-white">
+                <div class="bg-black rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-600">
+                    <div class="w-16 h-16 bg-[#e62a88] rounded-full flex items-center justify-center mx-auto mb-6 text-white">
                         <i class="fa fa-arrow-up text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-royal-dark mb-3">广阔的发展空间</h3>
-                    <p class="text-gray-600">提供清晰的职业发展路径和晋升机会，帮助员工实现职业目标</p>
+                    <h3 class="text-xl font-bold text-[#e62a88] mb-3">考核晋升制度</h3>
+                    <p class="text-white">具备完善的职业成长晋升制度，按月考核；多次考核良好者即可晋级</p>
                 </div>
 
                 <!-- 福利7 -->
-                <div class="bg-cream rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-700">
-                    <div class="w-16 h-16 bg-royal rounded-full flex items-center justify-center mx-auto mb-6 text-white">
+                <div class="bg-black rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-700">
+                    <div class="w-16 h-16 bg-[#e62a88] rounded-full flex items-center justify-center mx-auto mb-6 text-white">
                         <i class="fa fa-gift text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-royal-dark mb-3">节日福利</h3>
-                    <p class="text-gray-600">重要节日发放节日礼品和福利金，让员工感受公司关怀</p>
+                    <h3 class="text-xl font-bold text-[#e62a88] mb-3">人文关怀</h3>
+                    <p class="text-white">如您遇到困难可向公司申请医疗/法律援助/人文关怀等方面的协助</p>
                 </div>
 
                 <!-- 福利8 -->
-                <div class="bg-cream rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-800">
-                    <div class="w-16 h-16 bg-royal rounded-full flex items-center justify-center mx-auto mb-6 text-white">
+                <div class="bg-black rounded-lg p-8 text-center transition-all duration-300 hover:shadow-lg animate-fade-in delay-800">
+                    <div class="w-16 h-16 bg-[#e62a88] rounded-full flex items-center justify-center mx-auto mb-6 text-white">
                         <i class="fa fa-spa text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-royal-dark mb-3">员工免费体验</h3>
-                    <p class="text-gray-600">提供免费的SPA体验和产品，让员工亲身体验公司服务</p>
+                    <h3 class="text-xl font-bold text-[#e62a88] mb-3">员工福利</h3>
+                    <p class="text-white">内部员工可享双美项目成本价购买以及定期的其他福利</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 申请方式区域 -->
-    <section class="py-16 md:py-24 bg-royal text-white">
+    <section class="py-16 md:py-24 bg-black text-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">申请方式</h2>
+                <h2 class="text-3xl text-[#e62a88] md:text-4xl font-bold mb-4">申请方式</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-2xl mx-auto text-gray-200">我们期待您的加入，请通过以下方式投递简历</p>
+                <p class="max-w-2xl mx-auto  text-[#e62a88]">我们期待您的加入，请通过以下方式投递简历</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                 <!-- 方式1 -->
-                <div class="bg-royal-dark rounded-lg p-8 text-center animate-fade-in delay-100">
-                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6 text-royal-dark">
-                        <i class="fa fa-envelope text-2xl"></i>
+                <div class="bg-[#e62a88] rounded-lg p-8 text-center animate-fade-in delay-100">
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6 text-royal-dark">
+                        <i class="fa fa-envelope text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gold-light">电子邮件</h3>
-                    <p class="text-gray-300 mb-4">发送您的简历至我们的招聘邮箱</p>
-                    <a href="mailto:hr@myhgdayspa.com" class="text-white hover:text-gold-light transition-colors duration-300">hr@myhgdayspa.com</a>
+                    <h3 class="text-xl font-bold mb-3 text-black">线上招聘</h3>
+                    <p class="text-gray-300 mb-4">BOSS直聘/拉勾/智联招聘等平台（深圳）</p>
+                    <a href="mailto:hr@myhgdayspa.com" class="text-white hover:text-gold-light transition-colors duration-300">搜索“梦圆皇宫”或“深圳呈悦医疗美容”
+</a>
                 </div>
 
                 <!-- 方式2 -->
-                <div class="bg-royal-dark rounded-lg p-8 text-center animate-fade-in delay-200">
-                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6 text-royal-dark">
-                        <i class="fa fa-phone text-2xl"></i>
+                <div class="bg-[#e62a88] rounded-lg p-8 text-center animate-fade-in delay-200">
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6 text-royal-dark">
+                        <i class="fa fa-phone text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gold-light">电话咨询</h3>
-                    <p class="text-gray-300 mb-4">拨打我们的招聘热线进行咨询</p>
-                    <a href="tel:4008888888" class="text-white hover:text-gold-light transition-colors duration-300">400-888-8888</a>
+                    <h3 class="text-xl font-bold mb-3 text-black">电话咨询</h3>
+                    <p class="text-gray-300 mb-4">您可拨打我们的招聘热线进行咨询</p>
+                    <a href="tel:4008888888" class="text-white hover:text-gold-light transition-colors duration-300">180-2533-1019</a>
                 </div>
 
                 <!-- 方式3 -->
-                <div class="bg-royal-dark rounded-lg p-8 text-center animate-fade-in delay-300">
-                    <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6 text-royal-dark">
-                        <i class="fa fa-map-marker text-2xl"></i>
+                <div class="bg-[#e62a88] rounded-lg p-8 text-center animate-fade-in delay-300">
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-6 text-royal-dark">
+                        <i class="fa fa-map-marker text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gold-light">现场应聘</h3>
-                    <p class="text-gray-300 mb-4">携带简历到就近门店进行现场应聘</p>
+                    <h3 class="text-xl font-bold mb-3 text-black">到店应聘</h3>
+                    <p class="text-gray-300 mb-4">提前预约，通过后到就近门店进行应聘</p>
                     <a href="contact.html" class="text-white hover:text-gold-light transition-colors duration-300">查看门店地址</a>
                 </div>
             </div>
 
             <div class="text-center mt-12">
                 <p class="text-gray-300 mb-6">
-                    我们将在收到简历后3个工作日内与您联系，面试请携带身份证、学历证书等相关证件的原件及复印件。
+                    重要岗位（美顾/店长/店助）等需要线上面试，线上面试通过后即可到店参加复试。
                 </p>
-                <a href="#" class="inline-block bg-gold hover:bg-gold-dark text-white px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg font-bold">
+                <a href="#" class="inline-block bg-[#e62a88] hover:bg-gold-dark text-white px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg font-bold">
                     立即投递简历
                 </a>
             </div>
@@ -495,13 +513,13 @@
     </section>
 
     <!-- 预约区域 -->
-    <section class="py-16 md:py-24 bg-cream">
+    <section class="py-16 md:py-24 bg-[#e62a88]">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-6">预约您的专属SPA体验</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-royal-dark mb-6">您可以在此预约或咨询挑选适您的项目</h2>
             <p class="max-w-2xl mx-auto mb-8 text-gray-600">
-                立即预约，享受我们专业的SPA服务，让身心得到彻底的放松和修复。我们的专业顾问将为您提供一对一的咨询和服务。
+               只需要输入一些个人信息，我们的年轻化设计师将会联系您并为您制定专属年轻化方案并提供上千个特色项目供您选择。
             </p>
-            <a href="booking.html" class="inline-block bg-gold hover:bg-gold-dark text-white px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg font-bold">
+            <a href="booking.html" class="inline-block bg-black hover:bg-gold-dark text-white px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg font-bold">
                 立即预约
             </a>
         </div>
@@ -608,6 +626,22 @@
             images.forEach(img => {
                 observer.observe(img);
             });
+        });
+    </script>
+    <!-- 页脚 -->
+    <div id="footer-placeholder"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(html => {
+                    // 使用DOMParser处理HTML内容
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const footerContent = doc.body.innerHTML;
+                    document.getElementById('footer-placeholder').innerHTML = footerContent;
+                })
+                .catch(error => console.error('Error loading footer:', error));
         });
     </script>
 </body>
