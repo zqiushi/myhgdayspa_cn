@@ -36,7 +36,10 @@ function initNavbar() {
     submenuToggles.forEach(toggle => {
         toggle.addEventListener('click', (e) => {
             e.preventDefault();
-            const submenu = toggle.closest('div').nextElementSibling;
+            // 添加父容器空值检查
+            const parentRelative = toggle.closest('div.relative');
+            if (!parentRelative) return; // 父容器不存在时退出
+            const submenu = parentRelative.querySelector('.mobile-submenu');
             if (submenu) {
                 submenu.classList.toggle('hidden');
                 // 切换图标方向
