@@ -106,7 +106,7 @@
                         2000年梦圆皇宫成立，定位为高品质客户服务的品牌，因为企业发展定位决定necessarily打造五星级的经营环境，引进高科技的进口美容纤体抗衰设备和产品、不断建立经营标准完善服务细节，这十年也是梦圆皇宫建立美业首部运营管理服务标准体系的最佳时间段。
                     </p>
                     <p class="text-black mb-6 leading-relaxed">
-                        2008年梦圆皇宫升级定位为“高品质人士实现年轻化美丽梦想”,创新推出“六维年轻化管理”包括：生活美容、医疗美容、健康管理三美联合实现年轻化解决方案，同时推出十加1+1运营模式，即10个生活美容+1家医美机构+1家健康管理机构的运营模式，2008年我们开始全面整合韩国、台湾、日本等先进的医疗整形技术，和台湾、法国、瑞士、德国等抗衰老技术和医生资源，运用三美联动全面为会员提供年轻化解决方案!。
+                        2008年梦圆皇宫升级定位为“高品质人士实现年轻化梦想”,创新推出“六维年轻化管理”包括：生活美容、医疗美容、健康管理三美联合实现年轻化解决方案，同时推出十加1+1运营模式，即10个生活美容+1家医美机构+1家健康管理机构的运营模式，2008年我们开始全面整合韩国、台湾、日本等先进的医疗整形技术，和台湾、法国、瑞士、德国等抗衰老技术和医生资源，运用三美联动全面为会员提供年轻化解决方案!。
                     </p>
                     <!-- <p class="text-black mb-8 leading-relaxed">
                         如今，梦圆皇宫已成为高端SPA行业的标杆品牌，在全国主要城市拥有多家旗舰门店，为无数宾客提供了身心焕活的奢华体验。
@@ -155,11 +155,11 @@
             
             <div class="max-w-4xl mx-auto">
                 <div class="relative rounded-xl overflow-hidden shadow-2xl aspect-video bg-gray-800">
-                    <!-- 视频占位符 -->
+                    <!-- 视频元素 -->
                     <video id="brandVideo" src="https://myhgdayspa-cn.oss-cn-shenzhen.aliyuncs.com/video/video/myhg_vcr.mp4" class="w-full h-full object-cover" controls>
                     </video>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <button onclick="document.getElementById('brandVideo').play()" class="w-20 h-20 rounded-full bg-pink bg-opacity-90 text-white flex items-center justify-center transition-transform duration-300 hover:scale-110">
+                    <div id="playButtonOverlay" class="absolute inset-0 flex items-center justify-center">
+                        <button onclick="playBrandVideo()" class="w-20 h-20 rounded-full bg-pink bg-opacity-90 text-white flex items-center justify-center transition-transform duration-300 hover:scale-110">
                             <i class="fa fa-play text-2xl ml-1"></i>
                         </button>
                     </div>
@@ -167,6 +167,52 @@
             </div>
         </div>
     </section>
+
+    <!-- 修改后的JavaScript函数 -->
+    <script>
+    // 确保在DOM加载完成后初始化视频事件
+    document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('brandVideo');
+        const overlay = document.getElementById('playButtonOverlay');
+        
+        // 添加暂停事件监听，在视频暂停时显示覆盖层
+        video.addEventListener('pause', function() {
+            // 只在视频确实暂停时显示覆盖层（不是因为视频结束）
+            if (video.currentTime > 0 && !video.ended && video.paused) {
+                overlay.style.display = 'flex';
+            }
+        });
+        
+        // 添加结束事件监听，在视频播放完毕时显示覆盖层
+        video.addEventListener('ended', function() {
+            overlay.style.display = 'flex';
+        });
+        
+        // 添加播放事件监听，在视频开始播放时隐藏覆盖层
+        video.addEventListener('play', function() {
+            overlay.style.display = 'none';
+        });
+    });
+    
+    function playBrandVideo() {
+        const video = document.getElementById('brandVideo');
+        const overlay = document.getElementById('playButtonOverlay');
+        
+        // 检查元素是否存在
+        if (!video || !overlay) {
+            console.error('视频元素或覆盖层未找到');
+            return;
+        }
+        
+        // 播放视频
+        video.play().catch(error => {
+            console.error('播放失败:', error);
+        });
+        
+        // 立即隐藏覆盖层
+        overlay.style.display = 'none';
+    }
+    </script>
 
     <!-- 经营理念 -->
     <section class="py-20 bg-white">
@@ -269,8 +315,8 @@
                     <div class="flex flex-col md:flex-row items-center">
                         <div class="md:w-1/2 md:pr-12 md:text-right mb-8 md:mb-0">
                             <h3 class="text-2xl font-semibold mb-2">荣誉双收</h3>
-                            <p class="text-black">国家商务部服贸司与全国美容化妆品行业协会批复成立“中华全国工商业联合会美容化妆品业商会中华美业标准管理推行专业中联美标专委会”；梦图皇宫为专业委员会主任单位乙晴董事长任专委会主任，旨在推动美业规范发展，树立美业良好形象，帮助美业做大做强，为建立中国美业的行业标准做出杰出贡献
-践行“十加一”的经营模式，开设呈悦医疗整形门诊部；创始人乙晴荣获“深圳十大杰出女企业家”。</p>
+                            <p class="text-black">国家商务部服贸司与全国美容化妆品協會批复成立“中華全国工業聯合美容化妆品業商会中華美業標準管理推行專業中聯美標專委員會”；梦图皇宮為專業委員會主任單位乙晴董事长任專委員會主任，旨在推動美業規範發展，树立美業良好形象，幫助美業做大做强，為建立中國美業行業標準作出傑出貢獻
+践行“十加一”的經營模式，設開呈悦醫療整形診所；創建乙晴榮譽“深圳十大傑出女創業家”。</p>
                         </div>
                         <div class="w-12 h-12 rounded-full bg-[#e62a88] text-white flex items-center justify-center font-bold z-10">2011</div>
                         <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
@@ -324,80 +370,21 @@
         </div>
     </section>
 
-    <!-- 页脚 -->
-    <!-- 已移除重复的页脚加载代码 -->
-    <footer class="bg-royal-dark text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">梦圆皇宫<span class="text-gold-light">SPA</span></h3>
-                    <p class="text-gray-400 mb-6">为您提供皇家般的奢华SPA体验，让身心在繁忙的生活中找到宁静与平衡。</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-weixin"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-weibo"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300 text-xl">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">快速链接</h4>
-                    <ul class="space-y-3">
-                        <li><a href="brand.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300">品牌介绍</a></li>
-                        <li><a href="stores.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300">门店介绍</a></li>
-                        <li><a href="youth.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300">年轻化方案</a></li>
-                        <li><a href="services.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300">服务项目</a></li>
-                        <li><a href="testimonials.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300">客户评价</a></li>
-                        <li><a href="booking.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300">在线预约</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">关于我们</h4>
-                    <ul class="space-y-3">
-                        <li><a href="careers.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300">招聘信息</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300">联系我们</a></li>
-                        <li><a href="info.html" class="text-gray-400 hover:text-gold-light transition-colors duration-300">其他信息</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300">隐私政策</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-gold-light transition-colors duration-300">服务条款</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">联系方式</h4>
-                    <ul class="space-y-3 text-gray-400">
-                        <li class="flex items-start">
-                            <i class="fa fa-map-marker mt-1 mr-3 text-gold"></i>
-                            <!-- <span>北京市朝阳区建国路88号<br>梦圆皇宫酒店5层</span> -->
-                            <span>广东深圳南山区华侨城香山西街18号<br>首地容御1栋</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa fa-phone mr-3 text-gold"></i>
-                            <span>+86 123 4567 8910</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa fa-envelope mr-3 text-gold"></i>
-                            <span>info@mengyuanpalace.com</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 2023 梦圆皇宫. 保留所有权利.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- 返回顶部按钮 -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 bg-gold hover:bg-gold-dark text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 invisible">
-        <i class="fa fa-chevron-up"></i>
-    </button>
+ <!-- 页脚 -->
+    <div id="footer-placeholder"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(html => {
+                    // 使用DOMParser处理HTML内容
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const footerContent = doc.body.innerHTML;
+                    document.getElementById('footer-placeholder').innerHTML = footerContent;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+        });
+    </script>
+</body>
+</html>

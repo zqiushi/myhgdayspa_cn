@@ -99,29 +99,77 @@
         </div>
     </section>
 
-    <!-- 门店视频 -->
-    <section class="py-20 bg-gray-50">
+  
+
+        <!-- 门店视频介绍 -->
+    <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-royal-dark mb-4">高奢服务环境</h2>
-                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-3xl mx-auto text-gray-600">通过视频，感受梦圆皇宫的服务环境</p>
+                <h2 class="text-3xl font-bold text-[#e62a88] mb-4">高奢服务环境</h2>
+                <div class="w-24 h-1 bg-pink-dark mx-auto mb-6"></div>
+                <p class="max-w-3xl mx-auto text-[#e62a88]">通过视频，感受梦圆皇宫的服务环境</p>
             </div>
             
             <div class="max-w-4xl mx-auto">
-                <div class="relative rounded-xl overflow-hidden shadow-2xl aspect-video bg-gray-800 group cursor-pointer">
+                <div class="relative rounded-xl overflow-hidden shadow-2xl aspect-video bg-gray-800">
                     <!-- 视频元素 -->
-                    <video id="storeVideo" src="https://myhgdayspa-cn.oss-cn-shenzhen.aliyuncs.com/video/video/stores_vcr.mp4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" controls>
+                    <video id="brandVideo" src="https://myhgdayspa-cn.oss-cn-shenzhen.aliyuncs.com/video/video/stores_vcr.mp4" class="w-full h-full object-cover" controls>
                     </video>
-                    <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <button onclick="document.getElementById('storeVideo').play()" class="w-24 h-24 rounded-full bg-gold bg-opacity-90 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 transform hover:-translate-y-2 shadow-lg">
-                            <i class="fa fa-play text-3xl ml-1"></i>
+                    <div id="playButtonOverlay" class="absolute inset-0 flex items-center justify-center">
+                        <button onclick="playBrandVideo()" class="w-20 h-20 rounded-full bg-pink bg-opacity-90 text-white flex items-center justify-center transition-transform duration-300 hover:scale-110">
+                            <i class="fa fa-play text-2xl ml-1"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- 修改后的JavaScript函数 -->
+    <script>
+    // 确保在DOM加载完成后初始化视频事件
+    document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('brandVideo');
+        const overlay = document.getElementById('playButtonOverlay');
+        
+        // 添加暂停事件监听，在视频暂停时显示覆盖层
+        video.addEventListener('pause', function() {
+            // 只在视频确实暂停时显示覆盖层（不是因为视频结束）
+            if (video.currentTime > 0 && !video.ended && video.paused) {
+                overlay.style.display = 'flex';
+            }
+        });
+        
+        // 添加结束事件监听，在视频播放完毕时显示覆盖层
+        video.addEventListener('ended', function() {
+            overlay.style.display = 'flex';
+        });
+        
+        // 添加播放事件监听，在视频开始播放时隐藏覆盖层
+        video.addEventListener('play', function() {
+            overlay.style.display = 'none';
+        });
+    });
+    
+    function playBrandVideo() {
+        const video = document.getElementById('brandVideo');
+        const overlay = document.getElementById('playButtonOverlay');
+        
+        // 检查元素是否存在
+        if (!video || !overlay) {
+            console.error('视频元素或覆盖层未找到');
+            return;
+        }
+        
+        // 播放视频
+        video.play().catch(error => {
+            console.error('播放失败:', error);
+        });
+        
+        // 立即隐藏覆盖层
+        overlay.style.display = 'none';
+    }
+    </script>
 
  
  <!-- 门店一览 -->
@@ -293,7 +341,7 @@
                 <!-- 特色2 -->
                 <div class="bg-black p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                     <div class="w-16 h-16 bg-black/10 rounded-full flex items-center justify-center mb-6 text-black">
-                          <i class="fa fa-diamond text-2xl text-pink"></i>
+                          <i class="fa fa-diamond text-2xl text-[#e62a88]"></i>
                       </div>
                       <h3 class="text-xl font-semibold mb-4 text-[#e62a88]">高奢环境</h3>
                     <p class="text-white">
@@ -359,3 +407,68 @@
                 .catch(error => console.error('Error loading footer:', error));
         });
     </script>
+
+<script>
+// 确保DOM加载完成
+ document.addEventListener('DOMContentLoaded', function() {
+    // 获取DOM元素
+    const video = document.getElementById('storeVideo');
+    const overlay = document.getElementById('videoOverlay');
+    const playPauseButton = document.getElementById('playPauseButton');
+    const playIcon = playPauseButton.querySelector('i');
+    
+    // 检查元素是否存在
+    if (!video || !overlay || !playPauseButton) {
+        console.error('视频相关元素未找到');
+        return;
+    }
+    
+    // 初始状态 - 显示覆盖层和播放按钮
+    overlay.style.display = 'flex';
+    playPauseButton.style.display = 'flex';
+    
+    // 统一更新UI状态的函数
+    function updatePlaybackUI(isPlaying) {
+        if (isPlaying) {
+            // 播放状态：隐藏半透明覆盖层，显示暂停图标
+            overlay.style.display = 'none';
+            playIcon.classList.remove('fa-play');
+            playIcon.classList.add('fa-pause');
+        } else {
+            // 暂停/结束状态：显示半透明覆盖层，显示播放图标
+            overlay.style.display = 'flex';
+            playIcon.classList.remove('fa-pause');
+            playIcon.classList.add('fa-play');
+        }
+    }
+    
+    // 处理播放/暂停按钮点击事件
+    playPauseButton.addEventListener('click', function() {
+        if (video.paused || video.ended) {
+            video.play().then(() => {
+                updatePlaybackUI(true);
+            }).catch(error => {
+                console.error('播放失败:', error);
+            });
+        } else {
+            video.pause();
+            updatePlaybackUI(false);
+        }
+    });
+    
+    // 视频结束事件监听
+    video.addEventListener('ended', function() {
+        updatePlaybackUI(false);
+    });
+    
+    // 点击视频本身切换播放/暂停状态
+    video.addEventListener('click', function() {
+        if (video.paused || video.ended) {
+            video.play().then(() => updatePlaybackUI(true));
+        } else {
+            video.pause();
+            updatePlaybackUI(false);
+        }
+    });
+});
+</script>
