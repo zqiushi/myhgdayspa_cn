@@ -179,78 +179,71 @@
         </div>
     </section>
 
-    <!-- 服务类别区域 -->
-    <section class="py-16 md:py-24 bg-black">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-[#e62a88] mb-4">项目类别</h2>
-                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <p class="max-w-2xl mx-auto text-[#e62a88]">此处仅展示梦圆皇宫生活美容类的部分项目</p>
+ <!-- 服务类别区域 -->
+<section class="py-16 md:py-24 bg-black">
+    <div class="container mx-auto px-4">
+        <!-- 标题区域优化：增强层次感和阅读体验 -->
+        <div class="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#e62a88] mb-4 tracking-tight">项目类别</h2>
+            <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+            <p class="text-[#e62a88] text-base md:text-lg leading-relaxed">
+                此处仅展示梦圆皇宫生活美容类的部分项目
+            </p>
+        </div>
+
+        <!-- 内容网格优化：更合理的响应式布局 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            <!-- 类别1 -->
+            <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 service-card animate-fade-in delay-100">
+                <div class="relative overflow-hidden h-64">
+                    <img src="images/services/face.jpg" alt="面部护理项目展示图，包含各种面部护理工具和产品" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                </div>
+                <div class="p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-royal-dark mb-4">面部护理</h3>
+                    <p class="text-white mb-6 leading-relaxed">
+                        梦圆皇宫面部护理包含了面部清洁、控油祛痘、补水保湿、美白嫩肤、抗敏祛痘等多种类别，配合高科技抗衰和激光美肤设备，让您的肤质肤色保持较为理想的状态。
+                    </p>
+                    <a href="#facial" class="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-white px-6 py-2 rounded-full transition-all duration-300 font-medium">
+                        了解详情
+                    </a>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- 类别1 -->
-                <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl service-card animate-fade-in delay-100">
-                    <img src="images/services/face.jpg" alt="面部护理" class="w-full h-64 object-cover" />
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-royal-dark mb-4">面部护理</h3>
-                        <p class="text-white mb-6">
-                            梦圆皇宫面部护理包含了面部清洁、控油祛痘、补水保湿、美白嫩肤、抗敏祛痘等多种类别，配合高科技抗衰和激光美肤设备，让您的肤质肤色保持较为理想的状态。
-                        </p>
-                        <a href="#facial" class="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-white px-6 py-2 rounded-full transition-all duration-300">
-                            了解详情
-                        </a>
-                    </div>
+            <!-- 类别2 -->
+            <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 service-card animate-fade-in delay-200">
+                <div class="relative overflow-hidden h-64">
+                    <img src="images/services/body.jpg" alt="身体护理项目展示图，展示身体护理设备和护理场景" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
                 </div>
-
-                <!-- 类别2 -->
-                <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl service-card animate-fade-in delay-200">
-                    <img src="images/services/body.jpg" alt="身体护理" class="w-full h-64 object-cover" />
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-royal-dark mb-4">身体护理</h3>
-                        <p class="text-white mb-6">
-                            梦圆皇宫身体护理包含纤体塑形、身体肌肤护理、激光脱毛等多种类别，引进如佳塑美、slimming、美修斯、LPG、冰点脱毛仪等多种身体护理设备，为您提供多样化的选择。
-                        </p>
-                        <a href="#body" class="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-white px-6 py-2 rounded-full transition-all duration-300">
-                            了解详情
-                        </a>
-                    </div>
+                <div class="p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-royal-dark mb-4">身体护理</h3>
+                    <p class="text-white mb-6 leading-relaxed">
+                        梦圆皇宫身体护理包含纤体塑形、身体肌肤护理、激光脱毛等多种类别，引进如佳塑美、slimming、美修斯、LPG、冰点脱毛仪等多种身体护理设备，为您提供多样化的选择。
+                    </p>
+                    <a href="#body" class="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-white px-6 py-2 rounded-full transition-all duration-300 font-medium">
+                        了解详情
+                    </a>
                 </div>
+            </div>
 
-
-                <!-- 类别3 -->
-                <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl service-card animate-fade-in delay-200">
-                    <img src="images/services/body.jpg" alt="身体护理" class="w-full h-64 object-cover" />
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-royal-dark mb-4">身体护理</h3>
-                        <p class="text-white mb-6">
-                            梦圆皇宫身体护理包含纤体塑形、身体肌肤护理、激光脱毛等多种类别，引进如佳塑美、slimming、美修斯、LPG、冰点脱毛仪等多种身体护理设备，为您提供多样化的选择。
-                        </p>
-                        <a href="#body" class="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-white px-6 py-2 rounded-full transition-all duration-300">
-                            了解详情
-                        </a>
-                    </div>
+            <!-- 类别3 -->
+            <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 service-card animate-fade-in delay-300">
+                <div class="relative overflow-hidden h-64">
+                    <img src="images/services/ktsh.png" alt="康体舒缓项目展示图，展示SPA环境和专业护理场景" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
                 </div>
-
-
-
-                <!-- 类别4 -->
-                <div class="bg-[#e62a88] rounded-lg shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl service-card animate-fade-in delay-300">
-                    <img src="images/services/ktsh.png" alt="康体舒缓" class="w-full h-64 object-cover" />
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-royal-dark mb-4">康体舒缓 
-</h3>
-                        <p class="text-white mb-6" text-white>
-                            作为全国最早一批获得国际SPA协会认证的机构，我们始终注重SPA手法的提升和服务质量；2018年，我们耗资千万引进40余台西班牙INDIBA设备，运用专业手法+科技设备，内外兼修，辅助您解决亚健康问题
-                        </p>
-                        <a href="#special" class="inline-block border-2 border-gold text-black hover:bg-black hover:text-white px-6 py-2 rounded-full transition-all duration-300">
-                            了解详情
-                        </a>
-                    </div>
+                <div class="p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-royal-dark mb-4">康体舒缓</h3>
+                    <p class="text-white mb-6 leading-relaxed">
+                        作为全国最早一批获得国际SPA协会认证的机构，我们始终注重SPA手法的提升和服务质量；2018年，我们耗资千万引进40余台西班牙INDIBA设备，运用专业手法+科技设备，内外兼修，辅助您解决亚健康问题
+                    </p>
+                    <a href="#special" class="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-white px-6 py-2 rounded-full transition-all duration-300 font-medium">
+                        了解详情
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+    
 
     <!-- 面部护理详情 -->
     <section id="facial" class="py-16 md:py-24 bg-white">
