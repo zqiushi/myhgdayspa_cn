@@ -10,14 +10,13 @@
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- 引入Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- 引入vite-client-fallback.js以解决页面空白问题 -->
+    <!-- 引入vite-client-fallback.js（本地开发兼容） -->
     <script>
         // 检测是否在file协议下运行
         if (window.location.protocol === 'file:') {
-            // 直接加载本地的vite-client-fallback.js
             document.write('<script src="/vite-client-fallback.js"><\/script>');
         } else {
-            // 尝试加载/@vite/client，如果失败则加载回退脚本
+            // 尝试加载/@vite/client，失败则加载回退脚本
             const script = document.createElement('script');
             script.src = '/@vite/client';
             script.onerror = function() {
@@ -55,6 +54,11 @@
         }
     </script>
 
+    <!-- 百度地图API（https协议，避免混合内容拦截） -->
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ry8bUZXw4enqQfOrGKSm7RZGBWEdiaOL"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+    <link rel="stylesheet" href="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+
     <!-- 自定义工具类 -->
     <style type="text/tailwindcss">
         @layer utilities {
@@ -82,6 +86,12 @@
         .animate-fade-in {
             animation: fadeIn 0.8s ease forwards;
         }
+
+        /* 百度地图信息窗口文字适配（避免溢出） */
+        .BMapLib_SearchInfoWindow_content {
+            line-height: 1.5 !important;
+            font-size: 14px !important;
+        }
     </style>
 </head>
 
@@ -93,7 +103,6 @@
         fetch('header.html')
             .then(response => response.text())
             .then(html => {
-                // 使用DOMParser处理HTML内容
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
                 const headerContent = doc.body.innerHTML;
@@ -102,9 +111,6 @@
             })
             .catch(error => console.error('Error loading header:', error));
     </script>
-                      
-
-       
 
     <!-- 页面标题区域 -->
     <section class="bg-[#e62a88] text-white py-24 md:py-32">
@@ -208,18 +214,93 @@
                 </div>
 
                 <div class="animate-fade-in delay-200">
-
-                    <!-- 地图区域 -->
+                    <!-- 地图区域（容器ID：all-stores-map） -->
                     <div class="rounded-lg shadow-lg overflow-hidden h-[400px] bg-gray-200">
-                        <!-- 添加地图容器ID -->
                         <div id="all-stores-map" class="w-full h-full"></div>
                     </div>
+
+                    <!-- 百度地图初始化脚本（紧跟地图容器，确保DOM优先加载） -->
+                    <script type="text/javascript">
+                        // 等待DOM完全加载后初始化地图，避免容器未渲染导致报错
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // 1. 验证地图容器是否存在
+                            const mapContainer = document.getElementById('all-stores-map');
+                            if (!mapContainer) {
+                                console.error('地图容器不存在，请检查ID是否为"all-stores-map"');
+                                return;
+                            }
+
+                            // 2. 初始化地图（绑定容器 + 设置中心点/缩放级）
+                            const map = new BMap.Map(mapContainer);
+                            const headquarterPoint = new BMap.Point(113.980033, 22.556083); // 总部经纬度（精准匹配地址）
+                            map.centerAndZoom(headquarterPoint, 17); // 17级缩放（1-19，越大越精细）
+
+                            // 3. 开启移动端手势缩放（优化移动端体验）
+                            map.enableScrollWheelZoom(true);
+
+                            // 4. 配置信息窗口内容（显示总部详情，图片路径需根据实际调整）
+                            const infoContent = `
+                                <div style="margin:0; padding:4px; line-height:1.5;">
+                                    <img src="/images/contact/image.png" alt="梦圆皇宫总部" 
+                                         style="float:right; width:100px; height:100px; margin-left:6px; object-fit:cover;"/>
+                                    <b style="color:#e62a88;">总部名称：</b>梦圆皇宫.总部<br/>
+                                    <b style="color:#e62a88;">详细地址：</b>广东深圳市南山区华侨城香山西街18号5楼<br/>
+                                    <b style="color:#e62a88;">客服热线：</b>400-8866-010<br/>
+                                    <b style="color:#e62a88;">营业时间：</b>周一至周日 9:30-22:30<br/>
+                                    <b style="color:#e62a88;">服务范围：</b>高品质年轻化服务
+                                </div>
+                            `;
+
+                            // 5. 创建带搜索功能的信息窗口（支持周边检索、导航）
+                            const searchInfoWindow = new BMapLib.SearchInfoWindow(map, infoContent, {
+                                title: "梦圆皇宫（总部）", // 窗口标题
+                                width: 380,               // 窗口宽度
+                                height: 150,              // 窗口高度
+                                panel: "map-search-panel",// 检索结果面板（默认隐藏，无需额外配置）
+                                enableAutoPan: true,      // 点击标记时自动平移地图
+                                searchTypes: [            // 支持的功能类型
+                                    BMAPLIB_TAB_SEARCH,   // 周边检索（如找停车场、餐厅）
+                                    BMAPLIB_TAB_TO_HERE,  // 到这里去（生成导航路线）
+                                    BMAPLIB_TAB_FROM_HERE // 从这里出发（生成离开路线）
+                                ]
+                            });
+
+                            // 6. 自定义地图标记（红色图标，与品牌色呼应）
+                            const markerIcon = new BMap.Icon(
+                                "https://api.map.baidu.com/img/markers.png", // 百度默认图标（可替换为自定义图标）
+                                new BMap.Size(23, 25),                        // 图标尺寸
+                                { anchor: new BMap.Size(10, 25) }             // 图标锚点（确保标记与经纬度对齐）
+                            );
+                            const marker = new BMap.Marker(headquarterPoint, { icon: markerIcon });
+
+                            // 7. 绑定事件：点击标记显示信息窗口
+                            marker.addEventListener("click", () => {
+                                searchInfoWindow.open(marker);
+                            });
+
+                            // 8. 页面加载后自动显示信息窗口（无需用户点击，直接展示）
+                            searchInfoWindow.open(marker);
+
+                            // 9. 添加地图控件（提升用户操作体验）
+                            map.addControl(new BMap.ScaleControl({ 
+                                anchor: BMAP_ANCHOR_TOP_LEFT // 比例尺（左上角）
+                            }));
+                            map.addControl(new BMap.NavigationControl({ 
+                                anchor: BMAP_ANCHOR_TOP_LEFT // 默认导航控件（缩放+平移）
+                            }));
+                            map.addControl(new BMap.NavigationControl({ 
+                                anchor: BMAP_ANCHOR_TOP_RIGHT,
+                                type: BMAP_NAVIGATION_CONTROL_SMALL // 小尺寸导航（右上角）
+                            }));
+
+                            // 10. 将标记添加到地图（必须执行，否则标记不显示）
+                            map.addOverlay(marker);
+                        });
+                    </script>
                 </div>
             </div>
         </div>
     </section>
-
-
 
     <!-- 预约区域 -->
     <section class="py-16 md:py-24 bg-[#e62a88] text-white">
@@ -234,9 +315,6 @@
         </div>
     </section>
 
-    
-
-
     <!-- 页脚 -->
     <div id="footer-placeholder"></div>
     <script>
@@ -244,7 +322,6 @@
             fetch('footer.html')
                 .then(response => response.text())
                 .then(html => {
-                    // 使用DOMParser处理HTML内容
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(html, 'text/html');
                     const footerContent = doc.body.innerHTML;
