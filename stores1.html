@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>门店介绍 - 梦圆皇宫</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 配置Tailwind自定义主题 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            light: '#f5d48e',
+                            DEFAULT: '#d4af37',
+                            dark: '#b8860b'
+                        },
+                        royal: {
+                            light: '#6a89cc',
+                            DEFAULT: '#1a365d',
+                            dark: '#0d1b2a'
+                        },
+                        cream: '#f8f4e3',
+                        'accent-pink': '#e62a88'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+        }
+    </style>
+    
+    <style>
+        /* 基础动画设置 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 门店卡片悬停效果 */
+        .store-card-hover:hover .store-image {
+            transform: scale(1.05);
+        }
+        
+        /* 加载动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.3), rgba(184, 51, 11, 0.5)), url('./images/store.jpg');
+             {{/*  background: url('./images/store.jpg');  */}}
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+
+
+    </style>
+</head>
+
+<body class="font-inter bg-cream text-gray-800 antialiased">
+    <!-- 导航栏 -->
+    <div id="header-placeholder"></div>
+    <script src="/js/navbar.js"></script>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(html => {
+                // 使用DOMParser处理HTML内容
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const headerContent = doc.body.innerHTML;
+                document.getElementById('header-placeholder').innerHTML = headerContent;
+                setTimeout(initNavbar, 0);
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+
+    <!-- 页面标题区域 -->
+    <section class="hero-gradient min-h-screen flex items-center justify-center text-center text-[#e62a88] px-4">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4">高端生活美容会所</h1>
+            <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+            <p class="max-w-3xl mx-auto text-[#e62a88]">梦圆皇宫致力于打造高标准、高品质的星级服务环境</p>
+        </div>
+    </section>
+
+
+
+
+
+
+    <!-- 门店视频介绍 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#e62a88] mb-4">高奢服务环境</h2>
+                <div class="w-24 h-1 bg-[#e62a88] mx-auto mb-6"></div>
+                <p class="max-w-3xl mx-auto text-[#e62a88]">通过视频，感受梦圆皇宫的服务环境</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative rounded-xl overflow-hidden shadow-2xl aspect-video bg-gray-800">
+                    <!-- 视频元素 -->
+                    <video id="brandVideo" src="https://myhgdayspa-cn.oss-cn-shenzhen.aliyuncs.com/video/video/stores_vcr.mp4" class="w-full h-full object-cover" controls>
+                    </video>
+                    <div id="playButtonOverlay" class="absolute inset-0 flex items-center justify-center">
+                        <button onclick="playBrandVideo()" class="w-20 h-20 rounded-full bg-[#e62a88]/90 text-white flex items-center justify-center transition-transform duration-300 hover:scale-110">
+                            <i class="fa fa-play text-2xl ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 视频控制JavaScript函数 -->
+    <script>
+    // 确保在DOM加载完成后初始化视频事件
+    document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('brandVideo');
+        const overlay = document.getElementById('playButtonOverlay');
+        
+        if (!video || !overlay) return; // 避免元素不存在时报错
+        
+        // 视频暂停时显示覆盖层
+        video.addEventListener('pause', function() {
+            if (video.currentTime > 0 && !video.ended && video.paused) {
+                overlay.style.display = 'flex';
+            }
+        });
+        
+        // 视频结束时显示覆盖层
+        video.addEventListener('ended', function() {
+            overlay.style.display = 'flex';
+        });
+        
+        // 视频播放时隐藏覆盖层
+        video.addEventListener('play', function() {
+            overlay.style.display = 'none';
+        });
+    });
+    
+    function playBrandVideo() {
+        const video = document.getElementById('brandVideo');
+        const overlay = document.getElementById('playButtonOverlay');
+        
+        if (!video || !overlay) {
+            console.error('视频元素或覆盖层未找到');
+            return;
+        }
+        
+        video.play().catch(error => {
+            console.error('播放失败:', error);
+        });
+        overlay.style.display = 'none';
+    }
+    </script>
+
+    <!-- 门店一览 -->
+    <section id="stores" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black">门店一览</h2>
+                <div class="w-20 h-1 bg-[#e62a88] mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    梦圆皇宫有幸在深圳发展，打造具备独特风格的高端美容会所
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <!-- 梦圆皇宫.晴会所 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden store-card-hover border border-gray-100">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="images/stores/store-1-qin.jpg" alt="梦圆皇宫.晴会所外观与入口" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110 store-image">
+                        <div class="absolute top-4 right-4 bg-[#e62a88] text-white text-sm font-bold px-3 py-1 rounded-full">
+                            旗舰店
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-black">梦圆皇宫.晴会所</h3>
+                        <p class="text-gray-600 mb-4">
+                            于2012年开业，经营面积上千平米，服务过上万名华侨城高品质、高净值女性会员。
+                        </p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-start">
+                                <i class="fa fa-map-marker text-[#e62a88] mt-1 mr-3"></i>
+                                <span class="text-gray-700">深圳市南山区华侨城香山西街18号</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-phone text-[#e62a88] mr-3"></i>
+                                <span class="text-gray-700">0755-8350-0200</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-clock-o text-[#e62a88] mr-3"></i>
+                                <span class="text-gray-700">09:30 - 22:30 (周一至周日)</span>
+                            </div>
+                        </div>
+                        <a href="#" class="inline-block text-[#e62a88] hover:text-[#d15a78] font-medium transition-colors duration-300">
+                            预约体验 <i class="fa fa-long-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 梦圆皇宫.湖畔会所 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden store-card-hover border border-gray-100">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="images/stores/store-2-hupan.jpg" alt="梦圆皇宫.湖畔会所内部环境" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110 store-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-black">梦圆皇宫.湖畔会所</h3>
+                        <p class="text-gray-600 mb-4">
+                            于2005年开设，旨在为会员提供一个既私密又充满个性的个人空间，让您在享受服务的同时也能感受到身心的放松与愉悦。
+                        </p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-start">
+                                <i class="fa fa-map-marker text-[#e62a88] mt-1 mr-3"></i>
+                                <span class="text-gray-700">深圳市南山区华侨城波托菲诺商业街7号</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-phone text-[#e62a88] mr-3"></i>
+                                <span class="text-gray-700">0755-8608-0065</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-clock-o text-[#e62a88] mr-3"></i>
+                                <span class="text-gray-700">09:30 - 22:30 (周一至周日)</span>
+                            </div>
+                        </div>
+                        <a href="#" class="inline-block text-[#e62a88] hover:text-[#d15a78] font-medium transition-colors duration-300">
+                            预约体验 <i class="fa fa-long-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 梦圆皇宫.凤凰会所 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden store-card-hover border border-gray-100">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="images/stores/store-3-fenghuang.jpg" alt="梦圆皇宫.凤凰会所前台" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110 store-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-black">梦圆皇宫.凤凰会所</h3>
+                        <p class="text-gray-600 mb-4">
+                            于2008年开业，这里是时尚与繁华的交汇点高楼林立间，我们独辟一处静谧优雅的空间为您营造远离尘嚣的私人休闲天地。
+                        </p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-start">
+                                <i class="fa fa-map-marker text-[#e62a88] mt-1 mr-3"></i>
+                                <span class="text-gray-700">深圳市福田区凤凰大厦2栋1-3F</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-phone text-[#e62a88] mr-3"></i>
+                                <span class="text-gray-700">0755-3301-1636</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-clock-o text-[#e62a88] mr-3"></i>
+                                <span class="text-gray-700">09:30 - 22:30 (周一至周日)</span>
+                            </div>
+                        </div>
+                        <a href="#" class="inline-block text-[#e62a88] hover:text-[#d15a78] font-medium transition-colors duration-300">
+                            预约体验 <i class="fa fa-long-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 梦圆皇宫.风情会所 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden store-card-hover border border-gray-100">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="images/stores/store-4-fengqin.jpg" alt="梦圆皇宫.风情会所护理室" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110 store-image">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2 text-black">梦圆皇宫.风情会所</h3>
+                        <p class="text-gray-600 mb-4">
+                            2003年创建，是中国首家汇集世界各国SPA风情的美容、SPA、纤体、休闲会所，开设中国首家高温瑜伽会馆，契合尊贵会员的高品质需求。
+                        </p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-start">
+                                <i class="fa fa-map-marker text-[#e62a88] mt-1 mr-3"></i>
+                                <span class="text-gray-700">深圳市华强北群星广场裙楼7F</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-phone text-[#e62a88] mr-3"></i>
+                                <span class="text-gray-700">0755-8374-7319</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-clock-o text-[#e62a88] mr-3"></i>
+                                <span class="text-gray-700">09:30 - 22:30 (周一至周日)</span>
+                            </div>
+                        </div>
+                        <a href="#" class="inline-block text-[#e62a88] hover:text-[#d15a78] font-medium transition-colors duration-300">
+                            预约体验 <i class="fa fa-long-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 门店特色（统一色彩搭配） -->
+    <section class="py-16 md:py-24 bg-[#e62a88]">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">门店特色</h2>
+                <div class="w-20 h-1 bg-gold mx-auto mb-6"></div>
+                <p class="text-lg text-white/90 max-w-3xl mx-auto">
+                    每家门店均配备国际顶级设备与专业团队，提供定制化年轻化解决方案，都将给你带来别样的高奢体验
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                <!-- 特色1：核心地段 -->
+                <div class="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-white/10 h-full flex flex-col w-full">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-white/10 rounded-full flex items-center justify-center mb-4 md:mb-5 flex-shrink-0">
+                        <i class="fa fa-map-marker text-lg md:text-xl text-[#e62a88]"></i>
+                    </div>
+                    <h3 class="text-base md:text-lg font-semibold mb-2 md:mb-3 text-[#e62a88]">核心地段</h3>
+                    <p class="text-white/90 text-xs md:text-sm flex-grow">
+                        所有门店均位于深圳市核心地段，周边交通便利，方便您随时到店体验。
+                    </p>
+                </div>
+            
+                <!-- 特色2：高端环境 -->
+                <div class="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-white/10 h-full flex flex-col w-full">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-white/10 rounded-full flex items-center justify-center mb-4 md:mb-5 flex-shrink-0">
+                        <i class="fa fa-building text-lg md:text-xl text-[#e62a88]"></i>
+                    </div>
+                    <h3 class="text-base md:text-lg font-semibold mb-2 md:mb-3 text-[#e62a88]">高端环境</h3>
+                    <p class="text-white/90 text-xs md:text-sm flex-grow">
+                        店内采用奢华设计风格，搭配高端软装与智能设备，营造静谧舒适的专属体验空间。
+                    </p>
+                </div>
+            
+                <!-- 特色3：专业团队 -->
+                <div class="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-white/10 h-full flex flex-col w-full">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-white/10 rounded-full flex items-center justify-center mb-4 md:mb-5 flex-shrink-0">
+                        <i class="fa fa-user-md text-lg md:text-xl text-[#e62a88]"></i>
+                    </div>
+                    <h3 class="text-base md:text-lg font-semibold mb-2 md:mb-3 text-[#e62a88]">专业团队</h3>
+                    <p class="text-white/90 text-xs md:text-sm flex-grow">
+                        每位护理师均拥有国际认证资质与多年临床经验，提供专业贴心的服务体验。
+                    </p>
+                </div>
+
+                <!-- 特色4：私密空间 -->
+                <div class="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-white/10 h-full flex flex-col w-full">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-white/10 rounded-full flex items-center justify-center mb-4 md:mb-5 flex-shrink-0">
+                        <i class="fa fa-shield text-lg md:text-xl text-[#e62a88]"></i>
+                    </div>
+                    <h3 class="text-base md:text-lg font-semibold mb-2 md:mb-3 text-[#e62a88]">私密空间</h3>
+                    <p class="text-white/90 text-xs md:text-sm flex-grow">
+                        独立护理套房配备智能控制系统，确保您在完全私密的环境中享受专属服务。
+                    </p>
+                </div>
+
+                <!-- 特色5：顶级产品 -->
+                <div class="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-white/10 h-full flex flex-col w-full">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-white/10 rounded-full flex items-center justify-center mb-4 md:mb-5 flex-shrink-0">
+                        <i class="fa fa-flask text-lg md:text-xl text-[#e62a88]"></i>
+                    </div>
+                    <h3 class="text-base md:text-lg font-semibold mb-2 md:mb-3 text-[#e62a88]">顶级产品</h3>
+                    <p class="text-white/90 text-xs md:text-sm flex-grow">
+                        精选国际顶级品牌产品，结合先进科技，为您提供安全有效的年轻化解决方案。
+                    </p>
+                </div>
+
+                <!-- 特色6：定制服务 -->
+                <div class="bg-black p-6 md:p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-white/10 h-full flex flex-col w-full">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-white/10 rounded-full flex items-center justify-center mb-4 md:mb-5 flex-shrink-0">
+                        <i class="fa fa-calendar-check-o text-lg md:text-xl text-[#e62a88]"></i>
+                    </div>
+                    <h3 class="text-base md:text-lg font-semibold mb-2 md:mb-3 text-[#e62a88]">定制服务</h3>
+                    <p class="text-white/90 text-xs md:text-sm flex-grow">
+                        根据个人肤质与需求，量身定制个性化护理方案，提供专属一对一服务体验。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 门店环境展示（图片展示） -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-black">门店环境展示</h2>
+                <div class="w-20 h-1 bg-[#e62a88] mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    每一处细节都彰显极致品味，为您营造尊贵舒适的放松空间
+                </p>
+            </div>
+
+            <div class="flex justify-center py-4">
+                <img 
+                    src="images/stores/stores_evshow.jpg" 
+                    alt="梦圆皇宫门店环境展示，包含接待区、护理室和休息区" 
+                    class="w-full max-w-5xl h-auto rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-500 border-4 border-white/20 object-cover"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <div id="footer-placeholder"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const footerContent = doc.body.innerHTML;
+                    document.getElementById('footer-placeholder').innerHTML = footerContent;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+        });
+    </script>
+</body>
+</html>
