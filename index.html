@@ -31,27 +31,7 @@
     <!-- 引入Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Vite客户端回退脚本 -->
-    <script>
-        // 检测是否在开发环境下使用Vite
-        if (window.location.protocol !== 'file:') {
-            // 尝试加载Vite客户端，如果失败则加载回退脚本
-            const script = document.createElement('script');
-            script.src = '/@vite/client';
-            script.onerror = function() {
-                console.warn('Vite client not found, loading fallback...');
-                const fallbackScript = document.createElement('script');
-                fallbackScript.src = '/vite-client-fallback.js';
-                document.head.appendChild(fallbackScript);
-            };
-            document.head.appendChild(script);
-        } else {
-            // 直接加载回退脚本
-            const fallbackScript = document.createElement('script');
-            fallbackScript.src = '/vite-client-fallback.js';
-            document.head.appendChild(fallbackScript);
-        }
-    </script>
+
     
     <!-- 配置Tailwind自定义主题 -->
     <script>
