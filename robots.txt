@@ -1,0 +1,34 @@
+User-agent: *
+Disallow: /js/
+Disallow: /images/
+Disallow: /header.html
+Disallow: /footer.html
+Allow: /index.html
+Allow: /brand.html
+Allow: /stores.html
+Allow: /youth.html
+Allow: /services.html
+Allow: /testimonials.html
+Allow: /careers.html
+Allow: /contact.html
+Allow: /info.html
+Allow: /story.html
+Allow: /booking.html
+Sitemap: https://www.myhgdayspa.cn/sitemap.xml
+
+User-agent: Baiduspider
+Disallow: /js/
+Disallow: /images/
+Disallow: /header.html
+Disallow: /footer.html
+Allow: /
+Sitemap: https://www.myhgdayspa.cn/sitemap.xml
+
+User-agent: Googlebot
+Disallow: /js/
+Disallow: /images/
+Disallow: /header.html
+Disallow: /footer.html
+Allow: /
+Sitemap: https://www.myhgdayspa.cn/sitemap.xml
+    

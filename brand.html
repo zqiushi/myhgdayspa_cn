@@ -22,8 +22,9 @@
                             DEFAULT: '#ff69b4',
                             dark: '#c71585'
                         },
-                        black: '#000000',
-                        white: '#ffffff'
+                        royal: '#e62a88',
+                        royalDark: '#c71585',
+                        gold: '#e62a88'
                     },
                     fontFamily: {
                         inter: ['Inter', 'sans-serif'],
@@ -32,18 +33,6 @@
             }
         }
     </script>
-    
-    <!-- 自定义工具类 -->
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .text-shadow {
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            }
-        }
-    </style>
     
     <style>
         /* 基础动画设置 */
@@ -63,6 +52,51 @@
         
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }
+        
+        /* 解决固定导航栏遮挡内容的问题 */
+        body {
+            /* 导航栏高度 + 额外间距 */
+            padding-top: 80px;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                /* 移动端导航栏高度调整 */
+                padding-top: 70px;
+            }
+        }
+        
+        /* 修复导航栏滚动后变宽的问题 */
+        #navbar {
+            height: 80px;
+            transition: all 0.3s ease;
+        }
+        
+        #navbar.scrolled {
+            height: 80px; /* 保持固定高度，不增加 */
+            padding: 0.5rem 0; /* 轻微内边距变化，但不增加整体高度 */
+        }
+        
+        /* 确保面包屑导航始终可见 */
+        .breadcrumb-container {
+            margin-top: 80px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        @media (max-width: 768px) {
+            #navbar {
+                height: 70px;
+            }
+            
+            #navbar.scrolled {
+                height: 70px;
+            }
+            
+            .breadcrumb-container {
+                margin-top: 70px;
+            }
+        }
     </style>
 </head>
 
@@ -71,30 +105,72 @@
     <div id="header-placeholder"></div>
     <script src="/js/navbar.js"></script>
     <script>
-        fetch('header.html')
-            .then(response => response.text())
-            .then(html => {
-                // 使用DOMParser处理HTML内容
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const headerContent = doc.body.innerHTML;
-                document.getElementById('header-placeholder').innerHTML = headerContent;
-                setTimeout(initNavbar, 0);
-            })
-            .catch(error => console.error('Error loading header:', error));
+        // 修复导航栏滚动问题的JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载header
+            fetch('header.html')
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const headerContent = doc.body.innerHTML;
+                    document.getElementById('header-placeholder').innerHTML = headerContent;
+                    
+                    // 初始化导航栏后添加滚动监听
+                    setTimeout(function() {
+                        initNavbar();
+                        
+                        // 监听滚动事件，确保导航栏不会遮挡内容
+                        let lastScrollTop = 0;
+                        const navbar = document.getElementById('navbar');
+                        const breadcrumb = document.querySelector('.breadcrumb-container');
+                        
+                        window.addEventListener('scroll', function() {
+                            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                            
+                            // 添加滚动类，但不改变导航栏高度
+                            if (scrollTop > 50) {
+                                navbar.classList.add('scrolled');
+                            } else {
+                                navbar.classList.remove('scrolled');
+                            }
+                            
+                            // 确保面包屑导航始终可见
+                            if (breadcrumb) {
+                                const navbarHeight = navbar.offsetHeight;
+                                breadcrumb.style.marginTop = navbarHeight + 'px';
+                            }
+                            
+                            lastScrollTop = scrollTop;
+                        });
+                    }, 0);
+                })
+                .catch(error => console.error('Error loading header:', error));
+        });
     </script>
 
-<!-- 页面标题区域 -->
-<section class="bg-pink text-white py-24 md:py-32">
-    <div class="container mx-auto px-4 flex items-center justify-center">
-        <img src="images/brand/logo2.png" alt="品牌logo" class="h-16 md:h-24 mr-4">
-        <div class="text-center">
-            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4">品牌介绍</h1>
-            <div class="w-24 h-1 bg-pink-dark mx-auto mb-6"></div>
-            <p class="max-w-2xl mx-auto text-white">探索梦圆皇宫的品牌故事、核心价值与发展历程</p>
-        </div>
+    <!-- 面包屑导航 - 已修复位置 -->
+    <div class="breadcrumb-container container mx-auto px-4 py-4">
+        <nav class="text-sm" aria-label="面包屑导航">
+            <ol class="flex space-x-2">
+                <li><a href="index.html" class="text-gray-600 hover:text-gold transition-colors duration-300">首页</a></li>
+                <li><span class="text-gray-400">/</span></li>
+                <li><span class="text-gold font-medium">品牌介绍</span></li>
+            </ol>
+        </nav>
     </div>
-</section>
+
+    <!-- 页面标题区域 -->
+    <section class="bg-pink text-white py-24 md:py-32">
+        <div class="container mx-auto px-4 flex items-center justify-center">
+            <img src="images/brand/logo2.png" alt="品牌logo" class="h-16 md:h-24 mr-4">
+            <div class="text-center">
+                <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4">品牌介绍</h1>
+                <div class="w-24 h-1 bg-pink-dark mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto text-white">探索梦圆皇宫的品牌故事、核心价值与发展历程</p>
+            </div>
+        </div>
+    </section>
 
     <!-- 品牌故事 -->
     <section class="py-20 bg-[#fdf4f9]">
@@ -106,11 +182,8 @@
                         2000年梦圆皇宫成立，定位为高品质客户服务的品牌，因为企业发展定位决定necessarily打造五星级的经营环境，引进高科技的进口美容纤体抗衰设备和产品、不断建立经营标准完善服务细节，这十年也是梦圆皇宫建立美业首部运营管理服务标准体系的最佳时间段。
                     </p>
                     <p class="text-black mb-6 leading-relaxed">
-                        2008年梦圆皇宫升级定位为“高品质人士实现年轻化梦想”,创新推出“六维年轻化管理”包括：生活美容、医疗美容、健康管理三美联合实现年轻化解决方案，同时推出十加1+1运营模式，即10个生活美容+1家医美机构+1家健康管理机构的运营模式，2008年我们开始全面整合韩国、台湾、日本等先进的医疗整形技术，和台湾、法国、瑞士、德国等抗衰老技术和医生资源，运用三美联动全面为会员提供年轻化解决方案!。
+                        2008年梦圆皇宫升级定位为"高品质人士实现年轻化梦想",创新推出"六维年轻化管理"包括：生活美容、医疗美容、健康管理三美联合实现年轻化解决方案，同时推出十加1+1运营模式，即10个生活美容+1家医美机构+1家健康管理机构的运营模式，2008年我们开始全面整合韩国、台湾、日本等先进的医疗整形技术，和台湾、法国、瑞士、德国等抗衰老技术和医生资源，运用三美联动全面为会员提供年轻化解决方案!。
                     </p>
-                    <!-- <p class="text-black mb-8 leading-relaxed">
-                        如今，梦圆皇宫已成为高端SPA行业的标杆品牌，在全国主要城市拥有多家旗舰门店，为无数宾客提供了身心焕活的奢华体验。
-                    </p> -->
                     <div class="flex flex-wrap gap-4">
                         <div class="flex items-center">
                             <div class="w-12 h-12 rounded-full bg-royal flex items-center justify-center text-white text-xl mr-4">
@@ -142,7 +215,6 @@
             </div>
         </div>
     </section>
-
 
     <!-- 品牌视频 -->
     <section class="py-20 bg-black">
@@ -277,14 +349,11 @@
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-4">发展历程</h2>
                 <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-                <!-- <p class="max-w-3xl mx-auto text-gray-200">30年发展，我们只做一件事，为追求高品质生活人士实现年轻化梦想</p> -->
                 <p class="max-w-3xl mx-auto text-[#e62a88]">30年发展，我们只做一件事，为追求高品质生活人士实现年轻化梦想</p>
             </div>
             
             <div class="relative">
-                <!-- 时间线中轴线 -->
-                <!-- <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gold/30"></div> -->
-               <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#e62a88]/30"></div>
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#e62a88]/30"></div>
                 
                 <!-- 时间点1 -->
                 <div class="relative z-10 mb-16">
@@ -305,7 +374,7 @@
                         <div class="w-12 h-12 rounded-full bg-[#e62a88] text-white flex items-center justify-center font-bold z-10">2008</div>
                         <div class="md:w-1/2 md:pl-12 mt-8 md:mt-0">
                             <h3 class="text-2xl font-semibold mb-2">模式创新</h3>
-                            <p class="text-black">梦圆皇宫凤凰大厦SPA会所开业，全国美业率先提出和实行“六维年轻化管理”模式。生活美容、医疗美容、健康管理三美共同发展，整合国际优质医疗和大健康抗衰老资源，为尊贵会员开通“抗衰老健康直通车”。</p>
+                            <p class="text-black">梦圆皇宫凤凰大厦SPA会所开业，全国美业率先提出和实行"六维年轻化管理"模式。生活美容、医疗美容、健康管理三美共同发展，整合国际优质医疗和大健康抗衰老资源，为尊贵会员开通"抗衰老健康直通车"。</p>
                         </div>
                     </div>
                 </div>
@@ -315,8 +384,8 @@
                     <div class="flex flex-col md:flex-row items-center">
                         <div class="md:w-1/2 md:pr-12 md:text-right mb-8 md:mb-0">
                             <h3 class="text-2xl font-semibold mb-2">荣誉双收</h3>
-                            <p class="text-black">国家商务部服贸司与全国美容化妆品協會批复成立“中華全国工業聯合美容化妆品業商会中華美業標準管理推行專業中聯美標專委員會”；梦图皇宮為專業委員會主任單位乙晴董事长任專委員會主任，旨在推動美業規範發展，树立美業良好形象，幫助美業做大做强，為建立中國美業行業標準作出傑出貢獻
-践行“十加一”的經營模式，設開呈悦醫療整形診所；創建乙晴榮譽“深圳十大傑出女創業家”。</p>
+                            <p class="text-black">国家商务部服贸司与全国美容化妆品協會批复成立"中華全国工業聯合美容化妆品業商会中華美業標準管理推行專業中聯美標專委員會"；梦图皇宮為專業委員會主任單位乙晴董事长任專委員會主任，旨在推動美業規範發展，树立美業良好形象，幫助美業做大做强，為建立中國美業行業標準作出傑出貢獻
+践行"十加一"的經營模式，設開呈悦醫療整形診所；創建乙晴榮譽"深圳十大傑出女創業家"。</p>
                         </div>
                         <div class="w-12 h-12 rounded-full bg-[#e62a88] text-white flex items-center justify-center font-bold z-10">2011</div>
                         <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
@@ -370,7 +439,7 @@
         </div>
     </section>
 
- <!-- 页脚 -->
+    <!-- 页脚 -->
     <div id="footer-placeholder"></div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
