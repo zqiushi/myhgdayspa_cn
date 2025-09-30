@@ -105,11 +105,6 @@
     
     
 
-            <!-- 预约按钮 -->
-            <a href="booking.html" class="hidden md:block bg-gold hover:bg-gold-dark text-white px-6 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                立即预约
-            </a>
-
             <!-- 移动端菜单按钮 -->
             <button id="menu-toggle" class="md:hidden text-white text-2xl">
                 <i class="fa fa-bars"></i>
@@ -165,6 +160,19 @@
             </div>
         </div>
     </header>
+
+
+    <!-- 修复后的面包屑导航 -->
+    <div class="breadcrumb-container container mx-auto px-4 py-4 mt-20">
+        <nav class="text-sm" aria-label="面包屑导航">
+            <ol class="flex space-x-2">
+                <li><a href="index.html" class="text-gray-600 hover:text-gold transition-colors duration-300">首页</a></li>
+                <li><span class="text-gray-400">/</span></li>
+                <li><span class="text-gold font-medium">六位年轻化方案</span></li>
+            </ol>
+        </nav>
+    </div>
+
 
     <!-- 年轻化方案 -->
     <section class="bg-[#e62a88] text-white py-24 md:py-32">
